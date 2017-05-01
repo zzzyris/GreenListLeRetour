@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Banque_EAR-1.0">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
+        <dependent-module archiveName="toto.war" deploy-path="/" handle="module:/resource/Banque_WEB/Banque_WEB">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="titi.jar" deploy-path="/" handle="module:/resource/Banque_DATA_EJB/Banque_DATA_EJB">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="foo.jar" deploy-path="/" handle="module:/resource/Banque_BUSINESS_EJB/Banque_BUSINESS_EJB">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Banque_Entity-1.0.jar" deploy-path="/lib" handle="module:/resource/Banque_Entity/Banque_Entity">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Banque_DATA_API-1.0.jar" deploy-path="/lib" handle="module:/resource/Banque_DATA_API/Banque_DATA_API">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Banque_BUSINESS_API-1.0.jar" deploy-path="/lib" handle="module:/resource/Banque_BUSINESS_API/Banque_BUSINESS_API">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

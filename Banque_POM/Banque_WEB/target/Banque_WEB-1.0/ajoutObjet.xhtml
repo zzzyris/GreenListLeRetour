@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>GreenList - Bienvenue</title>
+
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/base.xhtml">
+		<ui:define name="content">
+			<div class="pageObjet pageSouhait">
+				<div>
+					<!-- Titre de la page -->
+					<div class="oneRowBloc objetItem pageTitleBloc">
+						<p:button value="Ajouter un Objet"
+							icon="ui-icon-plus" styleClass="objetItem">
+							<f:param name="productId" value="10" />
+						</p:button>
+					</div>
+
+					<!-- Bloc de critères gauche -->
+					<div class="oneColBloc">
+						<div class="versusBloc">
+							<div class="oneColBloc">
+								<div class="oneRowBloc">
+									<input class="formItem inputText" type="text" value="Libellé" />
+								</div>
+								<div class="oneRowBloc">
+									<input class="formItem descriptionForm" type="text"
+										value="Description" />
+								</div>
+								<div class="oneRowBloc">
+									<select class="formItem inputText">
+										<option value="Marque">Marque</option>
+									</select>
+								</div>
+								<div class=" oneRowBloc">
+									<div class="formItem">Valeur</div>
+									<span class="ion-ios-snowy greenColor normalIcon"> </span>
+								</div>
+							</div>
+
+							<!-- Bloc de critères droit -->
+							<div class="oneColBloc">
+								<div class="oneRowBloc categoryBloc">
+									Catégorie
+									<button
+										class="buttonFormCategory ion-ios-home-outline souhaitItem smallIcon whiteColor"></button>
+									<button
+										class="buttonFormCategory ion-tshirt-outline objetItem smallIcon whiteColor"></button>
+									<button
+										class="buttonFormCategory ion-ios-football purpleItem smallIcon whiteColor"></button>
+									<button
+										class="buttonFormCategory ion-ios-game-controller-b-outline yellowItem smallIcon whiteColor"></button>
+									<button
+										class="buttonFormCategory ion-ios-musical-notes blueItem smallIcon whiteColor"></button>
+								</div>
+								<div class="oneRowBloc">
+									<select class="formItem inputText">
+										<option value="Sous-catégorie">Sous-catégorie</option>
+									</select>
+								</div>
+								<div class="oneRowBloc">
+									<select class="formItem inputText">
+										<option value="Sous-catégorie">Sous-sous-catégorie</option>
+									</select>
+								</div>
+								<div class="formItem oneRowBloc">
+									<div>Tranche d'âge</div>
+									<div>
+										<input type="range" value="15" max="50" min="0" step="5" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Bloc photos -->
+					<div class="oneRowBloc">
+						<div class="bigTitle objetItem whiteColor grow">Ajouter des
+							photos</div>
+					</div>
+					<div class="photosBloc sectionBloc">
+						<div class="photo">
+							<button
+								class="buttonFormCategory ion-ios-camera-outline objetItem smallIcon whiteColor"></button>
+						</div>
+						<div class="photo">
+							<button
+								class="buttonFormCategory ion-ios-camera-outline objetItem smallIcon whiteColor"></button>
+						</div>
+						<div class="photo">
+							<button
+								class="buttonFormCategory ion-ios-camera-outline objetItem smallIcon whiteColor"></button>
+						</div>
+					</div>
+
+					<!-- Bloc de boutons -->
+					<div class="boutonsBloc oneRowBloc">
+						<div>
+							<button class="buttonForm objetItem ion-checkmark-round">
+								| Valider</button>
+						</div>
+						<div>
+							<button class="buttonForm objetItem ion-close-round">|
+								Annuler</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

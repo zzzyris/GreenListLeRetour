@@ -14,13 +14,13 @@ import org.greenlist.entity.Groupe;
 import org.greenlist.entity.Produit;
 
 
-@Remote(IDaoObjet.class)
+@Remote(IDaoGroupe.class)
 @Singleton
 public class DaoGroupe implements IDaoGroupe {
 
 	
 	private static final String REQUETTE_GET_GROUPES ="SELECT g from Groupe as g";
-	@PersistenceContext(unitName = "Data_EJB")
+	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;
 	
 	

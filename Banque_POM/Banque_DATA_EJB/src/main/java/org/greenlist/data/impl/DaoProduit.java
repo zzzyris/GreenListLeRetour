@@ -21,7 +21,7 @@ public class DaoProduit implements IDaoProduit{
 	
 	private static final String REQUETTE_GET_PRODUITS = "SELECT p FROM Produit as p ";
 	
-	@PersistenceContext(unitName = "Data_EJB")
+	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;
 
 	@Override

@@ -28,19 +28,19 @@ public class DaoObjet implements IDaoObjet {
 
 	private static final String REQUETTE_GET_OBJETS_BY_LIBELLE = "SELECT o FROM Objet as o WHERE o.libelle LIKE :pmotClef";
 
-	/*
-	 * private static final String REQUETTE_GET_OBJETS_BY_DOMAINE =
-	 * " SELECT o FROM Objet  as o" +" JOIN o.produit as produit"
-	 * +" join produit.groupe as groupe" +"joint groupe.domaine as domaine"
-	 * +" WHERE domaine = :pDomaine";
-	 * 
-	 * private static final String REQUETTE_GET_OBJETS_BY_GROUPE =
-	 * " SELECT o FROM Objet as  o" +" JOIN o.produit as produit "
-	 * +"join produit.groupe as groupe" +" WHERE groupe = :pGroupe";
-	 * 
-	 * private static final String REQUETTE_GET_OBJETS_BY_PRODUIT =
-	 * "SELECT o from Objet o wehere o.produit + :pProduit" ;
-	 */
+	
+	  private static final String REQUETTE_GET_OBJETS_BY_DOMAINE =
+	  " SELECT o FROM Objet  as o" +" JOIN o.produit as produit"
+	  +" join produit.groupe as groupe" +"joint groupe.domaine as domaine"
+	  +" WHERE domaine = :pDomaine";
+	  
+	  private static final String REQUETTE_GET_OBJETS_BY_GROUPE =
+	  " SELECT o FROM Objet as  o" +" JOIN o.produit as produit "
+	  +"join produit.groupe as groupe" +" WHERE groupe = :pGroupe";
+	  
+	  private static final String REQUETTE_GET_OBJETS_BY_PRODUIT =
+	  "SELECT o from Objet o wehere o.produit + :pProduit" ;
+	 
 	/**
 	 * Methode pour r�cup�rer un objet par son id
 	 * 
@@ -74,13 +74,11 @@ public class DaoObjet implements IDaoObjet {
 	 * @param utilisateur
 	 *            le propri�taire des objets recherch�s
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<Objet> getObjetsByUtilisateur(Utilisateur utilisateur) {
-		// utilisateur.getObjets();
-		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_UTILISATEUR).setParameter("pIdUtilisateur",
-				utilisateur.getId());
-		return query.getResultList();
+		
+		return utilisateur.getObjets();
 	}
 
 	/**
@@ -111,7 +109,7 @@ public class DaoObjet implements IDaoObjet {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Objet> getObjetsByDomaine(Domaine domaine) {
-		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_LIBELLE).setParameter("pDomaine", domaine);
+		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_DOMAINE).setParameter("pDomaine", domaine);
 		return query.getResultList();
 	}
 
@@ -124,7 +122,7 @@ public class DaoObjet implements IDaoObjet {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Objet> getObjetsByGroupe(Groupe groupe) {
-		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_LIBELLE).setParameter("pGroupe", groupe);
+		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_GROUPE).setParameter("pGroupe", groupe);
 		return query.getResultList();
 	}
 
@@ -137,7 +135,7 @@ public class DaoObjet implements IDaoObjet {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Objet> getObjetsByProduit(Produit produit) {
-		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_LIBELLE).setParameter("pProduit", produit);
+		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_PRODUIT).setParameter("pProduit", produit);
 		return query.getResultList();
 	}
 

@@ -19,7 +19,7 @@ public class DaoPanier implements IDaoPanier {
 private static final String GET_OBJETS_BY_PANIER="SELECT p.objets FROM Panier p WHERE p.id = :pIdPanier";
 private static final String GET_PANIER_BY_UTILISATEUR="SELECT u.panier FROM Utilisateur u WHERE u.id =:pIdUtilisateur";
 
-@PersistenceContext(unitName="Data_EJB")
+@PersistenceContext(unitName="Banque_DATA_EJB")
 private EntityManager em;
 
 	@SuppressWarnings("unchecked")

@@ -31,16 +31,16 @@ public class Utilisateur implements java.io.Serializable {
 	@Column(name = "ID", unique = true, nullable = false)
 	private int id;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDXP", nullable = false)
+	@JoinColumn(name = "IDXP", nullable = true)
 	private Experience experience;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDMOTIF")
 	private MotifRadiation motifRadiation;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDPANIER", nullable = false)
+	@JoinColumn(name = "IDPANIER", nullable = true)
 	private Panier panier;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDPREFERENCE", nullable = false)
+	@JoinColumn(name = "IDPREFERENCE", nullable = true)
 	private Preference preference;
 	@Column(name = "PSEUDO", nullable = false, length = 50)
 	private String pseudo;

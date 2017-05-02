@@ -17,7 +17,7 @@ import org.greenlist.entity.Utilisateur;
 @Singleton
 public class DaoAdresse implements IDaoAdresse {
 
-	@PersistenceContext(unitName = "Data_EJB")
+	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;
 	
 	private static final String REQUETTE_GET_ADRESSES_BY_UTILISATEUR = "SELECT u.adresses FROM Utilisateur as u "

@@ -18,7 +18,7 @@ import org.greenlist.entity.Groupe;
 @Singleton
 public class DaoDomaine implements IDaoDomaine{
 
-	@PersistenceContext(unitName = "Data_EJB")
+	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;
 	
 	private static final String REQUETTE_GET_DOMAINES = "SELECT d FROM Domaine as d ";

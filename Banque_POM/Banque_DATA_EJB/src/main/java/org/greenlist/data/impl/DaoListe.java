@@ -20,7 +20,7 @@ public class DaoListe implements IDaoListe {
 	private static final String  REQUETE_GET_LISTE_BY_UTILISATEUR = "SELECT u.listes FROM Utilisateur as u"
 			+ "WHERE u.id = :pIdUtilisateur";
 	
-	@PersistenceContext(unitName = "Data_EJB")
+	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;
 	
 	@SuppressWarnings("unchecked")

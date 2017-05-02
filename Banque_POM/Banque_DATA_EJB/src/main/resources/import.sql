@@ -1,0 +1,1 @@
+INSERT INTO `utilisateur`(`ID`, `DATE_INSCRIPTION`, `DATE_NAISSANCE`, `EMAIL`,  `NOM`, `PASSWORD`, `PRENOM`, `PSEUDO`, `SOLDE`) VALUES ( 1,'2017-05-02', '1986-10-02', 'truc@gl.org', 'coutue', '0000','jeanne','jc','42' );

@@ -29,7 +29,7 @@ public class Preference implements java.io.Serializable {
 	@Column(name = "ID", unique = true, nullable = false)
 	private int id;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDFREQUENCE", nullable = false)
+	@JoinColumn(name = "IDFREQUENCE", nullable = true)
 	private FrequenceEmail frequenceEmail;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUTILISATEUR")

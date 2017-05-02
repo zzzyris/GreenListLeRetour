@@ -29,7 +29,7 @@ public class Produit implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDGROUPE", nullable = false)
 	private Groupe groupe;
-	@Column(name = "LIBELLE", nullable = false, length = 50)
+	@Column(name = "LIBELLE", nullable = false, length = 100)
 	private String libelle;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produit")
 	private List<Souhait> souhaits = new ArrayList<>();

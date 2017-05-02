@@ -61,10 +61,7 @@ public class DaoObjet implements IDaoObjet {
 	 */
 	@Override
 	public Objet createObjet(Objet objet) {
-		em.getTransaction().begin();
 		em.persist(objet);
-		em.getTransaction().commit();
-		em.close();
 		return objet;
 	}
 

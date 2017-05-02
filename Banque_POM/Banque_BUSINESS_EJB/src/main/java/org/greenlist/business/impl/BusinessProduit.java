@@ -40,4 +40,15 @@ public class BusinessProduit implements IBusinessProduit {
 		return produits;
 	}
 
+	@Override
+	public List<Produit> getProduits(Groupe groupe) {
+		List<Produit> produits = null;
+		try {
+			produits = proxyProduit.getProduits(groupe);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return produits;
+	}
+
 }

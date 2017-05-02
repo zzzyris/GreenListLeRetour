@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.greenlist.data.api.IDaoGroupe;
 import org.greenlist.data.api.IDaoObjet;
+import org.greenlist.entity.Domaine;
 import org.greenlist.entity.Groupe;
 import org.greenlist.entity.Produit;
 
@@ -19,7 +20,8 @@ import org.greenlist.entity.Produit;
 public class DaoGroupe implements IDaoGroupe {
 
 	
-	private static final String REQUETTE_GET_GROUPES ="SELECT g from Groupe as g";
+//	private static final String REQUETTE_GET_GROUPES ="SELECT g from Groupe as g";
+	
 	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;
 	
@@ -31,12 +33,18 @@ public class DaoGroupe implements IDaoGroupe {
 		return groupe.getProduits();
 	}
 
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<Groupe> getGroupes() throws Exception{
+//		Query query = em.createQuery(REQUETTE_GET_GROUPES);
+//		return query.getResultList();
+//		
+//	}
+
 	@Override
-	public List<Groupe> getGroupes() throws Exception{
-		Query query = em.createQuery(REQUETTE_GET_GROUPES);
-		return query.getResultList();
+	public List<Groupe> getGroupes(Domaine domaine) throws Exception {
 		
+		return domaine.getGroupes();
 	}
 
 }

@@ -37,4 +37,9 @@ public class DaoProduit implements IDaoProduit{
 		return query.getResultList();
 	}
 
+	@Override
+	public List<Produit> getProduits(Groupe groupe) throws Exception {
+		return groupe.getProduits();
+	}
+
 }

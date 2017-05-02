@@ -23,6 +23,8 @@ public class DaoDomaine implements IDaoDomaine{
 	
 	private static final String REQUETTE_GET_DOMAINES = "SELECT d FROM Domaine as d ";
 	
+	private static final String REQUETTE_GET_DOMAINE_BY_ID = "SELECT d FROM Domaine d WHERE d.id = :pIdDomaine";
+	
 	
 	@Override
 	public List<Groupe> getGroupes(Domaine domaine) throws Exception{
@@ -35,6 +37,13 @@ public class DaoDomaine implements IDaoDomaine{
 	public List<Domaine> getDomaines() throws Exception{
 		Query query = em.createQuery(REQUETTE_GET_DOMAINES);
 		return query.getResultList();
+	}
+
+	@Override
+	public Domaine getDomaine(int idDomaine) throws Exception {
+		Query query = em.createQuery(REQUETTE_GET_DOMAINE_BY_ID);
+		query.setParameter("pIdDomaine", idDomaine);
+		return (Domaine) query.getSingleResult();
 	}
 
 }

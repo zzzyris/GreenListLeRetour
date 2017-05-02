@@ -9,6 +9,8 @@ public interface IBusinessProduit {
 
 	Groupe getGroupe(Produit produit);
 	
+	List<Produit> getProduits(Groupe groupe);
+
 	List<Produit> getProduits();
 	
 }

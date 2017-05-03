@@ -35,7 +35,7 @@ public class Messagepublic implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUtilisateur")
 	private Utilisateur utilisateur;
-	@Column(name = "MESSAGE", nullable = false, length = 0)
+	@Column(name = "MESSAGE", nullable = false, length = 500)
 	private String message;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "messagepublic")
 	private List<Messagepublic> messagepublics = new ArrayList<>();

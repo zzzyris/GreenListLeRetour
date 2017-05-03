@@ -1,0 +1,275 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    list-style: none;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+}
+
+.normalIcon {
+    font-size: 30px;
+    color: #bbb;
+    margin: 5px;
+}
+
+.smallIcon {    
+    font-size: 22px;
+    color: #333;
+    margin: 2px;
+}
+
+.bigIcon {}
+
+/*** Echange Page **/
+
+.mainPanel {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mainEchange {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: stretch;
+    width: 70%;
+}
+
+.echangeProgressBar {
+    width: 90%;
+    margin-left: 3%;
+    margin-bottom: 10px;
+}
+
+.mainPanelTitle {
+    text-align: center;
+}
+
+/******** Echange Versus **********/
+
+.echangeOneBloc{
+    text-align: center;
+}
+
+.echangeRightBloc{
+    width: 50%;
+    align-self: flex-end;    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.echangeRightBloc ul {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.userSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 320px;
+}
+
+
+.userSection img {
+    display: block;
+    margin-right: 0px;
+}
+
+.userSection ul {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/******** Souhait vs Objet **********/
+
+.echangeLigneBox{
+    width: 50%
+}
+
+/******** Base Echange Versus **********/
+
+.echangeVersusBloc {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.tabTitle {
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.echangeVersusBloc div, .echangeVersusBloc ul{
+    flex-grow: 1;
+    padding: 10px;
+    list-style: none;
+    margin: 0;
+}
+
+/******** Liste Objets Echange Versus **********/
+
+.echangeObjetListe{
+    flex-grow: 1;
+}
+
+.minPhoto {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+}
+
+.echangeLigneIntitule {
+    flex-grow: 1;
+}
+
+.echangeLigneObjet,.echangeLigneSouhait {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    height: 80px;
+}
+
+.ordreInverse>.ordre1{
+    order: 1;
+}
+
+.ordreInverse>.ordre2{
+    order: 2;
+}
+
+.ordreInverse>.ordre3{
+    order: 3;
+}
+
+.ordreInverse>.ordre4{
+    order: 4;
+}
+.ordreInverse>.ordre5{
+    order: 5;
+}
+
+.echangeDescription{
+    width: 50%;
+    padding-left: 20px;
+}
+
+.echangeDescription li{
+    width: 100%;
+    padding-left: 20px;
+}
+
+/******** valeurs Total Echange Versus **********/
+
+.userTotal {
+    display: flex;
+    justify-content: center;    
+    text-align: right;
+}
+
+.userTotal li{
+    flex-grow: 1;
+}
+
+.userTotal.ordreInverse {     
+    text-align: left;
+}
+
+/******** echangeOptions Echange Versus **********/
+
+.echangeOptions{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%
+}
+
+.echangeOptions.ordreInverse {    
+    justify-content: flex-start;
+}
+
+/******** ChatBox **********/
+
+.chatPanel {
+    margin-top: 20px;
+    width: 320px;
+    height: 500px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-flow: column nowrap;
+    left: 10px;
+}
+
+.chatBox {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: stretch;
+    flex-grow: 1;
+    align-self: stretch;
+}
+
+.moiMessageChat {
+    text-align: left;
+    margin: 10px 30px 0 5px;
+    border: 1px solid blue;
+}
+
+.autreMessageChat {
+    text-align: right;
+    margin: 10px 5px 0 30px;
+    border: 1px solid green;
+}
+
+.chatSaisie {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.chatSaisie textarea{    
+    width: 100%;
+    height: 100%;
+}
+
+.echangeBtns {
+    margin-top: 10px;
+}
+
+.userTotal ul{
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.userTotal ul:last-child{
+    flex-grow: 1;
+}

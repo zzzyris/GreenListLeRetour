@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import org.greenlist.business.api.IBusinessDomaine;
 import org.greenlist.data.api.IDaoDomaine;
+import org.greenlist.data.api.IDaoGroupe;
 import org.greenlist.entity.Domaine;
 import org.greenlist.entity.Groupe;
 
@@ -15,12 +16,14 @@ public class BusinessDomaine implements IBusinessDomaine {
 
 	@EJB
 	private IDaoDomaine proxyDomaine;
+	@EJB
+	private IDaoGroupe proxyGroupe;
 
 	@Override
 	public List<Groupe> getGroupes(Domaine domaine) {
 		List<Groupe> groupes = null;
 		try {
-			groupes = proxyDomaine.getGroupes(domaine);
+			groupes = proxyGroupe.getGroupes(domaine);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -10,4 +10,6 @@ public interface IBusinessDomaine {
 	List<Groupe> getGroupes(Domaine domaine);
 	
 	 List<Domaine> getDomaines();
+	 
+	 Domaine getDomaine(int idDomaine);
 }

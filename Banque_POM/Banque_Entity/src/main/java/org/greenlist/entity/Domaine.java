@@ -26,7 +26,7 @@ public class Domaine implements java.io.Serializable {
 	private int id;
 	@Column(name = "LIBELLE", nullable = false, length = 50)
 	private String libelle;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "domaine")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "domaine")
 	private List<Groupe> groupes = new ArrayList<>();
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "domaine")
 	private List<Souhait> souhaits = new ArrayList<>();

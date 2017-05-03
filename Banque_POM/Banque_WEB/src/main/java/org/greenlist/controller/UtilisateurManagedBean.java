@@ -68,6 +68,14 @@ public class UtilisateurManagedBean {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+
+	public Utilisateur getUtilisateurConnecte() {
+		return utilisateurConnecte;
+	}
+
+	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
+		this.utilisateurConnecte = utilisateurConnecte;
+	}
 	
 	
 }

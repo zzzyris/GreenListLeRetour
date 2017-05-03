@@ -13,8 +13,10 @@ public interface IDaoProduit {
  */
 	Groupe getGroupe(Produit produit)throws Exception;
 	/**
-	 * Permet de recuperer l integralité des Produits de la base 
+	 * Permet de recuperer l integralitï¿½ des Produits de la base 
 	 * @return
 	 */
 	List<Produit> getProduits()throws Exception;
+	
+	List<Produit> getProduits(Groupe groupe)throws Exception;
 }

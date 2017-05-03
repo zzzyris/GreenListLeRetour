@@ -31,7 +31,7 @@ public class Groupe implements java.io.Serializable {
 	private Domaine domaine;
 	@Column(name = "LIBELLE", nullable = false, length = 50)
 	private String libelle;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "groupe")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "groupe")
 	private List<Produit> produits = new ArrayList<>();
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "groupe")
 	private List<Souhait> souhaits = new ArrayList<>();

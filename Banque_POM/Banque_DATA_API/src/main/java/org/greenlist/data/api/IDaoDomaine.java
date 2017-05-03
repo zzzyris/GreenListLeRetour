@@ -6,16 +6,19 @@ import org.greenlist.entity.Domaine;
 import org.greenlist.entity.Groupe;
 
 public interface IDaoDomaine {
-	/**
-	 * Methode pour determiner l'ensemble des Groupes appartenant au domaine . 
-	 * @param domaine le domaine dont on veut connaitre les groupes 
-	 * @return une liste des groupes
-	 */
-	 List<Groupe> getGroupes(Domaine domaine)throws Exception;
+
 	
 	 /**
 	  * permet d'avoir les Domaines de la base
 	  * @return la liste de tous les domaines du SI
 	  */
 	 List<Domaine> getDomaines() throws Exception;
+	 
+	 /**
+	  * permet de récupérer un domaine depuis son id
+	  * @param idDomaine
+	  * @return le domaine associé à l'id donné
+	  * @throws Exception
+	  */
+	 Domaine getDomaine(int idDomaine) throws Exception;
 }

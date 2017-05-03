@@ -15,7 +15,7 @@
 
 		<ui:define name="content">
 			<h:panelGroup>
-				<h:form id="formAjoutObjet">
+				<h:form id="formAjoutObjet"  enctype="multipart/form-data">
 					<div class="pageTitleBloc">
 						<div class="fa fa-plus fa-2x pageTitleIcon"></div>
 						<div class="pageTitle whiteColor grow">Ajouter un Objet</div>
@@ -100,15 +100,18 @@
 					<div class="photosBloc">
 						<div class="pageSubTitle">Ajouter des photos</div>
 						<div class="photosConteneur">
+					
 							<div class="photoItem objetItem">
 								<span class="fa fa-camera"></span>
 							</div>
 							<div class="photoItem objetItem">
 								<span class="fa fa-camera"></span>
-							</div>
+							</div>						
+						
 							<div class="addIconBloc">
 								<div class="addIcon">
-									<span class="fa fa-plus"></span>
+								<h:inputFile value="#{mbModifCompte.file1}"></h:inputFile>
+								<h:commandButton class="fa fa-plus" action="#{mbModifCompte.upload()}"/>
 								</div>
 							</div>
 						</div>

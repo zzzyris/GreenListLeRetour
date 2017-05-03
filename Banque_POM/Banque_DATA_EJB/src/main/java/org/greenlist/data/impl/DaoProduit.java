@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.greenlist.data.api.IDaoObjet;
 import org.greenlist.data.api.IDaoProduit;
 import org.greenlist.entity.Groupe;
 import org.greenlist.entity.Produit;
@@ -37,9 +36,11 @@ public class DaoProduit implements IDaoProduit{
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Produit> getProduits(Groupe groupe) throws Exception {
-		return groupe.getProduits();
+		String hql = "SELECT p FROM Produit p WHERE p.groupe.id = :pid";
+		return em.createQuery(hql).setParameter("pid", groupe.getId()).getResultList();
 	}
 
 }

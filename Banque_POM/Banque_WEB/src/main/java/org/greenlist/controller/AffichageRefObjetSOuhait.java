@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ValueChangeEvent;
 
 import org.greenlist.business.api.IBusinessDomaine;
 import org.greenlist.business.api.IBusinessGroupe;
@@ -19,7 +21,7 @@ import org.greenlist.entity.Produit;
 import org.greenlist.entity.TrancheAge;
 
 @ManagedBean(name = "mbAfficheRefObjetSOuhait")
-@ViewScoped
+@SessionScoped
 public class AffichageRefObjetSOuhait {
 
 	@EJB
@@ -31,7 +33,7 @@ public class AffichageRefObjetSOuhait {
 	@EJB
 	private IBusinessDomaine proxyDomaine;
 	
-	
+	private Groupe selectedGroupe = new Groupe();
 	private List<TrancheAge> tranchesAges = null;
 	private List<Produit> produits = null ;
 	private List<Groupe> groupes = null  ;
@@ -47,19 +49,20 @@ public class AffichageRefObjetSOuhait {
 //		return groupes;
 //	}
 	
-	
-	public List<Produit> getproduits(Groupe groupe) {
+	public void rechercherProduits() {
 		if (produits == null ){
 			produits = new ArrayList<>();
 			
-		}
-		produits = proxyProduit.getProduits(groupe);
-		return produits;
+		}else 
+		System.out.println(selectedGroupe);
+		System.out.println(selectedGroupe.getId());
+		produits = proxyProduit.getProduits(selectedGroupe);
+		System.out.println(produits);
 	}
 	
 
 	public void setProduits(List<Produit> produits) {
-		produits = produits;
+		this.produits = produits;
 	}
 
 	public List<TrancheAge> getTranchesAges() {
@@ -77,8 +80,9 @@ public class AffichageRefObjetSOuhait {
 		this.tranchesAges = tranchesAges;
 	}
 	
-	public List<Groupe> getGroupes(int idDomaine){
-		return proxyDomaine.getGroupes(proxyDomaine.getDomaine(idDomaine));
+	public void rechercherGroupes(int idDomaine){
+		groupes = proxyDomaine.getGroupes(proxyDomaine.getDomaine(idDomaine));
+		produits  = proxyProduit.getProduits(groupes.get(0));
 	}
 
 
@@ -104,6 +108,36 @@ public class AffichageRefObjetSOuhait {
 
 	public List<Produit> getProduits() {
 		return produits;
+	}
+
+
+	public Groupe getSelectedGroupe() {
+		return selectedGroupe;
+	}
+
+
+	public void setSelectedGroupe(Groupe selectedGroupe) {
+		this.selectedGroupe = selectedGroupe;
+	}
+
+
+	public void setProxyTrancheAge(IBusinessTrancheAge proxyTrancheAge) {
+		this.proxyTrancheAge = proxyTrancheAge;
+	}
+
+
+	public void setProxyProduit(IBusinessProduit proxyProduit) {
+		this.proxyProduit = proxyProduit;
+	}
+
+
+	public void setProxyGroupe(IBusinessGroupe proxyGroupe) {
+		this.proxyGroupe = proxyGroupe;
+	}
+
+
+	public void setProxyDomaine(IBusinessDomaine proxyDomaine) {
+		this.proxyDomaine = proxyDomaine;
 	}
 	
 	

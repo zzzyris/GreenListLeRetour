@@ -72,10 +72,11 @@ public class DaoObjet implements IDaoObjet {
 	 *            le propri�taire des objets recherch�s
 	 */
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Objet> getObjetsByUtilisateur(Utilisateur utilisateur) {
-		
-		return utilisateur.getObjets();
+		String hql = "SELECT o FROM Objet o WHERE o.utilisateur.id = :pid";
+		return em.createQuery(hql).setParameter("pid", utilisateur.getId()).getResultList();
 	}
 
 	/**

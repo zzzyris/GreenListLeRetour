@@ -27,11 +27,7 @@ public class DaoGroupe implements IDaoGroupe {
 	
 	
 	
-	@Override
-	public List<Produit> getProduits(Groupe groupe) throws Exception{
-		
-		return groupe.getProduits();
-	}
+	
 
 //	@SuppressWarnings("unchecked")
 //	@Override
@@ -41,10 +37,12 @@ public class DaoGroupe implements IDaoGroupe {
 //		
 //	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Groupe> getGroupes(Domaine domaine) throws Exception {
+		String hql = "SELECT g FROM Groupe g WHERE g.domaine.id = :pid";
+		return em.createQuery(hql).setParameter("pid", domaine.getId()).getResultList();
 		
-		return domaine.getGroupes();
 	}
 
 }

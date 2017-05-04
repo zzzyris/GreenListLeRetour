@@ -31,7 +31,7 @@ public class Messagepublic implements java.io.Serializable {
 	private int id;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPARENT")
-	private Messagepublic messagepublic;
+	private Messagepublic messageParent;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDOBJET", nullable = false)
 	private Objet objet;
@@ -43,8 +43,8 @@ public class Messagepublic implements java.io.Serializable {
 	private Utilisateur utilisateur;
 	@Column(name = "MESSAGE", nullable = false, length = 500)
 	private String message;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "messagepublic")
-	private List<Messagepublic> messagepublics = new ArrayList<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "messageEnfants")
+	private List<Messagepublic> messageEnfants = new ArrayList<>();
 
 	public Messagepublic() {
 	}
@@ -59,15 +59,37 @@ public class Messagepublic implements java.io.Serializable {
 			String message, List<Messagepublic> messagepublics) {
 		super();
 		this.id = id;
-		this.messagepublic = messagepublic;
+		this.messageParent = messagepublic;
 		this.objet = objet;
 		this.dateEnvoi = dateEnvoi;
 		this.utilisateur = utilisateur;
 		this.message = message;
-		this.messagepublics = messagepublics;
+		this.messageEnfants = messagepublics;
 	}
-	
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Messagepublic getMessageParent() {
+		return messageParent;
+	}
+
+	public void setMessageParent(Messagepublic messageParent) {
+		this.messageParent = messageParent;
+	}
+
+	public Objet getObjet() {
+		return objet;
+	}
+
+	public void setObjet(Objet objet) {
+		this.objet = objet;
+	}
 
 	public Date getDateEnvoi() {
 		return dateEnvoi;
@@ -77,32 +99,8 @@ public class Messagepublic implements java.io.Serializable {
 		this.dateEnvoi = dateEnvoi;
 	}
 
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Messagepublic getMessagepublic() {
-		return this.messagepublic;
-	}
-
-	public void setMessagepublic(Messagepublic messagepublic) {
-		this.messagepublic = messagepublic;
-	}
-
-	public Objet getObjet() {
-		return this.objet;
-	}
-
-	public void setObjet(Objet objet) {
-		this.objet = objet;
-	}
-
 	public Utilisateur getUtilisateur() {
-		return this.utilisateur;
+		return utilisateur;
 	}
 
 	public void setUtilisateur(Utilisateur utilisateur) {
@@ -110,19 +108,21 @@ public class Messagepublic implements java.io.Serializable {
 	}
 
 	public String getMessage() {
-		return this.message;
+		return message;
 	}
 
 	public void setMessage(String message) {
 		this.message = message;
 	}
 
-	public List<Messagepublic> getMessagepublics() {
-		return this.messagepublics;
+	public List<Messagepublic> getMessageEnfants() {
+		return messageEnfants;
 	}
 
-	public void setMessagepublics(List<Messagepublic> messagepublics) {
-		this.messagepublics = messagepublics;
+	public void setMessageEnfants(List<Messagepublic> messageEnfants) {
+		this.messageEnfants = messageEnfants;
 	}
+	
+	
 
 }

@@ -11,107 +11,94 @@
 </h:head>
 <h:body>
 
+	<h:form>
 
+		<f:event type="preRenderView" listener="#{mbMessagePublic.init()}" />
 
-	<div class="faqBloc">
-		<div class="faqTab">
-			<ul class="messagePublicBranche">
-				<li>
-					<div class="messagePublicItem">
-						<span class="messageIcon fa fa-file-text"></span>Depuis combien de
-						temps avez-vous la peluche? <span
-							class="userIcon userName fa fa-user-circle-o"></span> <a>laDiva</a>,
-						04/12/2017
-					</div>
-					<ul class="messagePublicbranche">
-						<li>
-							<div class="messagePublicItem">
-								<span class="messageIcon flecheMessage"></span>Depuis Noël 2016.
-								<span class="userIcon userName fa fa-user-circle-o"></span> <a>Truc4Ever</a>,
-								04/12/2017
-							</div>
-							<ul class="messagePublicbranche">
-								<li>
-									<div>
-										<span class="messageIcon flecheMessage"></span>Merci. <span
-											class="userIcon userName fa fa-user-circle-o"></span> <a>laDiva</a>,
-										04/12/2017
-									</div>
-								</li>
-								<li>
-									<div>
-										<span class="messageIcon flecheMessage"></span><a>Répondre</a>
-									</div>
-									<div class="faqReply">
-										<label>Poser votre question</label>
-										<textarea></textarea>
-										<button class="boutonValider">
+		 <div class="faqBloc">
+        <div class="faqTab">
+            <ui:repeat var="message" value="#{mbMessagePublic.messages}">
+            <ui:param name="#{mbMessagePublic.node0}" value="#{message}"  />
+                <h:panelGroup rendered="#{mbMessagePublic.isNode0()}">
+                    <ul class="messagePublicBranche">
+                        <li>
+                            <div class="messagePublicItem">
+                                <h:outputLabel styleClass="messageIcon fa fa-file-text" value="" />
+                                <h:outputText value="#{message.message}" />
+                                <h:outputLabel styleClass="userIcon userName fa fa-user-circle-o" value=" " />
+                                <h:link value="laDiva">
+                                </h:link>
+                                ,
+                                <h:outputText value="#{message.dateEnvoi}" />
+                            </div>
+                            <h:panelGroup rendered="#{mbMessagePublic.hasChildren(message)}">
+                                <ul>
+                                    <ui:repeat var="messageBranche" value="#{message.messageEnfants}">
+                                        <ui:param name="id" value="messageBranche" />
+                                        <div class="messagePublicItem">
+                                            <h:outputLabel styleClass="messageIcon flecheMessage" value="" />
+                                            <h:outputText value="#{messageBranche.message}" />
+                                            <h:outputLabel styleClass="userIcon userName fa fa-user-circle-o" value=" " />
+                                            <h:link value="Troc4ever">
+                                            </h:link>
+                                            ,
+                                            <h:outputText value="#{messageBranche.dateEnvoi}" />
+                                        </div>
+                                        <li>
+                                            <h:panelGroup rendered="#{mbMessagePublic.hasChildren(messageBranche)}">
+                                                <ul>
+                                                    <ui:repeat var="messageBrancheBranche" value="#{messageBranche.messageEnfants}">
+                                                        <li>
+                                                            <ui:param name="id" value="messageBrancheBranche" />
+                                                            <div class="messagePublicItem">
+                                                                <h:outputLabel styleClass="messageIcon flecheMessage" value="" />
+                                                                <h:outputText value="#{messageBrancheBranche.message}" />
+                                                                <h:outputLabel styleClass="userIcon userName fa fa-user-circle-o" value=" " />
+                                                                <h:link value="Troc4ever">
+                                                                </h:link>
+                                                                ,
+                                                                <h:outputText value="#{messageBrancheBranche.dateEnvoi}" />
+                                                            </div>
+                                                        </li>
+                                                    </ui:repeat>
+                                                    <li>
+                                                        <div>
+                                                            <span class="messageIcon flecheMessage"></span><a>Répondre</a>
+                                                        </div>
+                                                        <div class="faqReply">
+                                                            <label>Poser votre question</label>
+                                                            <textarea></textarea>
+                                                            <button class="boutonValider">
+                                                                <span class="fa fa-check"></span>
+                                                            </button>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </h:panelGroup>
+                                        </li>
+                                    </ui:repeat>
+                                    <li>
+                                        <div>
+                                            <span class="messageIcon flecheMessage"></span><a>Répondre</a>
+                                        </div>
+                                        <div class="faqReply">
+                                            <label>Poser votre question</label>
+                                            <textarea></textarea>
+                                            <button class="boutonValider">
 											<span class="fa fa-check"></span>
 										</button>
-									</div>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<div>
-								<span class="messageIcon flecheMessage"></span><a>Répondre</a>
-							</div>
-							<div class="faqReply">
-								<label>Poser votre question</label>
-								<textarea></textarea>
-								<button class="boutonValider">
-									<span class="fa fa-check"></span>
-								</button>
-							</div>
-						</li>
-					</ul>
-				</li>
-			</ul>
-			<ul class="messagePublicBranche">
-				<li>
-					<div class="messagePublicItem">
-						<span class="messageIcon fa fa-file-text"></span>Est-ce que la
-						peluche est au norme CE? <span
-							class="userIcon userName fa fa-user-circle-o"></span> <a>laDiva</a>,
-						04/12/2017
-					</div>
-				</li>
-				<li>
-					<div>
-						<span class="messageIcon flecheMessage"></span><a>Répondre</a>
-					</div>
-					<div class="faqReply">
-						<label>Poser votre question</label>
-						<textarea></textarea>
-						<button class="boutonValider">
-							<span class="fa fa-check"></span>
-						</button>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </h:panelGroup>
+                        </li>
+                    </ul>
+                </h:panelGroup>
+            </ui:repeat>
+        </div>
+    </div>
 
-	<h:panelGroup>
-
-		<ui:repeat var="msg" value="#{mbMessagePublic.recupererQuestions()}">
-			<h:outputText value="test"
-				rendered="#{empty mbMessagePublic.messagepublic.id}">
-				<li>#{msg.message}</li>
-			</h:outputText>
-		</ui:repeat>
-
-
-
-
-
-
-
-
-
-
-	</h:panelGroup>
-	<!-- /Contenu Principal -->
+	</h:form>
 
 </h:body>
 </html>

@@ -3,8 +3,9 @@ package org.greenlist.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -35,7 +36,7 @@ public class AjoutObjetManagerBean {
 	
 	private Objet objet = new Objet();
 
-	private List<String> mesImages = new ArrayList<>();
+	private Set<String> mesImages = new HashSet<>();
 
 	private UploadedFile photoUploade;
 
@@ -77,21 +78,25 @@ public class AjoutObjetManagerBean {
 		path = path.split("WEB-INF")[0] + "img/";
 		path = path.substring(1);
 		System.out.println(path);
+		
+
+		String extension =".jpg";
+		
 		String nomFichier = Long.toString(Calendar.getInstance().getTimeInMillis());
 		System.out.println(nomFichier);
-		System.out.println(photoUploade.getFileName());
-//		String[] split= photoUploade.getFileName().split(".");
-//		for(String s:split){
-//			System.out.println(s);
-//		}
-		//String extension = split[0];
-		String extension =".jpg";
-		System.out.println(extension);
+		
+		String url = path + nomFichier + extension;
+		
+		while (!mesImages.add(url)){
+			nomFichier = Long.toString(Calendar.getInstance().getTimeInMillis());
+			url = path + nomFichier + extension;
+		}
 		try {
 			System.out.println(path + nomFichier + extension);
-			photoUploade.write(path + nomFichier + extension);
-			mesImages.add(path + nomFichier + extension);
+			photoUploade.write(url);
+			System.out.println( photoUploade.getFileName() +"write OK");
 		} catch (Exception e) {
+			mesImages.remove(url);	// si on n'a pas réussi à écrire le fichier, on vire cette url du Set.
 			System.out.println("souci d'écriture de fichier");
 			e.printStackTrace();
 		}
@@ -122,12 +127,19 @@ public class AjoutObjetManagerBean {
 	}
 
 
+	public IBusinessPhoto getProxyPhoto() {
+		return proxyPhoto;
+	}
 
-	public List<String> getMesImages() {
+	public void setProxyPhoto(IBusinessPhoto proxyPhoto) {
+		this.proxyPhoto = proxyPhoto;
+	}
+
+	public Set<String> getMesImages() {
 		return mesImages;
 	}
 
-	public void setMesImages(List<String> mesImages) {
+	public void setMesImages(Set<String> mesImages) {
 		this.mesImages = mesImages;
 	}
 

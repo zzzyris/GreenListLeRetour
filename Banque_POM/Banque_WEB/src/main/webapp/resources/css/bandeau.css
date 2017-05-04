@@ -1,0 +1,43 @@
+.bandeauBloc{
+    position: relative;
+    margin: 10px;
+}
+
+.slideButtonBloc{
+    text-align: center;
+}
+
+.arrowSlide{
+    position: absolute;
+    border: 0;
+    font-size: 25px;
+    background-color: #eee;
+    color: #fff;
+    cursor: pointer;
+}
+
+.arrowSlide:hover{
+    background-color: #ddd;
+}
+
+.displayLeft {
+    top: 50%;
+    left: 0%;    
+}
+
+.displayRight {    
+    top: 50%;
+    right: 0%;
+}
+
+.slideCircle{    
+    color: #fff;
+    border: solid 1px #fff;
+    border-radius: 50%;
+}
+
+
+.mySlides {
+    width: 100%;
+    height: 100px;
+}

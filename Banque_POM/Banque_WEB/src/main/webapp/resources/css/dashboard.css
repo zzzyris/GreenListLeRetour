@@ -1,0 +1,491 @@
+/***** Couleur Icone *******/
+
+.greyColor{    
+    color: #bbb;
+}
+
+.deepGreyColor{    
+    color: #888;
+}
+
+.darkGreyColor{    
+    color: #555;
+}
+
+.whiteColor{
+    color: #fff;
+}
+
+/****** Border Color ***/
+
+.greyBorder{    
+    border: 1px solid #888;
+}
+
+/******* DashBoard *********/
+
+.dashBoard {
+    box-sizing: border-box;   
+    height: 100%; /* 100% Full-height */
+    width: 320px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #fff; /* White */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    border-right: 1px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+.dashBoard--active {
+    width: 320px; 
+}
+
+.profilDashBoard {
+    position: relative;
+    background: #D8BFD8;
+    _background: #6495ED;
+    overflow-x: hidden;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profilSection {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 320px;
+}
+
+.profilSection img {
+    display: block;
+    margin-right: 0px;
+}
+
+.profilSection ul {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profilStats ul {
+    display: flex;
+    justify-content: center;
+    width: 320px;
+}
+
+.profilStats ul li {
+    margin: 5px;
+    flex-grow: 1;
+    padding: 5px;
+}
+
+.imgProfilDashBoard {
+    float: left;
+    background: #fff;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+.avatarEchangeEnCours {
+    float: left;
+    margin-right: 5px;
+}
+
+.endFloat {
+    clear: both;
+}
+
+
+/******** Menu ***************************/
+
+.gestionLien {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    border: 1px solid #999;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;    
+    cursor: pointer;
+    cursor: hand;
+}
+
+.gestionLien:hover {
+    background: #eee;
+}
+
+.categorieTitre {
+    display: inline-block;
+    padding: 10px 0 10px 20px;
+    color: #333;
+}
+
+.categorieDashBoard {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.categorieBtn {
+    display: flex;
+    align-items: center;
+}
+
+.echangePlusDashBoard {
+    position: relative;
+    display: flex;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #999;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+.echangeEnCours {
+    width: 160px;
+    color: #777;
+    font-size: .8em;
+}
+
+.notificationsPlus {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.notificationsPlusDashBoard {
+    margin-top: 10px;
+}
+
+
+/******** Notifications ******************/
+
+.btnNotification {
+    position: relative;
+    margin: 0 auto 15px;
+    display: block;
+    width: 320px;
+    height: 45px;
+    text-decoration: none;
+    background-color: #eee;
+    color: #131313;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.btnNotification * {
+    -moz-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    transition: all 0.15s linear;
+}
+
+.btnNotification .title {
+    display: block;
+    padding: 2px 0 0 10px;
+    font-size: .9em;
+    
+}
+
+.btnNotification .details {
+    display: block;
+    clear: both;
+    padding: 5px 0 2px 10px;
+    font-size: 0.80em;
+    color: #9a9ca2;
+}
+
+.btnNotification .price {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    color: #9a9ca2;
+}
+
+.btnNotification .price strong {
+    display: inline-block;
+    height: 100%;
+    width: 30px;
+    line-height: 45px;
+    font-size: 1.25em;
+    text-align: center;
+    background-color: #ddd;
+    color: #ddd;
+    -moz-border-radius: 0 10px 10px 0;
+    -webkit-border-radius: 0;
+    border-radius: 0 10px 10px 0;
+    text-shadow: 0 -1px #8d8f96;
+}
+
+.btnNotification:before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 6px;
+    height: 100%;
+    -moz-border-radius: 10px 0 0 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px 0 0 10px;
+    -moz-transition: all 0.075s linear;
+    -o-transition: all 0.075s linear;
+    -webkit-transition: all 0.075s linear;
+    transition: all 0.075s linear;
+}
+
+.btnNotification.blue:before {
+    background-color: #7daee9;
+}
+
+.btnNotification.blue:hover:before {
+    background-color: #719dd2;
+}
+
+.btnNotification.blue:active:before {}
+
+.btnNotification.magenta:before {
+    background-color: #de7cb9;
+}
+
+.btnNotification.magenta:hover:before {
+    background-color: #c870a7;
+}
+
+.btnNotification.magenta:active:before {}
+
+.btnNotification.green:before {
+    background-color: #7fd373;
+}
+
+.btnNotification.green:hover:before {
+    background-color: #72be68;
+}
+
+.btnNotification.green:active:before {}
+
+.btnNotification.red:before {
+    background-color: #f66d64;
+}
+
+.btnNotification.red:hover:before {
+    background-color: #dd625a;
+}
+
+.btnNotification.red:active:before {}
+
+.btnNotification:hover {}
+
+.btnNotification:hover .price strong {
+    background-color: #e9e9e9;
+}
+
+.btnNotification:active {
+    top: 1px;
+}
+
+.btnNotification:active .price strong {
+    background-color: #e9e9e9;
+}
+
+
+/******** Boutons DashBoard ******************/
+
+.btnLiens {
+    position: relative;
+    align-self: flex-end;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    bottom: 0px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.btnLien {
+    /*[ Position ]*/
+    position: relative;
+    margin: 2px;
+    float: left;
+    /* [ Botton ] */
+    position: relative;
+    height: 50px;
+    width: 40px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    text-align: center;
+    font-size: 20px;
+    display: inline-block;
+    text-shadow: 0px -1px 1px rgba(255, 255, 255, 0.5);
+    color: #222;
+    /* Transitions */
+    -moz-transition: .1s ease-out;
+    -webkit-transition: .1s ease-out;
+    -o-transition: .1s ease-out;
+    -ms-transition: .1s ease-out;
+    -khtml-transition: .1s ease-out;
+    transition: .1s ease-out;
+    /* Shadows */
+    box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+    -moz-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+    -ms-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+    -khtml-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+    -o-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+    /* Borders */
+    border-width: 1px;
+    border-style: solid;
+    border-left-color: #777;
+    border-right-color: #777;
+    border-top-color: #999;
+    border-bottom: 4px solid #555;
+    /* {{ No selectable }} */
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    /*[{- Border radius -}]*/
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 50%;
+    -khtml-border-radius: 50%;
+    -o-border-radius: 50%;
+    /* Gradient */
+    background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+    background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+    background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+    background-image: -khtml-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+    background-image: -ms-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+    background-image: linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+}
+
+.btnLien:hover {
+    color: #333;
+    /*{Gradient}*/
+    background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.17));
+    background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.17));
+    background-image: -ms-linear-gradient(top, transparent, rgba(0, 0, 0, 0.17));
+    background-image: -khtml-linear-gradient(top, transparent, rgba(0, 0, 0, 0.17));
+    background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.17));
+    background-image: linear-gradient(top, transparent, rgba(0, 0, 0, 0.17));
+}
+
+.btnLien:active {
+    color: #777;
+    border: 1px solid #999;
+    /*{Shadow}*/
+    box-shadow: inset 0 0 5px 0 #333;
+    -moz-box-shadow: inset 0 0 5px 0 #333;
+    -webkit-box-shadow: inset 0 1px 2px 0 #333, 0 1px 1px 0 #fff;
+}
+
+.text-shadow-negra {
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.text-blanco {
+    color: #666;
+}
+
+.text-blanco:hover {
+    color: #DDD;
+}
+
+.text-blanco:active {
+    color: #DDC;
+}
+
+.btnLien.blue {
+    _background-color: #659AE0;
+    border-bottom-color: #436796;
+    _border-left-color: #5981AF;
+    _border-right-color: #5981AF;
+    _border-top-color: #719CCE;
+}
+
+.btnLien.red {
+    _background-color: #C46A6A;
+    border-bottom-color: #A05D5D;
+    _border-left-color: #AF5757;
+    _border-right-color: #AF5757;
+    _border-top-color: #C66767;
+}
+
+.btnLien.green {
+    _background-color: #82C43A;
+    border-color: #578720;
+}
+
+.btnLien.yellow {
+    _background-color: #EFEC40;
+    border-color: #9B9800;
+}
+
+.btnLien.brown {
+    _background-color: #594343;
+    border-bottom-color: #423F1B;
+    _border-right-color: #3F3D28;
+    _border-left-color: #3F3D28;
+    _border-top-color: #7C6262;
+}
+
+.btnLien.black {
+    _background-color: #555;
+    border-bottom-color: #444;
+    _border-left-color: #666;
+    _border-right-color: #666;
+    _border-top-color: #777;
+}
+
+.btnLien.orange {
+    _background-color: #FAA407;
+    border-bottom-color: #BA7500;
+    _border-left-color: #DB8A00;
+    _border-right-color: #DB8A00;
+    _border-top-color: #E89200;
+}
+
+.btnBlue {
+    color: #436796;
+}
+
+.btnRed {
+    color: #C46A6A;
+}
+
+.btnYellow {
+    color: #EFEC40;
+}
+
+.btnGreen {
+    color: #82C43A;
+}
+
+
+/********** Etoiles ***********/
+
+.smallStar {
+    font-size: 1em;
+}

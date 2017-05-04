@@ -1,0 +1,168 @@
+/**********************/
+
+
+/**** Normalisation ***/
+
+
+/**********************/
+
+.pageTitleBloc {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pageTitleIcon,
+.pageTitle, .pageSubTitle {
+    color: #fff;
+    background-color: #888;
+    border-radius: 5px;
+}
+
+.pageTitleIcon {
+    margin: 10px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+}
+
+.pageTitle {
+    margin-right: 10px;
+    padding: 10px 20px;
+    height: 50px;
+    font-size: 25px;
+    flex-grow: 1;
+}
+
+.pageSubTitle {
+    margin: 0 0 20px 0;
+    padding: 10px 20px;
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.gestionBloc {
+    margin: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 10px;
+    width: 90%;
+}
+
+
+.userAvatar {
+    width: 60px;
+    height: 60px;
+}
+
+.flecheMessage{
+    content: url('../images/turn-right.svg');
+    width: 20px;
+    height: 20px;
+}
+
+/******* ******/
+
+
+.sectionBloc,
+.oneRowBloc,
+.oneColonneBloc {
+    display: flex;
+    align-items: center;
+    _margin: 20px;
+    justify-content: space-around;
+}
+
+.oneRowBloc {
+    flex-wrap: nowrap;
+    _margin: 10px;
+}
+
+.oneColBloc {
+    flex-direction: column;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.versusBloc {
+    display: flex;
+    width: 100%;
+    margin: 0;
+}
+
+.versusBloc div {
+    width: 50%;
+}
+
+.versusBloc div div {
+    width: 90%;
+}
+/*****************************************************/
+
+
+/********* Guideline / Classes de Base ***************/
+
+
+/*****************************************************/
+
+/* A appliquer sur les titres et les boutons (et autres éléments disctinctifs) des pages selon leur fonctionnalité */
+
+.objetItem {
+    background-color: #1ab188;
+}
+
+.souhaitItem {
+    background-color: coral;
+}
+
+.userItem {
+    background-color: cadetblue;
+}
+
+.echangeItem {
+    background-color: darkcyan;
+}
+
+.supportItem {
+    background-color: darksalmon;
+}
+
+.adminItem {
+    /* concerne les tickets admins */
+    background-color: burlywood;
+}
+
+.searchItem {
+    background-color: lightgrey;
+    color: #333;
+}
+
+.longButton {
+     width: 110px;
+    height: 25px;
+    border: 0;
+    border-radius: 3px;
+    font-size: 13px;
+    color: white;
+    margin: 10px;
+}
+
+
+/************* ***********/
+
+@media screen and (max-width: 640px) {
+    .gestionBloc {
+        flex-direction: column;
+    }
+}

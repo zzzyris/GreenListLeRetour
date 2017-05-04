@@ -1,0 +1,155 @@
+.listesBloc, .listeDetailsBloc{
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.listesBloc{
+    border: solid 5px #fff;
+    padding: 10px;
+}
+
+.listesChoix{
+    
+    margin-bottom: 10px;
+}
+
+.listeDetailsBloc{
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.listeItem{    
+    padding: 5px;
+    border: solid 1px #eee;
+    background-color: #fff;
+    width: 100%;
+}
+
+.listeSelected{
+    background-color: #bbb;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.dateInfo{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.editButtonsBloc{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.editSouhaitBloc {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.editButtonsBloc .editSouhaitBloc {
+    width: 50%;
+    background: #eee;
+    margin: 5px;
+}
+
+.editSouhaitBloc
+.editIcon {
+    color: #fff;
+    background-color: #666;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: center;
+    border: solid 5px #fff;
+    padding: 5px;
+}
+
+.editSouhaitBloc{
+    position: relative;
+    width: 200px;
+    height: 30px;
+}
+
+.editIcon{    
+    position: absolute; 
+}
+
+.editSouhaitBloc
+.editIcon span {
+    text-align: center;
+    font-size: 20px;
+    
+}
+
+.souhaitsBloc{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.souhaitInfosBloc{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.souhaitIconeBloc {
+    width: 100%;
+}
+
+.souhaitIconeBloc ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.souhaitIconeBloc ul li {
+    margin: 2px;
+    padding: 5px;
+    font-size: 25px;
+    color: #444;
+    text-align: center;
+}
+
+.iconSouhait {
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin: 2px;
+}
+
+.titleSouhait{
+    flex-grow: 1;
+    text-align: center;
+}
+
+.editIconGrey{  
+    position: absolute; 
+    color: #fff;
+    background-color: #666;
+    border-radius: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: center;
+    padding: 5px;        
+    border: solid 5px #eee;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+}

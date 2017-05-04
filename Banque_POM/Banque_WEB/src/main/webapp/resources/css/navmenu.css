@@ -1,0 +1,105 @@
+.mainNavBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    height: 55px;
+    margin: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px; 
+    /* Borders */
+    border-bottom: 2px solid #ddd;
+}
+
+.userMainNavBar {
+    position: absolute;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    cursor: hand;
+    text-align: center;
+    margin: 0;
+    border: 0;
+}
+
+.logoGLIcon{
+    margin-right: 20px;
+    width: 45px;
+    height: 45px;    
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoGL{
+    width: 35px;
+    height: 35px;
+    background-image: url('../images/gl_logo1.png');
+    background-size: cover;
+}
+
+.basketMainNavBar {
+    position: absolute;
+    right: 0;
+    width: 40px;
+}
+
+.searchBar{
+    height: 40px;
+    width: 40%;
+    background: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.textFieldMainNavBar { 
+    flex-grow: 1;
+    background: #fff;
+    border: 0;
+}
+
+.magnifierMainNavBar { 
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+}
+
+.moreMainNavBar { 
+    box-sizing: border-box;
+    width: 25px;
+    height: 40px;
+}
+
+.searchPanel {
+    box-sizing: border-box;   
+    height: 100%; /* 100% Full-height */
+    width: 0px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    right: 0;
+    background-color: #fff; /* White */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    border-left: 1px;
+}
+
+.basketPanel {
+    display: none;
+    box-sizing: border-box;   
+    height: 300px;
+    width: 200px; /* 0 width - change this with JavaScript */
+    z-index: 1; /* Stay on top */
+    position: fixed;
+    top: 60px;
+    right: 0px;
+    background-color: #fff; /* White */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}

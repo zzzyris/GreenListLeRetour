@@ -1,12 +1,17 @@
 package org.greenlist.controller;
 
 import javax.faces.bean.ManagedBean;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import org.greenlist.business.api.IBusinessMessagePublic;
 import org.greenlist.entity.Messagepublic;
 import org.greenlist.entity.Objet;
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean(name = "mbMessagePublic")
@@ -14,33 +19,26 @@ import java.util.List;
 public class MessagePublicManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@EJB
-	private IBusinessMessagePublic proxMP;
+	private IBusinessMessagePublic proxyMessagePublic;
+
 	private Messagepublic messagepublic;
 	private Objet objet;
-	private List<Messagepublic> messages;
+	private List<Messagepublic> messages = new ArrayList<>();
+	private List<TreeNode> nodes = new ArrayList<>();
 
 	/**
 	 * permet de determiner le type de message
 	 * 
 	 * @return
 	 */
-	public List<Messagepublic> recupererQuestions() {
+	public List<Messagepublic> recupererMessages() {
 		objet = new Objet();
 		objet.setId(21);
-		return messages = proxMP.getMessageByObjet(objet);
+		return messages = proxyMessagePublic.getMessagesByObjet(objet);
 	}
-	/**
-	 * premet de recuperer les reponses
-	 */
-	public List<Messagepublic> recuperReponses() {
-		messagepublic = new Messagepublic();
-		messagepublic.setId(21);
-		messages = proxMP.getReponses(messagepublic);
-		return messages;
-		
-		
-	}
+
 	public Objet getObjet() {
 		return objet;
 	}
@@ -57,20 +55,20 @@ public class MessagePublicManagedBean implements Serializable {
 		this.messages = messages;
 	}
 
-	public IBusinessMessagePublic getProxMP() {
-		return proxMP;
-	}
-
-	public void setProxMP(IBusinessMessagePublic proxMP) {
-		this.proxMP = proxMP;
-	}
 	public Messagepublic getMessagepublic() {
 		return messagepublic;
 	}
+
 	public void setMessagepublic(Messagepublic messagepublic) {
 		this.messagepublic = messagepublic;
 	}
 
-	
+	public IBusinessMessagePublic getProxyMessagePublic() {
+		return proxyMessagePublic;
+	}
+
+	public void setProxyMessagePublic(IBusinessMessagePublic proxyMessagePublic) {
+		this.proxyMessagePublic = proxyMessagePublic;
+	}
 
 }

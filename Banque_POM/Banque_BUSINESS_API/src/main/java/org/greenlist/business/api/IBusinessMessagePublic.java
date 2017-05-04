@@ -7,8 +7,6 @@ import org.greenlist.entity.Objet;
 
 public interface IBusinessMessagePublic {
 	
+	List<Messagepublic> getMessagesByObjet(Objet objet);
 	
-	List<Messagepublic> getMessageByObjet(Objet objet);
-
-	List<Messagepublic> getReponses(Messagepublic messagepublic);
 }

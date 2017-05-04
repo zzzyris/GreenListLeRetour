@@ -6,7 +6,6 @@ import org.greenlist.entity.Objet;
 
 public interface IDaoMessagePublic {
 
-	List<Messagepublic> getMessageByObjet(Objet objet) throws Exception;
-
-	List<Messagepublic> getReponses(Messagepublic messagepublic) throws Exception;
+	List<Messagepublic> getMessagesByObjet(Objet objet) throws Exception;
+	
 }

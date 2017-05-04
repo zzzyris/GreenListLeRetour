@@ -15,9 +15,6 @@ import org.greenlist.entity.Objet;
 @Singleton
 public class DaoMessagePublic implements IDaoMessagePublic {
 
-	//private static final String GET_QUESTIONS ="SELECT m.messagepublics FROM Messagepublic m WHERE m.messagepublic is NULL AND m.objet.id = :pObjet";
-	private static final String GET_REPONSES = "SELECT m.messagepublics FROM Messagepublic m "
-			+ "WHERE m.id = :pIdChild AND m.messagepublic is not NULL";
 	private static final String GET_TOUT_MESSAGES_BY_OBJET ="SELECT m FROM Messagepublic m WHERE m.objet.id = :pObjet";
 	
 
@@ -29,18 +26,8 @@ public class DaoMessagePublic implements IDaoMessagePublic {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Messagepublic> getMessageByObjet(Objet objet) throws Exception {
-		Query query = em.createQuery(GET_TOUT_MESSAGES_BY_OBJET).setParameter("pObjet", 21);
-		return query.getResultList();
-	}
-
-	/**
-	 * renvoi la liste de reponses liées à une question
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Messagepublic> getReponses(Messagepublic reponse) throws Exception {
-		Query query = em.createQuery(GET_REPONSES).setParameter("pIdChild", reponse.getMessagepublics());
+	public List<Messagepublic> getMessagesByObjet(Objet objet) throws Exception {
+		Query query = em.createQuery(GET_TOUT_MESSAGES_BY_OBJET).setParameter("pObjet", objet.getId());
 		return query.getResultList();
 	}
 

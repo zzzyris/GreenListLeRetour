@@ -18,38 +18,15 @@ public class BusinessMessagePublic implements IBusinessMessagePublic {
 	private IDaoMessagePublic proxyDaoMessagePublic;
 	
 	@Override
-	public List<Messagepublic> getMessageByObjet(Objet objet) {
+	public List<Messagepublic> getMessagesByObjet(Objet objet) {
 		List<Messagepublic> messagePub = null;
 		try {
-			messagePub = proxyDaoMessagePublic.getMessageByObjet(objet);
+			messagePub = proxyDaoMessagePublic.getMessagesByObjet(objet);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return messagePub;
 		
-	}
-	
-	public List<Messagepublic> getQuestionsByObjet(Objet objet) {
-		List<Messagepublic> messagePub = null;
-		try {
-			messagePub = proxyDaoMessagePublic.getMessageByObjet(objet);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return messagePub;
-		
-	}
-	
-
-	@Override
-	public List<Messagepublic> getReponses(Messagepublic messagepublic) {
-		List<Messagepublic> messagePubIdParent = null;
-		try {
-			messagePubIdParent = proxyDaoMessagePublic.getReponses(messagepublic);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return messagePubIdParent;
 	}
 
 }

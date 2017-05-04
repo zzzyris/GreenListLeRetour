@@ -15,12 +15,7 @@
 
 		<ui:define name="content">
 			<h:panelGroup>
-				<h:form enctype="multipart/form-data">
-					<p:fileUpload
-						fileUploadListener="#{mbObjetAjout.handleFileUpload()}"
-						value="#{mbObjetAjout.photoUploade}"
-						mode="advanced"></p:fileUpload>
-				</h:form>
+			
 				<h:form id="formAjoutObjet" enctype="multipart/form-data">
 					<div class="pageTitleBloc">
 						<div class="fa fa-plus fa-2x pageTitleIcon"></div>
@@ -113,7 +108,9 @@
 							</div>
 
 
-
+							<p:fileUpload
+								fileUploadListener="#{mbObjetAjout.handleFileUpload}"
+								value="#{mbObjetAjout.photoUploade}" mode="advanced"></p:fileUpload>
 
 
 							<div class="addIconBloc"></div>
@@ -124,7 +121,7 @@
 					<div class="boutonsBloc">
 
 						<h:commandButton styleClass="pageBouton"
-							action="#{mbObjetAjout.creerObjet()}">
+							action="#{mbObjetAjout.creerObjet}">
 							<div class="fa fa-check fa-2x objetItem"></div>
 							<div class="objetItem">Valider</div>
 						</h:commandButton>

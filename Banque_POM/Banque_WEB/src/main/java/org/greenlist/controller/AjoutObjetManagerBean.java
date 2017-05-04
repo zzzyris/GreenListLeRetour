@@ -1,5 +1,6 @@
 package org.greenlist.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -14,7 +15,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.greenlist.business.api.IBusinessObjet;
-
+import org.greenlist.business.api.IBusinessPhoto;
 import org.greenlist.entity.Objet;
 import org.greenlist.entity.Produit;
 
@@ -29,10 +30,12 @@ public class AjoutObjetManagerBean {
 
 	@EJB
 	private IBusinessObjet proxyObjet;
-
+	@EJB
+	private IBusinessPhoto proxyPhoto;
+	
 	private Objet objet = new Objet();
 
-	private List<UploadedFile> uploadedFiles = new ArrayList<>();
+	private List<String> mesImages = new ArrayList<>();
 
 	private UploadedFile photoUploade;
 
@@ -49,18 +52,49 @@ public class AjoutObjetManagerBean {
 	public Objet creerObjet() {
 		objet.setUtilisateur(mbConnect.getUtilisateurConnecte());
 		objet.setDateDepot(Calendar.getInstance().getTime());
-		return proxyObjet.creerObjet(objet);
+		objet = proxyObjet.creerObjet(objet);
+		 
+		 for ( String url : mesImages){
+			 
+			 proxyPhoto.ajouterPhoto(objet, url);
+			 
+		 }
+		 
+		 return objet;
 	}
 
 //	<p:fileUpload
 //	fileUploadListener="#{mbObjetAjout.handleFileUpload()}"
 //	value="#{mbObjetAjout.photoUploade}"
 //	mode="advanced"></p:fileUpload>
+	
 	public void handleFileUpload(FileUploadEvent event) {
 
 		this.photoUploade = event.getFile();
 		System.out.println("File name : " + photoUploade.getFileName() + "\nSize file : " + photoUploade.getSize());
-
+		String path = Thread.currentThread().getContextClassLoader().getResource("bidon.txt").getPath();
+		
+		path = path.split("WEB-INF")[0] + "img/";
+		path = path.substring(1);
+		System.out.println(path);
+		String nomFichier = Long.toString(Calendar.getInstance().getTimeInMillis());
+		System.out.println(nomFichier);
+		System.out.println(photoUploade.getFileName());
+//		String[] split= photoUploade.getFileName().split(".");
+//		for(String s:split){
+//			System.out.println(s);
+//		}
+		//String extension = split[0];
+		String extension =".jpg";
+		System.out.println(extension);
+		try {
+			System.out.println(path + nomFichier + extension);
+			photoUploade.write(path + nomFichier + extension);
+			mesImages.add(path + nomFichier + extension);
+		} catch (Exception e) {
+			System.out.println("souci d'écriture de fichier");
+			e.printStackTrace();
+		}
 	}
 
 	public UtilisateurManagedBean getMbConnect() {
@@ -87,12 +121,14 @@ public class AjoutObjetManagerBean {
 		this.objet = objet;
 	}
 
-	public List<UploadedFile> getUploadedFiles() {
-		return uploadedFiles;
+
+
+	public List<String> getMesImages() {
+		return mesImages;
 	}
 
-	public void setUploadedFiles(List<UploadedFile> uploadedFiles) {
-		this.uploadedFiles = uploadedFiles;
+	public void setMesImages(List<String> mesImages) {
+		this.mesImages = mesImages;
 	}
 
 	public UploadedFile getPhotoUploade() {

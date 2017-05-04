@@ -26,7 +26,7 @@ public class Photo implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDOBJET", nullable = false)
 	private Objet objet;
-	@Column(name = "URL", nullable = false, length = 50)
+	@Column(name = "URL", nullable = false, length = 250)
 	private String url;
 
 	public Photo() {

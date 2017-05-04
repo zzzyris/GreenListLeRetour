@@ -1,7 +1,7 @@
 package org.greenlist.data.impl;
 
-import java.util.List;
 
+import java.util.List;
 import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -15,11 +15,11 @@ import org.greenlist.entity.Objet;
 @Singleton
 public class DaoMessagePublic implements IDaoMessagePublic {
 
-	private static final String GET_QUESTIONS = "SELECT m.messagepublics FROM Messagepublic m"
-			+ "JOIN objet o ON o.id = m.objet " + "WHERE o.id = :pIdObjet AND messagepublic == NULL";
-
-	private static final String GET_REPONSES = "SELECT m.messagepublics FROM Messagepublic m"
-			+ "WHERE m.id = :pIdChild AND messagepublic != NULL";
+	//private static final String GET_QUESTIONS ="SELECT m.messagepublics FROM Messagepublic m WHERE m.messagepublic is NULL AND m.objet.id = :pObjet";
+	private static final String GET_REPONSES = "SELECT m.messagepublics FROM Messagepublic m "
+			+ "WHERE m.id = :pIdChild AND m.messagepublic is not NULL";
+	private static final String GET_TOUT_MESSAGES_BY_OBJET ="SELECT m FROM Messagepublic m WHERE m.objet.id = :pObjet";
+	
 
 	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;
@@ -30,7 +30,7 @@ public class DaoMessagePublic implements IDaoMessagePublic {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Messagepublic> getMessageByObjet(Objet objet) throws Exception {
-		Query query = em.createQuery(GET_QUESTIONS).setParameter("pIdObjet", objet.getMessagepublics());
+		Query query = em.createQuery(GET_TOUT_MESSAGES_BY_OBJET).setParameter("pObjet", 21);
 		return query.getResultList();
 	}
 

@@ -28,6 +28,18 @@ public class BusinessMessagePublic implements IBusinessMessagePublic {
 		return messagePub;
 		
 	}
+	
+	public List<Messagepublic> getQuestionsByObjet(Objet objet) {
+		List<Messagepublic> messagePub = null;
+		try {
+			messagePub = proxyDaoMessagePublic.getMessageByObjet(objet);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return messagePub;
+		
+	}
+	
 
 	@Override
 	public List<Messagepublic> getReponses(Messagepublic messagepublic) {

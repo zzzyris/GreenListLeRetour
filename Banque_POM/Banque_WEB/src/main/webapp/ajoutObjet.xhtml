@@ -15,7 +15,13 @@
 
 		<ui:define name="content">
 			<h:panelGroup>
-				<h:form id="formAjoutObjet"  enctype="multipart/form-data">
+				<h:form enctype="multipart/form-data">
+					<p:fileUpload
+						fileUploadListener="#{mbObjetAjout.handleFileUpload()}"
+						value="#{mbObjetAjout.photoUploade}"
+						mode="advanced"></p:fileUpload>
+				</h:form>
+				<h:form id="formAjoutObjet" enctype="multipart/form-data">
 					<div class="pageTitleBloc">
 						<div class="fa fa-plus fa-2x pageTitleIcon"></div>
 						<div class="pageTitle whiteColor grow">Ajouter un Objet</div>
@@ -27,12 +33,12 @@
 							<li class="domainIconBloc">
 								<ul>
 									<li>Domaine</li>
-									<li class="domainIcon"><h:commandButton
-											class="fa fa-home" onclick="submit()"
+									<li class="domainIcon"><h:commandButton class="fa fa-home"
+											onclick="submit()"
 											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(1)}"></h:commandButton>
 									</li>
-									<li class="domainIcon"><h:commandButton
-											class="fa fa-home" onclick="submit()"
+									<li class="domainIcon"><h:commandButton class="fa fa-home"
+											onclick="submit()"
 											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(2)}"></h:commandButton></li>
 									<li class="domainIcon"><h:commandButton
 											class="fa fa-soccer-ball-o" onclick="submit()"
@@ -55,14 +61,12 @@
 									var="g" itemLabel="#{g.libelle}" itemValue="#{g.id}" />
 								<f:ajax
 									listener="#{mbAfficheRefObjetSOuhait.rechercherProduits()}"
-									event="change"
-									render=":formAjoutObjet:produitsMenu"
+									event="change" render=":formAjoutObjet:produitsMenu"
 									execute="@form" />
 							</h:selectOneMenu>
 
 							<li class="groupCat">
-								<div class="catTitle">Produit</div> 
-								<h:selectOneMenu
+								<div class="catTitle">Produit</div> <h:selectOneMenu
 									id="produitsMenu" value="#{mbObjetAjout.objet.produit.id}">
 									<f:selectItems value="#{mbAfficheRefObjetSOuhait.produits}"
 										var="p" itemLabel="#{p.libelle}" itemValue="#{p.id}" />
@@ -100,20 +104,19 @@
 					<div class="photosBloc">
 						<div class="pageSubTitle">Ajouter des photos</div>
 						<div class="photosConteneur">
-					
+
 							<div class="photoItem objetItem">
 								<span class="fa fa-camera"></span>
 							</div>
 							<div class="photoItem objetItem">
 								<span class="fa fa-camera"></span>
-							</div>						
-						
-							<div class="addIconBloc">
-								<div class="addIcon">
-								<h:inputFile value="#{mbModifCompte.file1}"></h:inputFile>
-								<h:commandButton class="fa fa-plus" action="#{mbModifCompte.upload()}"/>
-								</div>
 							</div>
+
+
+
+
+
+							<div class="addIconBloc"></div>
 						</div>
 					</div>
 
@@ -138,6 +141,8 @@
 
 					</div>
 				</h:form>
+
+
 			</h:panelGroup>
 		</ui:define>
 

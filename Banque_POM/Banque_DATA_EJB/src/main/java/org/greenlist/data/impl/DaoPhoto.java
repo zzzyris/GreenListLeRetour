@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.greenlist.data.api.IDaoPhoto;
+import org.greenlist.entity.Objet;
 import org.greenlist.entity.Photo;
 
 @Remote(IDaoPhoto.class)
@@ -23,9 +24,13 @@ public class DaoPhoto implements IDaoPhoto{
 	 * @param idObjet id de l'objet auquel la photo sera associ�
 	 * @param urlPhoto url de la photo � ajouter
 	 */
-	public Photo ajouterPhoto(int idObjet, String urlPhoto){
-		Query query = em.createQuery(CREATE_OBJET).setParameter("pidObjet", idObjet)
-												.setParameter("pUrl", urlPhoto);
-		return (Photo) query.getSingleResult();
+	public Photo ajouterPhoto(Objet objet, String urlPhoto){
+		Photo photo = new Photo();
+		photo.setObjet(objet);
+		photo.setUrl(urlPhoto);
+		
+		em.persist(photo);
+		
+		return photo;
 	}
 }

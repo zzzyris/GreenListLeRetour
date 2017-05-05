@@ -1,0 +1,13 @@
+@import url("#{resource['css:base.css']}");
+@import url("#{resource['css:ionicons.css']}");
+@import url("#{resource['css:main.css']}"); 
+@import url("#{resource['css:echange.css']}");
+@import url("#{resource['css:navmenu.css']}");
+@import url("#{resource['css:bandeau.css']}"); 
+@import url("#{resource['css:dashboard.css']}");
+@import url("#{resource['css:tools.css']}");
+@import url("#{resource['css:normalize.css']}");
+@import url("#{resource['css:resultats.css']}");
+@import url("#{resource['css:connexion.css']}"); 
+@import url("#{resource['css:objet.css']}"); 
+@import url("#{resource['css:souhait.css']}");

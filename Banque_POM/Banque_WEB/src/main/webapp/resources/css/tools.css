@@ -1,0 +1,17 @@
+/**********************/
+/*** Utilitaires ***/
+/**********************/
+
+.endFloat{
+    clear: both;
+}
+
+.active {
+    display: block;
+}
+
+/***** Test ****/
+
+.hidden {
+    display: none;
+}

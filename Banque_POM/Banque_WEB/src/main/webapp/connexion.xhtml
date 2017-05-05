@@ -12,7 +12,7 @@
 		<ui:define name="content">
 			<!-- Contenu Principal -->
 			<h:panelGroup>
-				<div class="formConnexion">
+				<div class="formConnexion formulaire">
 					<ul class="tab-group">
 						<li class="tab active"><a href="#login">Connexion</a></li>
 						<li class="tab "><a href="#signup">Inscription</a></li>
@@ -22,7 +22,7 @@
 						<div id="login">
 							<h1>Bienvenue !</h1>
 
-							<h:form  class="loginInfoBloc">
+							<h:form class="loginInfoBloc">
 
 								<div class="field-wrap">
 									<label>Pseudo<span class="req">*</span></label>
@@ -34,12 +34,12 @@
 									<h:inputSecret value="#{mbUtilisateur.mdp}" />
 								</div>
 								<div class="checkboxSession">
-									<input type="checkbox" value="Maintenir ma session ouverte"
-										id="rememberMe" name="rememberMe" />
+									<h:selectBooleanCheckbox value="rememberMe"
+										id="rememberMe" name="rememberMe" />Maintenir ma session ouverte
 								</div>
 
 								<div class="buttonBloc">
-									<h:commandButton  class="button" value="Valider"
+									<h:commandButton styleClass="" value="Valider"
 										action="#{mbUtilisateur.seConnecter()}" />
 								</div>
 
@@ -101,8 +101,6 @@
 											type="number" autocomplete="off" />
 									</div>
 								</div>
-
-
 								<div class="field-wrap">
 									<label>Téléphone<span class="req"></span></label> <input
 										type="number" autocomplete="off" />
@@ -112,18 +110,12 @@
 									<button type="submit" class="button button-block">Inscription</button>
 									<br />
 									<button type="submit" class="button button-block">Effacer</button>
-
 								</div>
-
 							</h:form>
-
 						</div>
-
 					</div>
-
 				</div>
 			</h:panelGroup>
-			<!-- /Contenu Principal -->
 		</ui:define>
 	</ui:composition>
 </h:body>

@@ -63,6 +63,7 @@
 
 .flecheMessage{
     content: url('../images/turn-right.svg');
+    _content: url("#{resource['images:turn-right.svg']}");
     width: 20px;
     height: 20px;
 }

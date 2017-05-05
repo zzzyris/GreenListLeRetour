@@ -1,6 +1,7 @@
 package org.greenlist.controller;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean(name = "mbMessagePublic")
-@SessionScoped
+@ViewScoped
 public class MessagePublicManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,6 +34,7 @@ public class MessagePublicManagedBean implements Serializable {
 		System.out.println(objet.getId());
 		recupererMessages();
 		System.out.println("nb messages : " + messages.size());
+		System.out.println(messages.get(0).isRoot());
 	}
 
 	/**
@@ -42,26 +44,6 @@ public class MessagePublicManagedBean implements Serializable {
 	 */
 	public List<Messagepublic> recupererMessages() {
 		return messages = proxMP.getMessagesByObjet(objet);
-	}
-
-	public boolean isNode0(){	
-		System.out.println("Plop");
-		System.out.println(node0);
-		if (hasNoParent(node0)){
-			return true;
-		}
-		return false;
-	}
-
-	public boolean hasNoParent(Messagepublic message) {
-		return message.getMessageParent().equals(null);
-	}
-	
-	public boolean hasChildren(Messagepublic message){
-		if (message.getMessageEnfants() != null){
-			return true;
-		}
-		return false;
 	}
 
 	public Objet getObjet() {

@@ -45,8 +45,8 @@
     
     .valeur,
     .valeurPic {
-        width: 210px;
-        height: 230px;
+        width: 200px;
+        height: 200px;
         background-size: cover;
     }
     
@@ -61,34 +61,42 @@
     }
     
     #valeur1 {
+        background-image: url("#{resource['/images/Valeur1.png']}");
         background-image: url(../images/Valeur1.png);
     }
     
     #valeur2 {
+        background-image: url("#{resource['/images/Valeur2.png']}");
         background-image: url(../images/Valeur2.png);
     }
     
     #valeur3 {
+        background-image: url("#{resource['/images/Valeur3.png']}");
         background-image: url(../images/Valeur3.png);
     }
     
     #valeur4 {
+        background-image: url("#{resource['/images/Valeur4.png']}");
         background-image: url(../images/Valeur4.png);
     }
     
     #valeur5 {
+        background-image: url("#{resource['/images/Valeur5.png']}");
         background-image: url(../images/Valeur5.png);
     }
     
     #valeur6 {
+        background-image: url("#{resource['/images/Valeur6.png']}");
         background-image: url(../images/Valeur6.png);
     }
     
     #valeur7 {
+        background-image: url("#{resource['/images/Valeur7.png']}");
         background-image: url(../images/Valeur7.png);
     }
     
     #valeur8 {
+        background-image: url("#{resource['/images/Valeur8.png']}");
         background-image: url(../images/Valeur8.png);
     }
     /********** Responsive ***********/
@@ -99,6 +107,30 @@
         }
         .mainPanel {
             margin: 0;
+        }
+        #valeur1 {
+            order: 1;
+        }
+        #valeur2 {
+            order: 3;
+        }
+        #valeur3 {
+            order: 4;
+        }
+        #valeur4 {
+            order: 2;
+        }
+        #valeur5 {
+            order: 6;
+        }
+        #valeur6 {
+            order: 5;
+        }
+        #valeur7 {
+            order: 7;
+        }
+        #valeur8 {
+            order: 8;
         }
     }
     

@@ -1,4 +1,4 @@
-.ficheObjet{
+.ficheObjet {
     position: absolute;
     top: 10%;
     background-color: #ccc;
@@ -6,11 +6,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: stretch;
     padding: 20px;
     opacity: 80%;
 }
 
-.ficheObjetBloc{
+.ficheObjetBloc {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -18,7 +19,7 @@
     opacity: 100%;
 }
 
-.ficheObjetDetails{
+.ficheObjetDetails {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -26,7 +27,7 @@
     width: 100%;
 }
 
-.closeIcon{
+.closeIcon {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -40,68 +41,73 @@
     justify-content: center;
 }
 
-.closeIcon span{
+.closeIcon span {
     border-radius: 50%;
     font-size: 30px;
 }
 
-.objetTabContent{
+.objetTabContent {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: stretch;
 }
 
-.objetTabContent, .objetTabGroup {
+.objetTabContent,
+.objetTabGroup {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: flex-start;
 }
 
-.objetTabContent>div{
-    margin: 5px 10px 5px 10px;
+.objetTabContent>div {
+    margin: 5px 5px 5px 2px;
+    align-self: stretch;
 }
 
-.infosBloc{
+.infosBloc {
     flex-grow: 1;
 }
 
-.imageGrand{
+.imageGrand {
     margin: 10px;
 }
 
-.objetTabContent>div{
+.objetTabContent>div {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;   
-    border-radius: 5px;    
+    align-items: stretch;
+    text-align: center;
+    border-radius: 5px;
 }
 
-.warningBloc{
+.warningBloc {
     width: 30%;
 }
 
-.photoContent, .infosTab, .faqTab{    
+.photoContent,
+.infosTab,
+.faqTab {
     background-color: #fff;
     border-radius: 10px;
     width: 100%;
+    align-self: stretch;
+    flex-grow: 1;
 }
 
-.photoContent .editSouhaitBloc{
+.photoContent .editSouhaitBloc {
     width: 100%;
     margin: 5px 0 5px 0;
 }
 
-.userInfosBloc{
+.userInfosBloc {
     color: #fff;
 }
 
-.faqBloc{
-    width: 30%;
-}
-
-.faqSaisie, .faqReply{
+.faqSaisie,
+.faqReply {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,11 +115,12 @@
     border: 0;
 }
 
-.faqSaisie label.active{    
-    transform: translateY(40px);    
+.faqSaisie label.active {
+    transform: translateY(40px);
 }
 
-.faqSaisie button, .faqReply button{
+.faqSaisie button,
+.faqReply button {
     width: 28px;
     background-color: #ddd;
     padding: 5px;
@@ -121,39 +128,41 @@
     margin-left: 5px;
 }
 
-.faqSaisie span{
+.faqSaisie span {
     font-size: 20px;
     color: #fff;
 }
 
-.infosTab{
+.infosTab {
     padding: 5px;
 }
 
-.infosContent{
+.infosContent {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
-.infosContent div{
-    margin: 5px;
+.infosContent div {
+    margin: 0 5px 0 5px;
 }
 
-.descriptionBloc{
+.descriptionBloc {
     min-height: 145px;
 }
 
-.userInfosBloc{
+.userInfosBloc {
     margin: 5px;
     display: flex;
     justify-content: center;
 }
 
-.userInfosBloc>*{
+.userInfosBloc>* {
     margin: 0 20px 0 20px;
 }
 
-
-.miniItem{
+.miniItem {
     color: #fff;
     height: 70px;
     width: 70px;
@@ -165,60 +174,59 @@
     background-color: #aaa;
 }
 
-.miniItem span{
+.miniItem span {
     font-size: 40px;
 }
 
-.miniaturesConteneur{
+.miniaturesConteneur {
     display: flex;
     background-color: #eee;
     margin: 5px;
     justify-content: center;
     border-radius: 10px;
-    
 }
 
-.imageGrand{
+.imageGrand {
     width: 250px;
     height: 250px;
 }
 
-.warningBloc{
+.warningBloc {
     width: 100%;
     background: none;
     align-items: flex-end;
     margin-top: 10px;
 }
 
-.warningBloc .editIcon{
+.warningBloc .editIcon {
     background-color: #ccc;
     border-color: #fff;
 }
 
-.warningBloc div span{
+.warningBloc div span {
     color: #666;
 }
 
-.warningText{
+.warningText {
     position: absolute;
     right: 50px;
     font-size: 0.9em;
 }
 
-.faqBloc{  
+.faqBloc {
     align-items: stretch;
     align-self: stretch;
     width: 100%;
     max-width: 400px;
 }
 
-.faqTab ul{
+.faqTab ul {
     position: relative;
     margin: 5px 5px 0 5px;
     padding: 5px 5px 0 5px;
 }
 
-.faqTab{    
+.faqTab {
     text-align: left;
     margin: 10px 0 10px 0;
     padding-bottom: 10px;
@@ -229,17 +237,17 @@
     font-size: 17px;
 }
 
-.userIcon, .messageIcon {
+.userIcon,
+.messageIcon {
     margin: 0 5px 0 5px;
 }
 
-.faqReply{
+.faqReply {
     display: none;
 }
 
 
 /**** responsive ****/
-
 
 @media screen and (min-width: 1200px) {
     .ficheObjetBloc {
@@ -248,23 +256,29 @@
     }
 }
 
-
-@media screen and (max-width: 900px) {
-    .infosContent{
+@media screen and (max-width: 800px) {
+    .infosContent {
         flex-direction: column;
+    }
+    .infosContent div {
+        margin: 5px 5px 0 1px;
+    }
+    .faqBloc{
+        margin-top: 5px
     }
 }
 
 @media screen and (max-width: 600px) {
-    .ficheObjet{
+    .ficheObjet {
         top: 0;
     }
-    .objetTabContent{
+    .objetTabContent {
         flex-direction: column;
     }
-    
-    .objetTabContent>div{
-    margin: 5px 0 5px 0;
-}
-
+    .objetTabContent>div {
+        margin: 5px 0 5px 0;
+    }
+    .faqBloc {
+        max-width: 600px;
+    }
 }

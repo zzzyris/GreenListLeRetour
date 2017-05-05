@@ -28,7 +28,7 @@ public class DaoSouhait implements IDaoSouhait {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Souhait> getSouhaits(Utilisateur utilisateur) throws Exception{
+	public List<Souhait> getSouhaits(Utilisateur utilisateur) throws Exception {
 
 		final String req = "SELECT s FROM Souhait s " + "INNER JOIN Liste li ON li.id = s.idListe "
 				+ "INNER JOIN Utilisateur u ON u.id = li.idUtilisateur" + "WHERE u.id = :pidUtilisateur";
@@ -83,11 +83,7 @@ public class DaoSouhait implements IDaoSouhait {
 	@Override
 	public Souhait addSouhait(Souhait souhait) {
 
-		em.getTransaction().begin();
 		em.persist(souhait);
-		em.getTransaction().commit();
-		em.close();
-
 		return souhait;
 	}
 
@@ -96,12 +92,8 @@ public class DaoSouhait implements IDaoSouhait {
 	 */
 	@Override
 	public Liste addListe(Liste liste) {
-
-		em.getTransaction().begin();
-		em.persist(liste);
-		em.getTransaction().commit();
-		em.close();
 		
+		em.persist(liste);
 		return liste;
 	}
 

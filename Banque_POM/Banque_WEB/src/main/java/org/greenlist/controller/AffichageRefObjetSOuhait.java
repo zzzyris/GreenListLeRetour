@@ -82,7 +82,8 @@ public class AffichageRefObjetSOuhait {
 	
 	public void rechercherGroupes(int idDomaine){
 		groupes = proxyDomaine.getGroupes(proxyDomaine.getDomaine(idDomaine));
-		produits  = proxyProduit.getProduits(groupes.get(0));
+		selectedGroupe.setId(groupes.get(0).getId());
+		rechercherProduits();
 	}
 
 

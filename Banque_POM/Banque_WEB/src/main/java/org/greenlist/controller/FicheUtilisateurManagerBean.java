@@ -19,16 +19,16 @@ public class FicheUtilisateurManagerBean {
 	private IBusinessUtilisateur proxyUtilisateur ;
 	
 	private Utilisateur utilisateurAffiche = new Utilisateur();
-	private int moyenne =0;
-	private int nbAVis =0 ;
-	private int nbObjets =0;
-	private int nbSouhaits =0;
-	private int nbEchanges = 0 ;
+	private int moyenne = 0;
+	private int nbAVis = 0 ;
+	private int nbObjets = 0;
+	private int nbSouhaits = 0;
+	private int nbEchanges =  0 ;
 	
 	
 	@PostConstruct
 	public void init(){
-		utilisateurAffiche.setId(2);
+		
 	
 			utilisateurAffiche = proxyUtilisateur.getUtilisateurCompletById(utilisateurAffiche);
 		

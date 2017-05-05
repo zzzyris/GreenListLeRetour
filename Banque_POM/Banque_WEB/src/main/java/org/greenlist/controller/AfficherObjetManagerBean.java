@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import org.greenlist.business.api.IBusinessObjet;
@@ -22,8 +23,8 @@ public class AfficherObjetManagerBean {
 	@EJB
 	private IBusinessObjet proxyObjet;
 	
-	@EJB
-	private IBusinessUtilisateur proxyUtilisateur;
+	 @ManagedProperty(value="#{mbFicheUtilisateur}")
+	    private FicheUtilisateurManagerBean ficheUtilisateurmb;
 	
 	
 	private Objet objetAffiche = new Objet();
@@ -38,7 +39,10 @@ public class AfficherObjetManagerBean {
 		photos = proxyObjet.getPhotos(objetAffiche);
 		
 		 proprietaire = objetAffiche.getUtilisateur();
-		 proprietaire = proxyUtilisateur.getUtilisateurById(proprietaire.getId());
+		 
+		 ficheUtilisateurmb.setUtilisateurAffiche(proprietaire);
+		
+		 
 	}
 
 	public Objet getObjetAffiche() {
@@ -63,6 +67,22 @@ public class AfficherObjetManagerBean {
 
 	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
+	}
+
+	public FicheUtilisateurManagerBean getFicheUtilisateurmb() {
+		return ficheUtilisateurmb;
+	}
+
+	public void setFicheUtilisateurmb(FicheUtilisateurManagerBean ficheUtilisateurmb) {
+		this.ficheUtilisateurmb = ficheUtilisateurmb;
+	}
+
+	public Utilisateur getProprietaire() {
+		return proprietaire;
+	}
+
+	public void setProprietaire(Utilisateur proprietaire) {
+		this.proprietaire = proprietaire;
 	}
 	
 	

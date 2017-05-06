@@ -1,5 +1,8 @@
 package org.greenlist.business.api;
 
+import java.util.List;
+
+import org.greenlist.entity.Objet;
 import org.greenlist.entity.Utilisateur;
 
 public interface IBusinessUtilisateur {
@@ -53,4 +56,6 @@ public interface IBusinessUtilisateur {
 	
 	public int recupererNbObjets(Utilisateur utilisateur);
 
+	public List<Objet> recupererObjetsUtilisateur(Utilisateur utilisateur) ;
+	
 }

@@ -12,6 +12,7 @@ import org.greenlist.data.api.IDaoSouhait;
 import org.greenlist.data.api.IDaoUtilisateur;
 import org.greenlist.entity.Echange;
 import org.greenlist.entity.Note;
+import org.greenlist.entity.Objet;
 import org.greenlist.entity.Utilisateur;
 
 @Remote(IBusinessUtilisateur.class)
@@ -106,6 +107,12 @@ public class BusinessUtilisateur implements IBusinessUtilisateur {
 				proxyObjet.getObjetsByUtilisateur(utilisateur);
 				
 		return nbObjets;
+	}
+
+	@Override
+	public List<Objet> recupererObjetsUtilisateur(Utilisateur utilisateur) {
+	
+		return proxyObjet.getObjetsByUtilisateur(utilisateur);
 	}
 
 }

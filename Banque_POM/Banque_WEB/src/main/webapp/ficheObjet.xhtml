@@ -70,8 +70,9 @@
 											<ul class="catBloc">
 												<li class="ageCat">
 													<div class="catTitle">Catégorie :</div>
-													<div class="valeurCat">Jeux et Jouets > Peluche et
-														Poupées > #{mbFicheObjet.objetAffiche.produit.libelle}</div>
+													<div class="valeurCat">#{mbFicheObjet.objetAffiche.produit.groupe.domaine.libelle} > 
+													#{mbFicheObjet.objetAffiche.produit.groupe.libelle}
+													 > #{mbFicheObjet.objetAffiche.produit.libelle}</div>
 												</li>
 												<li class="ageCat">
 													<div class="catTitle">Tranche d'âge</div>
@@ -99,14 +100,15 @@
 											<!-- <img id="imgProfil" class="userAvatar" /> -->
 										</div>
 										<ul>
-											<li>Troc4ever</li>
+											<li>#{mbFicheObjet.ficheUtilisateurmb.utilisateurAffiche.pseudo}</li>
 											<li>Confirmé</li>
+											<li>#{mbFicheObjet.ficheUtilisateurmb.moyenne}</li>
 											<li><span class="fa fa-star smallStar"></span><span
 												class="fa fa-star smallStar"></span><span
 												class="fa fa-star smallStar"></span><span
 												class="fa fa-star-half-o smallStar"></span><span
 												class="fa fa-star-o smallStar"></span></li>
-											<li><a>20 Avis</a></li>
+											<li><a>#{mbFicheObjet.ficheUtilisateurmb.nbAVis} Avis</a></li>
 										</ul>
 									</div>
 									<div class="field-wrap faqSaisie">

@@ -46,6 +46,11 @@ public class DaoObjet implements IDaoObjet {
 	  
 	  private static final String REQUETTE_GET_OBJETS_BY_PRODUIT =
 	  "SELECT o from Objet o wehere o.produit + :pProduit" ;
+	  
+	  private static final String REQUETE_GET_GROUPE = 
+			  "SELECT g from Groupe g where g.id = :pGId " ;
+	  private static final String REQUETE_GET_DOMAINE = 
+			  "SELECT D from Domaine d where d.id = :pDId " ;
 	 
 	/**
 	 * Methode pour r�cup�rer un objet par son id
@@ -66,8 +71,16 @@ public class DaoObjet implements IDaoObjet {
 	 */
 	@Override
 	public Objet getObjetByIdWithProduitAndTA(int idObjet) {
+		Objet objetComplet = new Objet();
 		Query query = em.createQuery(REQUETTE_GET_OBJET_BY_ID_WITH_PDT_TA).setParameter("pidObjet", idObjet);
-		return (Objet) query.getSingleResult();
+		objetComplet = (Objet) query.getSingleResult();
+		Query queryGroupe = em.createQuery(REQUETE_GET_GROUPE).setParameter("pGId", objetComplet.getProduit().getGroupe().getId());
+		objetComplet.getProduit().setGroupe((Groupe)queryGroupe.getSingleResult());
+		
+		Query queryDomaine = em.createQuery(REQUETE_GET_DOMAINE).setParameter("pDId", objetComplet.getProduit().getGroupe().getDomaine().getId());
+		objetComplet.getProduit().getGroupe().setDomaine((Domaine)queryDomaine.getSingleResult());
+		
+		return objetComplet;
 	}
 	/**
 	 * Methode pour ajouter un objet

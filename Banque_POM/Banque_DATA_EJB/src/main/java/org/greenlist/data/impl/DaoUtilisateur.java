@@ -24,9 +24,9 @@ public class DaoUtilisateur implements IDaoUtilisateur {
 	
 	private static final String REQUETE_GET_USER_COMPLET_BY_ID = "SELECT u FROM Utilisateur u inner join fetch u.experience WHERE u.id = :pId";
 
-	private static final String REQUETTE_GET_ECHANGE_BY_USERA = " Select u.echangesForIdusera as echanges FROM Utilisateur u Where u.id = :pUId AND  echanges.dateConclusion IS NOT null " ;
-	
-	private static final String REQUETTE_GET_ECHANGE_BY_USERB = " Select u.echangesForIduserb as echanges FROM Utilisateur u Where u.id = :pUId AND echanges.dateConclusion IS NOT null " ;
+	private static final String REQUETTE_GET_ECHANGE_BY_USERA = "SELECT e FROM Echange e WHERE e.utilisateurByIdusera.id = :pUid AND  e.dateConclusion IS NOT null " ;
+
+	private static final String REQUETTE_GET_ECHANGE_BY_USERB = "SELECT e FROM Echange e WHERE e.utilisateurByIduserb.id = :pUid AND  e.dateConclusion IS NOT null " ;
 
 	private static final String REQUETE_GET_AVIS_UTILISATEUR = "u.notesForIdutilisateurestnote FROM Utilisateur u where u.id = :pUId";
 	
@@ -83,6 +83,7 @@ public class DaoUtilisateur implements IDaoUtilisateur {
 	@Override
 	public List<Echange> GetEchangesValideserA(Utilisateur utilisateur) {
 		Query query = em.createQuery(REQUETTE_GET_ECHANGE_BY_USERA);
+		System.out.println(utilisateur.getId());
 		query.setParameter("pUId", utilisateur.getId());
 		return query.getResultList() ;
 	}

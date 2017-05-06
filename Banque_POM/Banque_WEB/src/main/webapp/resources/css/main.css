@@ -45,8 +45,8 @@
     
     .valeur,
     .valeurPic {
-        width: 210px;
-        height: 230px;
+        width: 200px;
+        height: 200px;
         background-size: cover;
     }
     
@@ -61,34 +61,42 @@
     }
     
     #valeur1 {
+        background-image: url("#{resource['/images/Valeur1.png']}");
         background-image: url(../images/Valeur1.png);
     }
     
     #valeur2 {
+        background-image: url("#{resource['/images/Valeur2.png']}");
         background-image: url(../images/Valeur2.png);
     }
     
     #valeur3 {
+        background-image: url("#{resource['/images/Valeur3.png']}");
         background-image: url(../images/Valeur3.png);
     }
     
     #valeur4 {
+        background-image: url("#{resource['/images/Valeur4.png']}");
         background-image: url(../images/Valeur4.png);
     }
     
     #valeur5 {
+        background-image: url("#{resource['/images/Valeur5.png']}");
         background-image: url(../images/Valeur5.png);
     }
     
     #valeur6 {
+        background-image: url("#{resource['/images/Valeur6.png']}");
         background-image: url(../images/Valeur6.png);
     }
     
     #valeur7 {
+        background-image: url("#{resource['/images/Valeur7.png']}");
         background-image: url(../images/Valeur7.png);
     }
     
     #valeur8 {
+        background-image: url("#{resource['/images/Valeur8.png']}");
         background-image: url(../images/Valeur8.png);
     }
     /********** Responsive ***********/
@@ -100,6 +108,30 @@
         .mainPanel {
             margin: 0;
         }
+        #valeur1 {
+            order: 1;
+        }
+        #valeur2 {
+            order: 3;
+        }
+        #valeur3 {
+            order: 4;
+        }
+        #valeur4 {
+            order: 2;
+        }
+        #valeur5 {
+            order: 6;
+        }
+        #valeur6 {
+            order: 5;
+        }
+        #valeur7 {
+            order: 7;
+        }
+        #valeur8 {
+            order: 8;
+        }
     }
     
     @media screen and (min-width: 1000px) {
@@ -108,156 +140,3 @@
             margin-right: 200px;
         }
     }
-    /***************** 
-
-.divRow {
-    display: flex;
-    justify-content: space-between;
-}
-
-.valeurs {
-    width: 210px;
-    height: 230px;
-    background-size: 212px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#navbarre {
-    background-color: white;
-    height: 70px;
-}
-
-#valeursGrennlist {
-    width: 840px;
-    height: 460px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-
-#valeursGrennlist div {
-    margin: 0;
-    padding: 0;
-}
-
-#valeursGrennlist div img {
-    margin: 0;
-    padding: 0;
-}
-
-#commentCaMarche {
-    background-color: aquamarine;
-    width: 100%;
-    margin-top: 100px;
-    margin-bottom: 50px;
-    text-align: center;
-    border-radius: 10px;
-}
-
-.texteBlanc {
-    color: white;
-}
-
-.titreBlanc {
-    color: white;
-}
-
-#titreEtape4 {
-    background-color: rgb(241, 240, 237);
-    width: 70%;
-    margin: 50px;
-    text-align: center;
-}
-
-.titreValeur {
-    color: rgb(51, 51, 51);
-    opacity: 0;
-}
-
-.titreValeur:hover {
-    opacity: 1;
-}
-
-.etapes {
-    background-color: rgb(241, 240, 237);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 220px;
-    height: 250px;
-}
-
-.imgEtape {
-    width: 80%;
-}
-
-#etapes123 {
-    width: 70%;
-    height: 250px;
-}
-
-#etapes4 {
-    width: 70%;
-    height: 250px;
-}
-
-#etape4.1 {
-    background-image: url("");
-}
-
-.btnEtapes {
-    display: flex;
-    justify-content: center;
-    background-color: rgb(241, 240, 237);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: solid black 2px;
-    margin: 10px;
-    padding: 0;
-}
-
-h2 {}
-
-.numeroEtape {
-    margin: auto;
-    font-size: 150%;
-    font-style: normal;
-}
-
-#etape2 {}
-
-.imageEtape {
-    display: flex;
-    justify-content: flex-start;
-    height: 50%;
-}
-
-#imageEtape1 {
-    display: flex;
-    justify-content: center;
-    background-image: url(../images/etape1.png);
-    width: 200px;
-    height: 107px;
-}
-
-#imageEtape {
-    background-image: url(../images/etape2.png);
-    width: 200px;
-    height: 100px;
-}
-
-#texteEtape {
-    display: flex;
-}
-
-#imageEtape2 {
-    display: flex;
-    justify-content: center;
-    background-image: url(../images/etape2.png);
-    width: 200px;
-    height: 107px;
-}

@@ -63,6 +63,7 @@
 
 .flecheMessage{
     content: url('../images/turn-right.svg');
+    _content: url("#{resource['images:turn-right.svg']}");
     width: 20px;
     height: 20px;
 }
@@ -116,7 +117,7 @@
 
 /*****************************************************/
 
-/* A appliquer sur les titres et les boutons (et autres Ã©lÃ©ments disctinctifs) des pages selon leur fonctionnalitÃ© */
+/* A appliquer sur les titres et les boutons (et autres éléments disctinctifs) des pages selon leur fonctionnalité */
 
 .objetItem {
     background-color: #1ab188;

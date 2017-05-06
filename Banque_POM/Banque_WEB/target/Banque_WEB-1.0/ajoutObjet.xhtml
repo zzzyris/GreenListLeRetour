@@ -15,7 +15,17 @@
 
 		<ui:define name="content">
 			<h:panelGroup>
+<<<<<<< HEAD
 				<h:form id="formAjoutObjet">
+=======
+				<h:form enctype="multipart/form-data">
+					<p:fileUpload
+						fileUploadListener="#{mbObjetAjout.handleFileUpload()}"
+						value="#{mbObjetAjout.photoUploade}"
+						mode="advanced"></p:fileUpload>
+				</h:form>
+				<h:form id="formAjoutObjet" enctype="multipart/form-data">
+>>>>>>> refs/remotes/origin/master
 					<div class="pageTitleBloc">
 						<div class="fa fa-plus fa-2x pageTitleIcon"></div>
 						<div class="pageTitle whiteColor grow">Ajouter un Objet</div>
@@ -27,6 +37,7 @@
 							<li class="domainIconBloc">
 								<ul>
 									<li>Domaine</li>
+<<<<<<< HEAD
 									<li class="domainIcon"><h:commandButton
 											class="fa fa-home" onclick="submit()"
 											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(1)}"></h:commandButton>
@@ -63,6 +74,42 @@
 							<li class="groupCat">
 								<div class="catTitle">Produit</div> 
 								<h:selectOneMenu
+=======
+									<li class="domainIcon"><h:commandButton class="fa fa-home"
+											onclick="submit()"
+											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(1)}"></h:commandButton>
+									</li>
+									<li class="domainIcon"><h:commandButton class="fa fa-home"
+											onclick="submit()"
+											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(2)}"></h:commandButton></li>
+									<li class="domainIcon"><h:commandButton
+											class="fa fa-soccer-ball-o" onclick="submit()"
+											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(3)}"></h:commandButton></li>
+									<li class="domainIcon"><h:commandButton
+											class="fa fa-gamepad" onclick="submit()"
+											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(4)}"></h:commandButton></li>
+									<li class="domainIcon"><h:commandButton
+											class="fa fa-music" onclick="submit()"
+											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(5)}"></h:commandButton></li>
+								</ul>
+							</li>
+							<li class="groupCat">
+								<div class="catTitle">Groupe</div>
+							</li>
+
+							<h:selectOneMenu id="groupes"
+								value="#{mbAfficheRefObjetSOuhait.selectedGroupe.id}">
+								<f:selectItems value="#{mbAfficheRefObjetSOuhait.groupes}"
+									var="g" itemLabel="#{g.libelle}" itemValue="#{g.id}" />
+								<f:ajax
+									listener="#{mbAfficheRefObjetSOuhait.rechercherProduits()}"
+									event="change" render=":formAjoutObjet:produitsMenu"
+									execute="@form" />
+							</h:selectOneMenu>
+
+							<li class="groupCat">
+								<div class="catTitle">Produit</div> <h:selectOneMenu
+>>>>>>> refs/remotes/origin/master
 									id="produitsMenu" value="#{mbObjetAjout.objet.produit.id}">
 									<f:selectItems value="#{mbAfficheRefObjetSOuhait.produits}"
 										var="p" itemLabel="#{p.libelle}" itemValue="#{p.id}" />
@@ -100,6 +147,7 @@
 					<div class="photosBloc">
 						<div class="pageSubTitle">Ajouter des photos</div>
 						<div class="photosConteneur">
+<<<<<<< HEAD
 							<div class="photoItem objetItem">
 								<span class="fa fa-camera"></span>
 							</div>
@@ -110,7 +158,24 @@
 								<div class="addIcon">
 									<span class="fa fa-plus"></span>
 								</div>
+=======
+
+							<div class="photoItem objetItem">
+								<span class="fa fa-camera"></span>
 							</div>
+							<div class="photoItem objetItem">
+								<span class="fa fa-camera"></span>
+>>>>>>> refs/remotes/origin/master
+							</div>
+<<<<<<< HEAD
+=======
+
+
+
+
+
+							<div class="addIconBloc"></div>
+>>>>>>> refs/remotes/origin/master
 						</div>
 					</div>
 
@@ -135,6 +200,11 @@
 
 					</div>
 				</h:form>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> refs/remotes/origin/master
 			</h:panelGroup>
 		</ui:define>
 

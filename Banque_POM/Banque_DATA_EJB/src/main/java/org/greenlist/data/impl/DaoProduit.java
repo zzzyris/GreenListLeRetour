@@ -21,7 +21,7 @@ public class DaoProduit implements IDaoProduit{
 	private static final String REQUETTE_GET_PRODUITS = "SELECT p FROM Produit as p ";
 	
 	private static final String REQUETE_GET_PRODUIT_PAR_NOM = 
-			"SELECT p FROM Produit p"
+			"SELECT p FROM Produit p "
 			+ "WHERE p.libelle LIKE :pnom";
 	
 	@PersistenceContext(unitName = "Banque_DATA_EJB")

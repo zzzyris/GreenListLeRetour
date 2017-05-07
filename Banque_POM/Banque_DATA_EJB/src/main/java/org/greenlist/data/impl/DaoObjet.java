@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.greenlist.data.api.IDaoObjet;
+import org.greenlist.entity.Adresse;
 import org.greenlist.entity.Domaine;
 import org.greenlist.entity.Groupe;
 import org.greenlist.entity.Objet;
@@ -30,12 +31,11 @@ public class DaoObjet implements IDaoObjet {
 	private static final String REQUETTE_GET_OBJETS_BY_LIBELLE = "SELECT o FROM Objet as o WHERE o.libelle LIKE :pmotClef";
 	
 	private static final String REQUETE_GET_ADRESSE = 
-			"SELECT a"
+			"SELECT a "
 			+ "FROM Adresse a "
-			+ "INNER JOIN Utilisateur u ON (u.Id = o.Utilisateur.Id"
-									+ "OR e.utilisateurByIduserb = o.Utilisateur.Id"
-			+ "INNER JOIN "
-
+			+ "INNER JOIN fetch a.utilisateur u "
+			+ "INNER JOIN fetch u.objets o "
+			+ "WHERE o.id = :pIdObjet";
 	
 	  private static final String REQUETTE_GET_OBJETS_BY_DOMAINE =
 	  " SELECT o FROM Objet  as o" +" JOIN o.produit as produit"
@@ -47,7 +47,7 @@ public class DaoObjet implements IDaoObjet {
 	  +"join produit.groupe as groupe" +" WHERE groupe = :pGroupe";
 	  
 	  private static final String REQUETTE_GET_OBJETS_BY_PRODUIT =
-	  "SELECT o from Objet o wehere o.produit + :pProduit" ;
+	  "SELECT o from Objet o WHERE o.produit = :pProduit" ;
 	 
 	/**
 	 * Methode pour r�cup�rer un objet par son id
@@ -143,6 +143,11 @@ public class DaoObjet implements IDaoObjet {
 	public List<Objet> getObjetsByProduit(Produit produit) {
 		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_PRODUIT).setParameter("pProduit", produit);
 		return query.getResultList();
+	}
+
+	@Override
+	public Adresse getAdresse(Objet objet) {
+		return (Adresse)em.createQuery(REQUETE_GET_ADRESSE).setParameter("pIdObjet", objet.getId()).getSingleResult();
 	}
 
 }

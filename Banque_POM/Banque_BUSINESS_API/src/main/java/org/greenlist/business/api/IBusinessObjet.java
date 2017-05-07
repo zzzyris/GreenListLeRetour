@@ -3,6 +3,7 @@ package org.greenlist.business.api;
 import java.util.List;
 import java.util.Set;
 
+import org.greenlist.entity.Adresse;
 import org.greenlist.entity.Objet;
 import org.greenlist.entity.Produit;
 import org.greenlist.entity.Utilisateur;
@@ -41,5 +42,12 @@ public interface IBusinessObjet {
 	 * @return les objets appartenant à cette catégorie de produits.
 	 */
 	public Set<Objet> getObjets(Produit produit);
+	
+	/**
+	 * Renvoie l'adresse de l'utilisateur possédant un objet donné
+	 * @param objet l'objet en question
+	 * @return l'adresse de son possesseur.
+	 */
+	Adresse getAdresse(Objet objet);
 
 }

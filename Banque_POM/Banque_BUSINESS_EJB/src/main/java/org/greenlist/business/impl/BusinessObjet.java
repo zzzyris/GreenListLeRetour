@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 
 import org.greenlist.business.api.IBusinessObjet;
 import org.greenlist.data.api.IDaoObjet;
+import org.greenlist.entity.Adresse;
 import org.greenlist.entity.Objet;
 import org.greenlist.entity.Produit;
 import org.greenlist.entity.Utilisateur;
@@ -48,6 +49,11 @@ public class BusinessObjet implements IBusinessObjet {
 			resultSet = new HashSet<>(resultList);
 		}
 		return resultSet;
+	}
+
+	@Override
+	public Adresse getAdresse(Objet objet) {
+		return proxyObjet.getAdresse(objet);
 	}
 
 }

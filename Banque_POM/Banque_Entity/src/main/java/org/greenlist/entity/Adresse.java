@@ -39,8 +39,8 @@ public class Adresse implements java.io.Serializable {
 	private String ville;
 	@Column(name = "LONGITUDE", nullable = false, precision = 22, scale = 0)
 	private double longitude;
-	@Column(name = "LATITTUDE", nullable = false, precision = 22, scale = 0)
-	private double latittude;
+	@Column(name = "LATITUDE", nullable = false, precision = 22, scale = 0)
+	private double latitude;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "adresse")
 	private List<Rdv> rdvs = new ArrayList<>();
 
@@ -53,7 +53,7 @@ public class Adresse implements java.io.Serializable {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.longitude = longitude;
-		this.latittude = latittude;
+		this.latitude = latittude;
 	}
 
 	public Adresse(int id, Utilisateur utilisateur, String numeroVoie, String rue, String codePostal, String ville,
@@ -65,7 +65,7 @@ public class Adresse implements java.io.Serializable {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.longitude = longitude;
-		this.latittude = latittude;
+		this.latitude = latittude;
 		this.rdvs = rdvs;
 	}
 
@@ -133,12 +133,12 @@ public class Adresse implements java.io.Serializable {
 	}
 
 	
-	public double getLatittude() {
-		return this.latittude;
+	public double getLatitude() {
+		return this.latitude;
 	}
 
-	public void setLatittude(double latittude) {
-		this.latittude = latittude;
+	public void setLatitude(double latittude) {
+		this.latitude = latittude;
 	}
 
 	

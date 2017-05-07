@@ -2,6 +2,7 @@ package org.greenlist.data.api;
 
 import java.util.List;
 
+import org.greenlist.entity.Adresse;
 import org.greenlist.entity.Domaine;
 import org.greenlist.entity.Groupe;
 import org.greenlist.entity.Objet;
@@ -18,6 +19,8 @@ public interface IDaoObjet {
 	List<Objet> getObjetsByDomaine(Domaine domaine);
 	List<Objet> getObjetsByGroupe(Groupe groupe);
 	List<Objet> getObjetsByProduit(Produit produit);
+	
+	Adresse getAdresse(Objet objet);
 	
 
 }

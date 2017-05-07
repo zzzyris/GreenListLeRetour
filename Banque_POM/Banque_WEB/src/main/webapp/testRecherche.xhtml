@@ -16,13 +16,12 @@
 				<h:inputText value="#{mbRecherche.recherche}" id="maRecherche">
 				</h:inputText>
 				<h:commandButton value="Click">
-					<f:ajax render="mesMots" 
-							event="click"
-							execute="maRecherche"
-							listener="#{mbRecherche.decouperRecherche()}" />
+					<f:ajax render="mesMots" event="click" execute="maRecherche"
+						listener="#{mbRecherche.decouperRecherche()}" />
 				</h:commandButton>
 			</div>
 			<h:panelGroup id="mesMots">
+				Vous avez cherché : 
 				<ui:repeat var="monMot" value="#{mbRecherche.motsRecherche}">
 					<div>#{monMot}</div>
 				</ui:repeat>

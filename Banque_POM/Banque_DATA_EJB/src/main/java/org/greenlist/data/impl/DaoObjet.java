@@ -1,6 +1,7 @@
 package org.greenlist.data.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Remote;
 import javax.ejb.Singleton;
@@ -27,6 +28,13 @@ public class DaoObjet implements IDaoObjet {
 	private static final String REQUETTE_GET_OBJETS_BY_UTILISATEUR = "SELECT u.objets FROM Utilisateur as u WHERE u.id = :pIdUtilisateur";
 
 	private static final String REQUETTE_GET_OBJETS_BY_LIBELLE = "SELECT o FROM Objet as o WHERE o.libelle LIKE :pmotClef";
+	
+	private static final String REQUETE_GET_ADRESSE = 
+			"SELECT a"
+			+ "FROM Adresse a "
+			+ "INNER JOIN Utilisateur u ON (u.Id = o.Utilisateur.Id"
+									+ "OR e.utilisateurByIduserb = o.Utilisateur.Id"
+			+ "INNER JOIN "
 
 	
 	  private static final String REQUETTE_GET_OBJETS_BY_DOMAINE =

@@ -51,4 +51,9 @@ public class BusinessProduit implements IBusinessProduit {
 		return produits;
 	}
 
+	@Override
+	public List<Produit> getProduits(String nom) {
+		return proxyProduit.getProduits(nom);
+	}
+
 }

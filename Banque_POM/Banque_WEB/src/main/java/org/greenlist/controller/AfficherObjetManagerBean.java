@@ -1,27 +1,88 @@
 package org.greenlist.controller;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import org.greenlist.business.api.IBusinessObjet;
+import org.greenlist.business.api.IBusinessUtilisateur;
 import org.greenlist.entity.Objet;
+import org.greenlist.entity.Photo;
+import org.greenlist.entity.Utilisateur;
 
-@ManagedBean(name = "mbAfficheObjet")
+@ManagedBean(name = "mbFicheObjet")
 @ViewScoped
 public class AfficherObjetManagerBean {
 	
-	private Objet objetAffiche;
+	
 	
 	@EJB
 	private IBusinessObjet proxyObjet;
 	
+	 @ManagedProperty(value="#{mbFicheUtilisateur}")
+	    private FicheUtilisateurManagerBean ficheUtilisateurmb;
 	
-	public Objet recupererObjet ( Objet objet ){
+	
+	private Objet objetAffiche = new Objet();
+	private List<Photo> photos ;
+	private Utilisateur proprietaire = new Utilisateur();
+	
+	
+	public void init(){
+		objetAffiche.setId(6);
+		objetAffiche = proxyObjet.getObjetComplet(objetAffiche);
 		
-		objetAffiche = proxyObjet.getObjet(objet);
+		photos = proxyObjet.getPhotos(objetAffiche);
 		
+		 proprietaire = objetAffiche.getUtilisateur();
+		 
+		 ficheUtilisateurmb.setUtilisateurAffiche(proprietaire);
+		
+		 
+	}
+
+	public Objet getObjetAffiche() {
 		return objetAffiche;
+	}
+
+	public void setObjetAffiche(Objet objetAffiche) {
+		this.objetAffiche = objetAffiche;
+	}
+
+	public IBusinessObjet getProxyObjet() {
+		return proxyObjet;
+	}
+
+	public void setProxyObjet(IBusinessObjet proxyObjet) {
+		this.proxyObjet = proxyObjet;
+	}
+
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
+
+	public FicheUtilisateurManagerBean getFicheUtilisateurmb() {
+		return ficheUtilisateurmb;
+	}
+
+	public void setFicheUtilisateurmb(FicheUtilisateurManagerBean ficheUtilisateurmb) {
+		this.ficheUtilisateurmb = ficheUtilisateurmb;
+	}
+
+	public Utilisateur getProprietaire() {
+		return proprietaire;
+	}
+
+	public void setProprietaire(Utilisateur proprietaire) {
+		this.proprietaire = proprietaire;
 	}
 	
 	

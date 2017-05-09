@@ -1,73 +1,32 @@
-html,
-body {
-    margin: 0;
-    padding: 0;
-}
-
-ul{
-    list-style: none;
-}
-
-* {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.hidden {
-    display: none;
-}
-
-.normalIcon {
-    font-size: 30px;
-    color: #bbb;
-    margin: 5px;
-}
-
-.smallIcon {    
-    font-size: 22px;
-    color: #333;
-    margin: 2px;
-}
-
-.bigIcon {}
-
 /*** Echange Page **/
-
-.mainPanel {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: flex-start;
-    align-items: center;
-}
 
 .mainEchange {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: stretch;
-    width: 70%;
+    width: 100%;
+    padding: 10px;
 }
 
-.echangeProgressBar {
-    width: 90%;
-    margin-left: 3%;
-    margin-bottom: 10px;
+.userEchangeBloc>div {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
 }
 
-.mainPanelTitle {
-    text-align: center;
-}
 
 /******** Echange Versus **********/
 
-.echangeOneBloc{
+.echangeOneBloc {
     text-align: center;
 }
 
-.echangeRightBloc{
+.echangeRightBloc {
     width: 50%;
-    align-self: flex-end;    
+    align-self: flex-end;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -81,20 +40,23 @@ ul{
     align-items: center;
 }
 
-.userSection {
+.userEchangeBloc {
     display: flex;
-    justify-content: flex-start;
+    flex-flow: row nowrap;
+    justify-content: center;
     align-items: center;
-    width: 320px;
 }
 
+.userEchangeBloc>div {
+    flex-grow: 0;
+}
 
-.userSection img {
+.userEchangeBloc img {
     display: block;
     margin-right: 0px;
 }
 
-.userSection ul {
+.userEchangeBloc ul {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -102,37 +64,101 @@ ul{
     align-items: center;
 }
 
+
 /******** Souhait vs Objet **********/
 
-.echangeLigneBox{
-    width: 50%
+.echangeLigneBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.echangeLigneBox ul {
+    width: 100%;
+}
+
 
 /******** Base Echange Versus **********/
 
 .echangeVersusBloc {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: stretch;
 }
 
 .tabTitle {
     text-align: center;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
 }
 
-.echangeVersusBloc div, .echangeVersusBloc ul{
-    flex-grow: 1;
-    padding: 10px;
+.echangeVersusBloc>div,
+.echangeVersusBloc>ul,
+.echangeVersusBloc>section,
+.echangeVersusBloc>fieldset{
+    width: 100%;
+    padding: 5px;
     list-style: none;
     margin: 0;
 }
 
+.echangeVersusBloc>div,
+.echangeVersusBloc>section,
+.echangeVersusBloc>ul,
+.echangeVersusBloc>fieldset{
+    padding: 5px;
+    list-style: none;
+    margin: 5px;
+}
+
+.echangeSouhaitListe {
+    background: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+*
+/************ ***/
+
+.tabTitle span {
+    font-size: 22px;
+}
+
+.tabTitle {
+    position: relative;
+}
+
+.texteTeaser {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+/******** Rating Stars **********/
+
+.avisBloc{
+    border-radius: 5px;
+    padding: 5px;
+    
+}
+
+.avisBloc textarea{
+    background: #fff;
+    margin-top: 5px;
+    height: 100px;
+}
+
 /******** Liste Objets Echange Versus **********/
 
-.echangeObjetListe{
+.echangeObjetListe {
     flex-grow: 1;
+    background: #fff;
+    border-radius: 10px;
+    margin: 5px;
+    padding-top: 5px;
 }
 
 .minPhoto {
@@ -145,7 +171,8 @@ ul{
     flex-grow: 1;
 }
 
-.echangeLigneObjet,.echangeLigneSouhait {
+.echangeLigneObjet,
+.echangeLigneSouhait {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -157,63 +184,97 @@ ul{
     height: 80px;
 }
 
-.ordreInverse>.ordre1{
+.ordre1 {
     order: 1;
 }
 
-.ordreInverse>.ordre2{
+.ordre2 {
     order: 2;
 }
 
-.ordreInverse>.ordre3{
+.ordre3 {
     order: 3;
 }
 
-.ordreInverse>.ordre4{
+.ordre4 {
     order: 4;
 }
-.ordreInverse>.ordre5{
+
+.ordre5 {
     order: 5;
 }
 
-.echangeDescription{
+.ordreInverse>.ordre1 {
+    order: 5;
+}
+
+.ordreInverse>.ordre2 {
+    order: 4;
+}
+
+.ordreInverse>.ordre3 {
+    order: 3;
+}
+
+.ordreInverse>.ordre4 {
+    order: 2;
+}
+
+.ordreInverse>.ordre5 {
+    order: 1;
+}
+
+.echangeDescription {
     width: 50%;
     padding-left: 20px;
 }
 
-.echangeDescription li{
+.echangeDescription li {
     width: 100%;
     padding-left: 20px;
 }
+
 
 /******** valeurs Total Echange Versus **********/
 
 .userTotal {
     display: flex;
-    justify-content: center;    
+    justify-content: flex-end;
     text-align: right;
 }
 
-.userTotal li{
+.userTotal li {
     flex-grow: 1;
 }
 
-.userTotal.ordreInverse {     
+.userTotal.ordreInverse {
+    justify-content: flex-start;
     text-align: left;
 }
 
+
 /******** echangeOptions Echange Versus **********/
 
-.echangeOptions{
+.echangeOptions {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     width: 50%
 }
 
-.echangeOptions.ordreInverse {    
+.echangeOptions.ordreInverse {
     justify-content: flex-start;
 }
+
+
+/***** Validate Bloc ***/
+
+.validateState {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /******** ChatBox **********/
 
@@ -253,7 +314,7 @@ ul{
     width: 100%;
 }
 
-.chatSaisie textarea{    
+.chatSaisie textarea {
     width: 100%;
     height: 100%;
 }
@@ -262,7 +323,7 @@ ul{
     margin-top: 10px;
 }
 
-.userTotal ul{
+.userTotal ul {
     list-style: none;
     display: flex;
     flex-flow: row nowrap;
@@ -270,6 +331,182 @@ ul{
     align-items: stretch;
 }
 
-.userTotal ul:last-child{
+.userTotal ul:last-child {
     flex-grow: 1;
+}
+
+.boutonsCenterBloc {
+    display: flex;
+    justify-content: center;
+}
+
+.blocGauche {
+    padding-right: 5px;
+}
+
+.blocDroit {
+    padding-left: 5px;
+}
+
+
+/******** ********/
+
+
+/** Colors **/
+
+ol.progress-track {
+    display: table;
+    list-style-type: none;
+    margin: 0;
+    padding: 2em 1em;
+    table-layout: fixed;
+    width: 100%;
+}
+
+ol.progress-track li {
+    display: table-cell;
+    line-height: 3em;
+    position: relative;
+    text-align: center;
+}
+
+ol.progress-track li .icon-wrap {
+    border-radius: 50%;
+    top: -1.5em;
+    color: #fff;
+    display: block;
+    height: 2.5em;
+    margin: 0 auto -2em;
+    left: 0;
+    right: 0;
+    position: absolute;
+    width: 2.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+ol.progress-track li .icon-check-mark,
+ol.progress-track li .icon-down-arrow {
+    height: 25px;
+    width: 15px;
+    display: inline-block;
+    fill: currentColor;
+}
+
+ol.progress-track li .progress-text {
+    position: relative;
+    top: 10px;
+}
+
+ol.progress-track li.progress-done {
+    border-top: 7px solid #87ba51;
+    transition: border-color 1s ease-in-out;
+    -webkit-transition: border-color 1s ease-in-out;
+    -moz-transition: border-color 1s ease-in-out;
+}
+
+ol.progress-track li.progress-done .icon-down-arrow {
+    display: none;
+}
+
+ol.progress-track li.progress-done.progress-current .icon-wrap {
+    background-color: #0070c0;
+}
+
+ol.progress-track li.progress-done.progress-current .icon-wrap .icon-check-mark {
+    display: none;
+}
+
+ol.progress-track li.progress-done.progress-current .icon-wrap .icon-down-arrow {
+    display: block;
+}
+
+ol.progress-track li.progress-done .icon-wrap {
+    background-color: #4a6a28;
+    border: 5px solid #87ba51;
+}
+
+ol.progress-track li.progress-todo {
+    border-top: 7px solid #DDD;
+    color: black;
+}
+
+ol.progress-track li.progress-todo .icon-wrap {
+    background-color: #FFF;
+    border: 5px solid #DDD;
+    border-radius: 50%;
+    bottom: 1.5em;
+    color: #fff;
+    display: block;
+    height: 2.5em;
+    margin: 0 auto -2em;
+    position: relative;
+    width: 2.5em;
+}
+
+ol.progress-track li.progress-todo .icon-wrap .icon-check-mark,
+ol.progress-track li.progress-todo .icon-wrap .icon-down-arrow {
+    display: none;
+}
+
+
+/****** Rendez-Vous ***/
+
+.echangeTwoBloc {
+    display: flex;
+    justify-content: center;
+}
+
+.chooseBloc {
+    width: 30%;
+}
+
+.echangeTwoBloc .mapBloc {
+    margin-bottom: 10px;
+    width: 70%;
+}
+
+.mapBloc>div {
+    height: 300px;
+}
+
+.dateBloc,
+.timeBloc,
+.chooseBloc {
+    margin: 5px;
+}
+
+.dateBloc {
+    width: 60%;
+}
+
+.timeBloc {
+    width: 40%;
+}
+
+
+/**** Responsive ****/
+
+
+@media screen and (max-width: 550px) {
+    .progress-text {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .userEchangeBloc>div {
+        padding: 0;
+    }
+    .echangeVersusBloc li>span {
+        font-size: 14px;
+    }
+    .echangeDescription li {
+        margin: 0;
+        padding: 0;
+    }
+    .minPhoto {
+        display: none;
+    }
 }

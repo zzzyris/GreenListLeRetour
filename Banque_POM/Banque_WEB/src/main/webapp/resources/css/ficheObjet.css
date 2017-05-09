@@ -242,6 +242,15 @@
     margin: 0 5px 0 5px;
 }
 
+.faqTab ul li ul{
+    padding-left: 15px;
+}
+
+.faqTab ul li ul li ul{
+    padding-left: 30px;
+}
+
+
 .faqReply {
     display: none;
 }

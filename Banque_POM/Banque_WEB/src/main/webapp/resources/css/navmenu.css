@@ -3,17 +3,30 @@
     justify-content: center;
     align-items: center;
     list-style: none;
-    height: 55px;
+    height: 50px;
     margin: 0px;
     padding-top: 5px;
-    padding-bottom: 5px; 
+    padding-bottom: 5px;
     /* Borders */
     border-bottom: 2px solid #ddd;
 }
 
 .userMainNavBar {
     position: absolute;
+    top: 7px;
     left: 0;
+}
+
+.bellMainNavBar {
+    position: absolute;
+    top: 7px;
+    left: 40px;
+}
+
+
+
+.userMainNavBar,
+.bellMainNavBar {
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -23,10 +36,10 @@
     border: 0;
 }
 
-.logoGLIcon{
+.logoGLIcon {
     margin-right: 20px;
     width: 45px;
-    height: 45px;    
+    height: 45px;
     background-color: #fff;
     border-radius: 50%;
     display: flex;
@@ -35,15 +48,11 @@
     align-items: center;
 }
 
-.logoGL{
+.logoGL {
     width: 35px;
     height: 35px;
-    background-image: url('../images/gl_logo1.png');
-<<<<<<< HEAD
-    background-image: url("#{resource['images/gl_logo1.png']}");
-=======
-    _background-image: url("#{resource['images:gl_logo1.png']}");
->>>>>>> refs/remotes/origin/master
+    _background-image: url('../images/gl_logo1.png');
+    background-image: url("#{resource['images:gl_logo1.png']}");
     background-size: cover;
 }
 
@@ -53,58 +62,101 @@
     width: 40px;
 }
 
-.searchBar{
+.searchBar {
     height: 40px;
     width: 40%;
+    min-width: 220px;
+    max-width: 300px;
     background: #fff;
     display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
+    justify-content: center;
+    align-items: flex-end;
 }
 
-.textFieldMainNavBar { 
+.textFieldMainNavBar {
     flex-grow: 1;
     background: #fff;
     border: 0;
 }
 
-.magnifierMainNavBar { 
+.magnifierMainNavBar {
     box-sizing: border-box;
     width: 40px;
     height: 40px;
 }
 
-.moreMainNavBar { 
+.moreMainNavBar {
     box-sizing: border-box;
     width: 25px;
     height: 40px;
 }
 
-.searchPanel {
-    box-sizing: border-box;   
-    height: 100%; /* 100% Full-height */
-    width: 0px; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    right: 0;
-    background-color: #fff; /* White */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    border-left: 1px;
-}
-
 .basketPanel {
     display: none;
-    box-sizing: border-box;   
+    box-sizing: border-box;
     height: 300px;
-    width: 200px; /* 0 width - change this with JavaScript */
-    z-index: 1; /* Stay on top */
+    width: 200px;
+    /* 0 width - change this with JavaScript */
+    z-index: 1;
+    /* Stay on top */
     position: fixed;
     top: 60px;
     right: 0px;
-    background-color: #fff; /* White */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    background-color: #fff;
+    /* White */
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+/***** ***/
+
+@media screen and (max-width: 450px) {
+    .mainNavBar {
+        height: 35px;
+        margin: 1px;
+        padding: 1px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    .userMainNavBar,
+    .bellMainNavBar,
+    .logoGLIcon,
+    .basketMainNavBar {
+        position: relative;
+        top: 1px;
+        left: 0;
+        width: 35px;
+        height: 35px;
+        margin: 0;
+    }
+    .logoGLIcon {
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+    .logoGL {
+        width: 30px;
+        height: 30px;
+    }
+    .searchBar {
+        flex-grow: 1;
+        margin: 0 5px 0 5px;
+        min-width: 100px;
+    }
+    .textFieldMainNavBar {
+        width: 100%;
+    }
+    .magnifierMainNavBar {
+        box-sizing: border-box;
+        width: 35px;
+        height: 35px;
+    }
+    .moreMainNavBar {
+        box-sizing: border-box;
+        width: 25px;
+        height: 40px;
+    }
 }

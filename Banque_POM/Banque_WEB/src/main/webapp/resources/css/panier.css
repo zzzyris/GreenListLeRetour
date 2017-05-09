@@ -1,0 +1,72 @@
+.panierForm{
+    width: 100%;
+}
+
+.panierForm{
+    padding: 0 10px 0 10px;
+}
+
+.panierBloc{
+    width: 100%;
+    margin: 0 0 10px 0;
+    text-align: center;
+    border-radius: 10px;    
+}
+
+.panierBloc tr{
+    width: 100%;
+    padding: 10px;
+    margin: 0 0 0 0;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.imageObjetLigne{
+    height: 70px;
+    width: 70px;
+    margin: 5px;
+}
+
+.editPanierBloc{
+    background-color: #fff;
+}
+
+.editPanierButton{
+    background-color: #fff;
+}
+
+.selectColumn{
+    width: 20px;
+    flex-grow: 0;
+}
+
+.imageColumn{
+    width: 80px;
+}
+
+.editPanierButton {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.editButtonsBloc .editPanierButton {
+    width: 50%;
+    background: #fff;
+    margin: 5px;
+}
+.editPanierButton {
+    position: relative;
+    width: 200px;
+    height: 30px;
+}
+
+.editPanierButton .editIcon span {
+    text-align: center;
+    font-size: 20px;
+}

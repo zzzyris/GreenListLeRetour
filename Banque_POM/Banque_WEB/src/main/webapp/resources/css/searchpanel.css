@@ -1,0 +1,128 @@
+.searchPanel {
+    position: absolute;
+    z-index: 1;
+    /* Stay on top */
+    top: 55;
+    background-color: #fff;
+    transition: 0.5s;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px;
+}
+
+.searchPanel .closeIcon{
+    height: 30px;
+    width: 30px;
+    top: 5px;
+    right: 5px;
+    
+}
+.searchPanel .closeIcon span{
+    font-size: 18px;
+}
+
+.formSearch,
+.searchPanel,
+.searchBloc {
+    width: 100%;
+}
+
+.searchBloc {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.searchBloc>ul {
+    width: 50%;
+    margin: 10px;
+}
+
+.blocTitle {
+    text-align: center;
+    width: 100%;
+    background-color: #ccc;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.catLabel {
+    margin: 5px;
+}
+
+.dropDownListSearch {
+    flex-grow: 1;
+}
+
+.searchPanel input[type="text"] {
+    width: 50%;
+}
+
+.resultatsOptionsCat,
+.resultatsOptionsCat ul li,
+.resultatsOptionsCat ul li ul {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0;
+    margin-left: 5px;
+}
+
+.resultatsOptionsCat ul {
+    padding-left: 30px;
+    flex-direction: column;
+}
+.resultatsOptionsCat ul li {
+    flex-direction: column;
+}
+.resultatsOptionsCat ul li ul li {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 50px;
+}
+
+.resultatsOptionsCat {
+    text-align: left;
+}
+
+.checkBloc{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+/****** */
+
+@media screen and (min-width: 1000px) {
+    .searchPanel {
+        padding-left: 200px;
+        padding-right: 200px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .searchBloc {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .searchBloc>ul {
+        width: 100%;
+    }
+    .formSearch,
+    .searchPanel,
+    .searchBloc,
+    .catBloc,
+    .searchBloc>ul {
+        margin: 0;
+    }
+    .searchPanel {
+        padding: 5px;
+    }
+}

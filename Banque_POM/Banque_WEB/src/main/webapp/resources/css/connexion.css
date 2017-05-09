@@ -88,8 +88,8 @@ label .req {
 }
 
 label.active {
-    -webkit-transform: translateY(40px);
-    transform: translateY(40px);
+    -webkit-transform: translateY(35px);
+    transform: translateY(35px);
     left: 2px;
     font-size: 14px;
 }
@@ -130,7 +130,7 @@ textarea {
 
 .field-wrap {
     position: relative;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 }
 
 .top-row:after {
@@ -149,12 +149,8 @@ textarea {
     margin: 0;
 }
 
-<<<<<<< HEAD
 .buttonBloc button,
 .buttonBloc input[type="submit"] {
-=======
-.buttonBloc button, .buttonBloc input[type="submit"]{
->>>>>>> refs/remotes/origin/master
     border: 0;
     outline: none;
     border-radius: 0;
@@ -172,13 +168,8 @@ textarea {
 
 .buttonBloc button:hover,
 .buttonBloc button:focus,
-<<<<<<< HEAD
 .buttonBloc input[type="submit"]:hover,
 .buttonBloc input[type="submit"]:focus {
-=======
-.buttonBloc input[type="submit"]:hover
-..buttonBloc input[type="submit"]:focus {
->>>>>>> refs/remotes/origin/master
     background: #179b77;
 }
 
@@ -207,7 +198,14 @@ textarea {
     color: azure;
 }
 
-@media screen and (max-width: 500px) {
+/***** ****/
+
+.photosConteneur>div{
+    width: 100%;
+}
+
+
+@media screen and (max-width: 400px) {
     .formConnexion{
         width: 100%;
     }

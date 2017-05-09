@@ -26,6 +26,9 @@
     width: 50px;
     height: 50px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .pageTitle {
@@ -37,8 +40,8 @@
 }
 
 .pageSubTitle {
-    margin: 0 0 20px 0;
-    padding: 10px 20px;
+    margin: 0 0 10px 0;
+    padding: 10px 10px;
     width: 100%;
     height: 40px;
     font-size: 20px;
@@ -67,6 +70,69 @@
     width: 20px;
     height: 20px;
 }
+
+ @keyframes fa-blink {
+  50% { opacity: 0; }
+ }
+.fa-blink {
+   -webkit-animation: fa-blink 2s linear infinite;
+   -moz-animation: fa-blink 2s linear infinite;
+   -ms-animation: fa-blink 2s linear infinite;
+   -o-animation: fa-blink 2s linear infinite;
+   animation: fa-blink 2s linear infinite;
+}
+
+
+/* .roundedTwo */
+.roundedTwo {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin: 20px auto;
+  background: #fcfff4;
+  background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.roundedTwo label {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  cursor: pointer;
+  background: -webkit-linear-gradient(top, #222222 0%, #45484d 100%);
+  background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+}
+.roundedTwo label:after {
+  content: '';
+  width: 9px;
+  height: 5px;
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  border: 3px solid #fcfff4;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.roundedTwo label:hover::after {
+  opacity: 0.3;
+}
+.roundedTwo input[type=checkbox] {
+  visibility: hidden;
+}
+.roundedTwo input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+/* end .roundedTwo */
 
 /******* ******/
 
@@ -109,6 +175,27 @@
 .versusBloc div div {
     width: 90%;
 }
+
+
+.hidden {
+    display: none;
+}
+
+.normalIcon {
+    font-size: 30px;
+    color: #bbb;
+    margin: 5px;
+}
+
+.smallIcon {
+    font-size: 22px;
+    color: #333;
+    margin: 2px;
+}
+
+.bigIcon {}
+
+
 /*****************************************************/
 
 
@@ -125,6 +212,10 @@
 
 .souhaitItem {
     background-color: coral;
+}
+
+.panierItem{    
+    background-color: cornflowerblue;
 }
 
 .userItem {

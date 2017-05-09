@@ -21,11 +21,14 @@
     }
     /*** Home  **/
     
-    .mainPanel {
-        margin: 10px 50px 10px 50px;
+    .mainPanel, .mainForm, .mainPanel>form {
         display: flex;
         flex-flow: column nowrap;
-        justify-content: center;
+        justify-content: flex-start;
+    }
+    
+    .mainForm, .mainPanel>form {
+        width: 100%;
     }
     
     .accueilPanel {
@@ -62,27 +65,27 @@
     
     #valeur1 {
         background-image: url("#{resource['/images/Valeur1.png']}");
-        background-image: url(../images/Valeur1.png);
+        _background-image: url(../images/Valeur1.png);
     }
     
     #valeur2 {
         background-image: url("#{resource['/images/Valeur2.png']}");
-        background-image: url(../images/Valeur2.png);
+        _background-image: url(../images/Valeur2.png);
     }
     
     #valeur3 {
         background-image: url("#{resource['/images/Valeur3.png']}");
-        background-image: url(../images/Valeur3.png);
+        _background-image: url(../images/Valeur3.png);
     }
     
     #valeur4 {
         background-image: url("#{resource['/images/Valeur4.png']}");
-        background-image: url(../images/Valeur4.png);
+       _ background-image: url(../images/Valeur4.png);
     }
     
     #valeur5 {
         background-image: url("#{resource['/images/Valeur5.png']}");
-        background-image: url(../images/Valeur5.png);
+        _background-image: url(../images/Valeur5.png);
     }
     
     #valeur6 {
@@ -92,12 +95,12 @@
     
     #valeur7 {
         background-image: url("#{resource['/images/Valeur7.png']}");
-        background-image: url(../images/Valeur7.png);
+        _background-image: url(../images/Valeur7.png);
     }
     
     #valeur8 {
         background-image: url("#{resource['/images/Valeur8.png']}");
-        background-image: url(../images/Valeur8.png);
+        _background-image: url(../images/Valeur8.png);
     }
     /********** Responsive ***********/
     

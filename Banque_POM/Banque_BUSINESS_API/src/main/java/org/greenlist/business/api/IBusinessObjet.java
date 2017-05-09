@@ -35,17 +35,22 @@ public interface IBusinessObjet {
 	public Objet getObjet(Objet objet);
 
 	/**
-	 * renvoie tous les objets appartenant à un produit donné
+	 * renvoie tous les objets appartenant à un produit donné et n'appartenant
+	 * pas à un utilisateur donné.
 	 * 
 	 * @param produit
 	 *            le produit spécifié
+	 * @param utilisateur
+	 *            l'utilisateur spécifié.
 	 * @return les objets appartenant à cette catégorie de produits.
 	 */
-	public Set<Objet> getObjets(Produit produit);
-	
+	public Set<Objet> getObjets(Produit produit, Utilisateur utilisateur);
+
 	/**
 	 * Renvoie l'adresse de l'utilisateur possédant un objet donné
-	 * @param objet l'objet en question
+	 * 
+	 * @param objet
+	 *            l'objet en question
 	 * @return l'adresse de son possesseur.
 	 */
 	Adresse getAdresse(Objet objet);

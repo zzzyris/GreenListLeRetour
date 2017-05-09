@@ -18,7 +18,7 @@ public interface IDaoObjet {
 
 	List<Objet> getObjetsByDomaine(Domaine domaine);
 	List<Objet> getObjetsByGroupe(Groupe groupe);
-	List<Objet> getObjetsByProduit(Produit produit);
+	List<Objet> getObjetsByProduit(Produit produit, Utilisateur utilisateur);
 	
 	Adresse getAdresse(Objet objet);
 	

@@ -1,43 +1,67 @@
 package org.greenlist.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.mail.Address;
 
 import org.apache.commons.lang3.StringUtils;
+import org.greenlist.business.api.IBusinessAdresse;
 import org.greenlist.business.api.IBusinessObjet;
 import org.greenlist.business.api.IBusinessProduit;
+import org.greenlist.business.api.IBusinessUtilisateur;
+import org.greenlist.business.comparator.ObjetComparator;
 import org.greenlist.entity.Adresse;
 import org.greenlist.entity.Objet;
 import org.greenlist.entity.Produit;
+import org.greenlist.entity.Utilisateur;
 
 @ManagedBean(name = "mbRecherche")
-@SessionScoped
+@ViewScoped
 public class RechercheManagedBean {
 
 	private String recherche;
-	private Set<Objet> resultatsRecherche = null;
+	private Set<Objet> resultatRechercheSet = null;
+	private List<Objet> resultatRechercheList = null;
 	private Set<String> motsRecherche;
-	private final double score_produit = 0.5;
+	private static final double SCORE_PRODUIT = 0.5;
 	private final double score_groupe = 0.3;
 	private final double score_domaine = 0.15;
+	private Utilisateur utilisateur;
 
 	// sera à définir à partir de l'utilisateur qui effectuera la recherche.
 	// Valeur par défaut pour le moment.
-	private double latitude = 48.822288;
-	private double longitude = 2.334929;
+	private double latitude;
+	private double longitude;
 
+	@EJB
+	private IBusinessUtilisateur proxyUtilisateur;
+	
 	@EJB
 	private IBusinessProduit proxyProduit;
 
 	@EJB
 	private IBusinessObjet proxyObjet;
+	
+	@EJB
+	private IBusinessAdresse proxyAdresse;
+	
+	@PostConstruct
+	private void init(){
+		//TODO : modifier l'id par celle récupérée depuis la page précédente.
+		utilisateur = proxyUtilisateur.getUtilisateurById(1);
+		List<Adresse> adresses = proxyAdresse.getAdresseByUtilisateur(utilisateur);
+		longitude = adresses.get(0).getLongitude();
+		latitude = adresses.get(0).getLatitude();
+	}
 
 	public void decouperRecherche() {
 		if (recherche.length() > 0) {
@@ -60,7 +84,7 @@ public class RechercheManagedBean {
 	 * dont le libellé correspond au reste des mots-clefs.
 	 */
 	private void construireResultats() {
-		resultatsRecherche = new HashSet<>();
+		resultatRechercheSet = new HashSet<>();
 
 		// pour chaque mot dans la recherche
 		for (String mot : motsRecherche) {
@@ -68,24 +92,23 @@ public class RechercheManagedBean {
 			List<Produit> produits = proxyProduit.getProduits(mot);
 			// pour chaque produit dans cette liste de produits
 			for (Produit p : produits) {
-				// récupération des objets appartenant à ce produit
-				Set<Objet> partialResults = proxyObjet.getObjets(p);
+				// récupération des objets appartenant à ce produit et n'appartenant pas à l'utilisateur
+				Set<Objet> partialResults = proxyObjet.getObjets(p, utilisateur);
 
 				// Enlever tous les résultats qui ne conviennent pas et calculer
 				// la distance et la pertinence pour ceux qui conviennent.
-				// méthode non-nécessaire si la recherche ne contient qu'un seul
-				// mot.
-				if (motsRecherche.size() > 1 && partialResults != null) {
-					partialResults = filtrerResultats(mot, partialResults, score_produit);
-				}
 				if (partialResults != null) {
-					resultatsRecherche.addAll(partialResults);
+					partialResults = filtrerResultats(mot, partialResults, SCORE_PRODUIT);
+					resultatRechercheSet.addAll(partialResults);
 				}
 			}
 		}
 		
-		for (Objet o: resultatsRecherche){
+		resultatRechercheList = new ArrayList<>(resultatRechercheSet);
+		Collections.sort(resultatRechercheList, new ObjetComparator());
+		for (Objet o : resultatRechercheList) {
 			System.out.println(o.getLibelle());
+			System.out.println("Distance : " + o.getDistance() + "\nPertinence : " + o.getPertinence());
 		}
 
 	}
@@ -105,12 +128,16 @@ public class RechercheManagedBean {
 				}
 			}
 			if (score > 0) {
-				o.setPertinence(scoreCategorie + score / motsClefs.size()); // calcul
-																			// de
-																			// la
-																			// pertinence
-																			// du
-																			// résultat.
+				/*
+				 * Calcul de la pertinence : La catégorie compte pour 50% du
+				 * score, le nombre de mots clefs trouvés pour 50%. Catégorie :
+				 * 50% pour produit, 30% pour groupe, 15% pour domaine nb de
+				 * mots clefs : nbMotsTrouvés / nbMotsClefs / 2
+				 */
+				o.setPertinence(scoreCategorie + (double)score / motsClefs.size() / 2);
+				o = calculDistance(o);
+			} else if (motsClefs.size() == 0) {
+				o.setPertinence(1);
 				o = calculDistance(o);
 			} else {
 				i.remove();
@@ -151,7 +178,7 @@ public class RechercheManagedBean {
 	}
 
 	public Set<Objet> getResultatsRecherche() {
-		return resultatsRecherche;
+		return resultatRechercheSet;
 	}
 
 	public Set<String> getMotsRecherche() {

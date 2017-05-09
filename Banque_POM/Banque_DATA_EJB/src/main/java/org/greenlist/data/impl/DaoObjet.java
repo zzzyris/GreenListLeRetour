@@ -29,26 +29,20 @@ public class DaoObjet implements IDaoObjet {
 	private static final String REQUETTE_GET_OBJETS_BY_UTILISATEUR = "SELECT u.objets FROM Utilisateur as u WHERE u.id = :pIdUtilisateur";
 
 	private static final String REQUETTE_GET_OBJETS_BY_LIBELLE = "SELECT o FROM Objet as o WHERE o.libelle LIKE :pmotClef";
-	
-	private static final String REQUETE_GET_ADRESSE = 
-			"SELECT a "
-			+ "FROM Adresse a "
-			+ "INNER JOIN fetch a.utilisateur u "
-			+ "INNER JOIN fetch u.objets o "
-			+ "WHERE o.id = :pIdObjet";
-	
-	  private static final String REQUETTE_GET_OBJETS_BY_DOMAINE =
-	  " SELECT o FROM Objet  as o" +" JOIN o.produit as produit"
-	  +" join produit.groupe as groupe" +"joint groupe.domaine as domaine"
-	  +" WHERE domaine = :pDomaine";
-	  
-	  private static final String REQUETTE_GET_OBJETS_BY_GROUPE =
-	  " SELECT o FROM Objet as  o" +" JOIN o.produit as produit "
-	  +"join produit.groupe as groupe" +" WHERE groupe = :pGroupe";
-	  
-	  private static final String REQUETTE_GET_OBJETS_BY_PRODUIT =
-	  "SELECT o from Objet o WHERE o.produit = :pProduit" ;
-	 
+
+	private static final String REQUETE_GET_ADRESSE = "SELECT a " + "FROM Adresse a "
+			+ "INNER JOIN fetch a.utilisateur u " + "INNER JOIN fetch u.objets o " + "WHERE o.id = :pIdObjet";
+
+	private static final String REQUETTE_GET_OBJETS_BY_DOMAINE = " SELECT o FROM Objet  as o"
+			+ " JOIN o.produit as produit" + " join produit.groupe as groupe" + "joint groupe.domaine as domaine"
+			+ " WHERE domaine = :pDomaine";
+
+	private static final String REQUETTE_GET_OBJETS_BY_GROUPE = " SELECT o FROM Objet as  o"
+			+ " JOIN o.produit as produit " + "join produit.groupe as groupe" + " WHERE groupe = :pGroupe";
+
+	private static final String REQUETTE_GET_OBJETS_BY_PRODUIT = "SELECT o from Objet o WHERE o.produit = :pProduit "
+			+ "AND o.utilisateur.id <> :pIdUtilisateur";
+
 	/**
 	 * Methode pour r�cup�rer un objet par son id
 	 * 
@@ -79,7 +73,7 @@ public class DaoObjet implements IDaoObjet {
 	 * @param utilisateur
 	 *            le propri�taire des objets recherch�s
 	 */
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Objet> getObjetsByUtilisateur(Utilisateur utilisateur) {
@@ -133,21 +127,23 @@ public class DaoObjet implements IDaoObjet {
 	}
 
 	/**
-	 * Recherche des objets appartenant � un produit
+	 * Recherche des objets appartenant à un produit et n'appartenant pas à un
+	 * utilisateur donné.
 	 * 
-	 * @param domaine
+	 * @param produit
 	 *            le produit que l'on recherche
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Objet> getObjetsByProduit(Produit produit) {
+	public List<Objet> getObjetsByProduit(Produit produit, Utilisateur utilisateur) {
 		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_PRODUIT).setParameter("pProduit", produit);
+		query.setParameter("pIdUtilisateur", utilisateur.getId());
 		return query.getResultList();
 	}
 
 	@Override
 	public Adresse getAdresse(Objet objet) {
-		return (Adresse)em.createQuery(REQUETE_GET_ADRESSE).setParameter("pIdObjet", objet.getId()).getSingleResult();
+		return (Adresse) em.createQuery(REQUETE_GET_ADRESSE).setParameter("pIdObjet", objet.getId()).getSingleResult();
 	}
 
 }

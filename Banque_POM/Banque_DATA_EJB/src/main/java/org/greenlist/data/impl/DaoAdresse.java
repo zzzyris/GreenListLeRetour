@@ -26,7 +26,7 @@ public class DaoAdresse implements IDaoAdresse {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Adresse> getAdresseByUtilisateur(Utilisateur utilisateur) throws Exception{
-		Query query = em.createQuery(REQUETTE_GET_ADRESSES_BY_UTILISATEUR).setParameter("pidUtilisateur",
+		Query query = em.createQuery(REQUETTE_GET_ADRESSES_BY_UTILISATEUR).setParameter("pIdUtilisateur",
 				utilisateur.getId());
 		return query.getResultList();
 	}

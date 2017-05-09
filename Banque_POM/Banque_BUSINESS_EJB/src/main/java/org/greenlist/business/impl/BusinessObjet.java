@@ -42,8 +42,8 @@ public class BusinessObjet implements IBusinessObjet {
 	}
 
 	@Override
-	public Set<Objet> getObjets(Produit produit) {
-		List<Objet> resultList = proxyObjet.getObjetsByProduit(produit);
+	public Set<Objet> getObjets(Produit produit, Utilisateur utilisateur) {
+		List<Objet> resultList = proxyObjet.getObjetsByProduit(produit, utilisateur);
 		Set<Objet> resultSet = null;
 		if (!resultList.isEmpty()){
 			resultSet = new HashSet<>(resultList);

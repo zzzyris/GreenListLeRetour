@@ -1,5 +1,6 @@
 package org.greenlist.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -136,10 +137,10 @@ public class RechercheManagedBean {
 				 * 50% pour produit, 30% pour groupe, 15% pour domaine nb de
 				 * mots clefs : nbMotsTrouvés / nbMotsClefs / 2
 				 */
-				o.setPertinence(scoreCategorie + (double)score / motsClefs.size() / 2);
+				o.setPertinence((scoreCategorie + (double)score / motsClefs.size() / 2)*100);
 				o = calculDistance(o);
 			} else if (motsClefs.size() == 0) {
-				o.setPertinence(1);
+				o.setPertinence(100);
 				o = calculDistance(o);
 			} else {
 				i.remove();
@@ -162,6 +163,12 @@ public class RechercheManagedBean {
 						* Math.sin(deltaLongitude / 2);
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		double d = R * c; // distance en km ( Magic...)
+		
+		
+		
+		d = Math.round(d * 10);
+		d = d / 10;
+		
 		o.setDistance(d);
 		return o;
 
@@ -187,4 +194,22 @@ public class RechercheManagedBean {
 		return motsRecherche;
 	}
 
+	public Set<Objet> getResultatRechercheSet() {
+		return resultatRechercheSet;
+	}
+
+	public void setResultatRechercheSet(Set<Objet> resultatRechercheSet) {
+		this.resultatRechercheSet = resultatRechercheSet;
+	}
+
+	public List<Objet> getResultatRechercheList() {
+		return resultatRechercheList;
+	}
+
+	public void setResultatRechercheList(List<Objet> resultatRechercheList) {
+		this.resultatRechercheList = resultatRechercheList;
+	}
+
+	
+	
 }

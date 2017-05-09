@@ -3,6 +3,7 @@ package org.greenlist.business.api;
 import java.util.List;
 
 import org.greenlist.entity.Objet;
+import org.greenlist.entity.Photo;
 import org.greenlist.entity.Utilisateur;
 
 public interface IBusinessObjet {
@@ -10,7 +11,7 @@ public interface IBusinessObjet {
 	/**
 	 *  Methode qui permet d'enregistrer un OBjet dans le SI
 	 * @param objet a enregistrer
-	 * @return l'Objet actualisé ( id, date de depot)
+	 * @return l'Objet actualisï¿½ ( id, date de depot)
 	 */
 	public Objet creerObjet(Objet objet );
 	
@@ -29,4 +30,9 @@ public interface IBusinessObjet {
 	 */
 	public Objet getObjet(Objet objet);
 	
+	
+	public List<Photo> getPhotos(Objet objet);
+
+
+	Objet getObjetComplet(Objet objet);
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -61,7 +62,18 @@ public class AjoutObjetManagerBean {
 			 
 		 }
 		 
+			ConfigurableNavigationHandler  nav =
+					(ConfigurableNavigationHandler)
+					FacesContext.getCurrentInstance()
+					.getApplication()
+					.getNavigationHandler();
+			nav.performNavigation("/gestionObjets.xhtml");
+		 
 		 return objet;
+		 
+		 
+		 
+		 
 	}
 
 //	<p:fileUpload

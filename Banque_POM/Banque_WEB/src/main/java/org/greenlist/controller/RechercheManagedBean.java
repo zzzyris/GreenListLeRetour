@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.mail.Address;
 
@@ -25,7 +26,7 @@ import org.greenlist.entity.Produit;
 import org.greenlist.entity.Utilisateur;
 
 @ManagedBean(name = "mbRecherche")
-@ViewScoped
+@SessionScoped
 public class RechercheManagedBean {
 
 	private String recherche;
@@ -109,6 +110,7 @@ public class RechercheManagedBean {
 		for (Objet o : resultatRechercheList) {
 			System.out.println(o.getLibelle());
 			System.out.println("Distance : " + o.getDistance() + "\nPertinence : " + o.getPertinence());
+			System.out.println( "domaine : " + o.getProduit().getGroupe().getDomaine().getLibelle());
 		}
 
 	}

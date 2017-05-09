@@ -55,7 +55,9 @@ public class DaoObjet implements IDaoObjet {
 	private static final String REQUETTE_GET_OBJETS_BY_GROUPE = " SELECT o FROM Objet as  o"
 			+ " JOIN o.produit as produit " + "join produit.groupe as groupe" + " WHERE groupe = :pGroupe";
 
-	private static final String REQUETTE_GET_OBJETS_BY_PRODUIT = "SELECT o from Objet o WHERE o.produit = :pProduit "
+	private static final String REQUETTE_GET_OBJETS_BY_PRODUIT = "SELECT o from Objet o inner join fetch o.produit p inner join fetch o.trancheAge "
+			+ "inner join fetch p.groupe g "
+			+ "inner join fetch g.domaine  WHERE o.produit = :pProduit "
 			+ "AND o.utilisateur.id <> :pIdUtilisateur";
 
 	/**
@@ -170,8 +172,11 @@ public class DaoObjet implements IDaoObjet {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Objet> getObjetsByProduit(Produit produit, Utilisateur utilisateur) {
+	
 		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_PRODUIT).setParameter("pProduit", produit);
 		query.setParameter("pIdUtilisateur", utilisateur.getId());
+		
+		
 		return query.getResultList();
 	}
 

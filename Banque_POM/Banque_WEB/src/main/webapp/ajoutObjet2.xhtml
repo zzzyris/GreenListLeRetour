@@ -109,17 +109,9 @@
 				<div class="photosBloc">
 					<div class="pageSubTitle">Ajouter des photos</div>
 					<div class="photosConteneur">
-						<div class="photoItem objetItem">
-							<span class="fa fa-camera"></span>
-						</div>
-						<div class="photoItem objetItem">
-							<span class="fa fa-camera"></span>
-						</div>
-						<div class="addIconBloc">
-							<div class="addIcon">
-								<span class="fa fa-plus"></span>
-							</div>
-						</div>
+						<p:fileUpload
+								fileUploadListener="#{mbObjetAjout.handleFileUpload}"
+								value="#{mbObjetAjout.photoUploade}" sequential="true" mode="advanced" dragDropSupport="true" multiple="true"/>
 					</div>
 				</div>
 

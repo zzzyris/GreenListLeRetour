@@ -1,21 +1,39 @@
+Skip to content
+Features Business Explore Pricing
+This repository
+Search
+Sign in or Sign up
+ Watch 0  Star 0  Fork 0 SchOlivier/GreenListLeRetour
+ Code  Issues 0  Pull requests 0  Projects 1  Pulse  Graphs
+Branch: PhotoObjet Find file Copy pathGreenListLeRetour/Banque_POM/Banque_WEB/src/main/webapp/ajoutObjet.xhtml
+58ae0e0  2 days ago
+ markus FileUploader terminé
+0 contributors
+RawBlameHistory     
+149 lines (125 sloc)  5.01 KB
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+<f:metadata>
+	<f:event listener="#{mbUtilisateur.securePage()}" type="preRenderView"></f:event>
+</f:metadata>
 <h:head>
 	<title>GreenList - Bienvenue</title>
 
 </h:head>
 <h:body>
 	<ui:composition template="/WEB-INF/templates/base.xhtml">
+
 		<ui:define name="content">
 			<h:panelGroup>
-				<h:form id="formAjoutObjet"name="monAjoutObjetForm" class="ajoutObjetForm formulaire">
-            <div class="pageTitleBloc">
-                <div class="fa fa-plus fa-2x pageTitleIcon"></div>
-                <div class="pageTitle whiteColor grow">Ajouter un Objet</div>
-            </div>
+			
+				<h:form id="formAjoutObjet" enctype="multipart/form-data">
+					<div class="pageTitleBloc">
+						<div class="fa fa-plus fa-2x pageTitleIcon"></div>
+						<div class="pageTitle whiteColor grow">Ajouter un Objet</div>
+					</div>
 
 					<div class="criteresBloc">
 						<!-- Bloc de critères gauche -->
@@ -23,12 +41,12 @@
 							<li class="domainIconBloc">
 								<ul>
 									<li>Domaine</li>
-									<li class="domainIcon"><h:commandButton
-											class="fa fa-home" onclick="submit()"
+									<li class="domainIcon"><h:commandButton class="fa fa-home"
+											onclick="submit()"
 											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(1)}"></h:commandButton>
 									</li>
-									<li class="domainIcon"><h:commandButton
-											class="fa fa-home" onclick="submit()"
+									<li class="domainIcon"><h:commandButton class="fa fa-home"
+											onclick="submit()"
 											action="#{mbAfficheRefObjetSOuhait.rechercherGroupes(2)}"></h:commandButton></li>
 									<li class="domainIcon"><h:commandButton
 											class="fa fa-soccer-ball-o" onclick="submit()"
@@ -44,20 +62,19 @@
 							<li class="groupCat">
 								<div class="catTitle">Groupe</div>
 							</li>
+
 							<h:selectOneMenu id="groupes"
 								value="#{mbAfficheRefObjetSOuhait.selectedGroupe.id}">
 								<f:selectItems value="#{mbAfficheRefObjetSOuhait.groupes}"
 									var="g" itemLabel="#{g.libelle}" itemValue="#{g.id}" />
 								<f:ajax
 									listener="#{mbAfficheRefObjetSOuhait.rechercherProduits()}"
-									event="change"
-									render=":formAjoutObjet:produitsMenu"
+									event="change" render=":formAjoutObjet:produitsMenu"
 									execute="@form" />
 							</h:selectOneMenu>
 
 							<li class="groupCat">
-								<div class="catTitle">Produit</div> 
-								<h:selectOneMenu
+								<div class="catTitle">Produit</div> <h:selectOneMenu
 									id="produitsMenu" value="#{mbObjetAjout.objet.produit.id}">
 									<f:selectItems value="#{mbAfficheRefObjetSOuhait.produits}"
 										var="p" itemLabel="#{p.libelle}" itemValue="#{p.id}" />
@@ -95,17 +112,21 @@
 					<div class="photosBloc">
 						<div class="pageSubTitle">Ajouter des photos</div>
 						<div class="photosConteneur">
+
 							<div class="photoItem objetItem">
 								<span class="fa fa-camera"></span>
 							</div>
 							<div class="photoItem objetItem">
 								<span class="fa fa-camera"></span>
 							</div>
-							<div class="addIconBloc">
-								<div class="addIcon">
-									<span class="fa fa-plus"></span>
-								</div>
-							</div>
+
+
+							<p:fileUpload
+								fileUploadListener="#{mbObjetAjout.handleFileUpload}"
+								value="#{mbObjetAjout.photoUploade}" sequential="true" mode="advanced" dragDropSupport="true" multiple="true"/>
+
+
+							<div class="addIconBloc"></div>
 						</div>
 					</div>
 
@@ -113,7 +134,7 @@
 					<div class="boutonsBloc">
 
 						<h:commandButton styleClass="pageBouton"
-							action="#{mbObjetAjout.creerObjet()}">
+							action="#{mbObjetAjout.creerObjet}">
 							<div class="fa fa-check fa-2x objetItem"></div>
 							<div class="objetItem">Valider</div>
 						</h:commandButton>
@@ -130,9 +151,13 @@
 
 					</div>
 				</h:form>
+
+
 			</h:panelGroup>
 		</ui:define>
 
 	</ui:composition>
 </h:body>
 </html>
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help

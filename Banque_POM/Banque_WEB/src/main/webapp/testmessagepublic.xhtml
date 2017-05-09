@@ -4,34 +4,94 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:d="http://java.sun.com/jsf/core"
-	>
+	xmlns:d="http://java.sun.com/jsf/core">
 <h:head>
 	<title>GreenList - Message</title>
 
 </h:head>
 <h:body>
 
-	<!-- Contenu Principal -->
-	<h:panelGroup>
+	<h:form>
 
-		<ui:repeat var="msg" value="#{mbMessagePublic.recupererQuestions()}">	
-		<h:outputText value="test" rendered="#{empty mbMessagePublic.messagepublic.id}" >
-		<li>#{msg.message}</li>
-		</h:outputText>
-		</ui:repeat>
-		
-		
-		
-		
-		
+		<div class="faqBloc">
+			<div class="faqTab">
+				<ui:repeat var="message" value="#{mbMessagePublic.messages}">
+				#{message.message}
+					<h:panelGroup rendered="#{message.root}">
+						<ul class="messagePublicBranche">
+							<li>
+								<div class="messagePublicItem">
+									<h:outputLabel styleClass="messageIcon fa fa-file-text"
+										value="" />
+									<h:outputText value="#{message.message}" />
+									<h:outputLabel
+										styleClass="userIcon userName fa fa-user-circle-o" value=" " />
+									<h:link value="laDiva">
+									</h:link>
+									,
+									<h:outputText value="#{message.dateEnvoi}" />
+								</div> <h:panelGroup rendered="#{message.parent}">
+									<ul>
+										<ui:repeat var="messageBranche"
+											value="#{message.messageEnfants}">
+											<ui:param name="id" value="messageBranche" />
+											<div class="messagePublicItem">
+												<h:outputLabel styleClass="messageIcon flecheMessage"
+													value="" />
+												<h:outputText value="#{messageBranche.message}" />
+												<h:outputLabel
+													styleClass="userIcon userName fa fa-user-circle-o"
+													value=" " />
+												<h:link value="Troc4ever">
+												</h:link>
+												,
+												<h:outputText value="#{messageBranche.dateEnvoi}" />
+											</div>
+											<li><h:panelGroup rendered="#{messageBranche.parent}">
+													<ul>
+														<ui:repeat var="messageBrancheBranche"
+															value="#{messageBranche.messageEnfants}">
+															<li><ui:param name="id"
+																	value="messageBrancheBranche" />
+																<div class="messagePublicItem">
+																	<h:outputLabel styleClass="messageIcon flecheMessage"
+																		value="" />
+																	<h:outputText value="#{messageBrancheBranche.message}" />
+																	<h:outputLabel
+																		styleClass="userIcon userName fa fa-user-circle-o"
+																		value=" " />
+																	<h:link value="Troc4ever">
+																	</h:link>
+																	,
+																	<h:outputText
+																		value="#{messageBrancheBranche.dateEnvoi}" />
+																</div></li>
+														</ui:repeat>
+													</ul>
+												</h:panelGroup></li>
+										</ui:repeat>
+										<li>
+											<div>
+												<span class="messageIcon flecheMessage"></span><a>Répondre</a>
+											</div>
+											<div class="faqReply">
+												<label>Poser votre question</label>
+												<textarea></textarea>
+												<button class="boutonValider">
+													<span class="fa fa-check"></span>
+												</button>
+											</div>
+										</li>
+									</ul>
+								</h:panelGroup>
+							</li>
+						</ul>
+					</h:panelGroup>
+				</ui:repeat>
+			</div>
+		</div>
 
-
-
-
-
-	</h:panelGroup>
-	<!-- /Contenu Principal -->
+	</h:form>
 
 </h:body>
 </html>

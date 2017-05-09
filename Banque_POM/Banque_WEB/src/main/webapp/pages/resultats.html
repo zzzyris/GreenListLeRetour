@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenList P3</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+</head>
+
+<body>
+    <!-- TopBar Main Navigation -->
+
+    <nav id="mainMenu" class="menuTop">
+        <ul class="mainNavBar">
+            <li id="dashBoardTrigger" class="userMainNavBar fa fa-user-circle-o fa-2x smallIcon deepGreyColor"></li>
+            <li class="logoGLIcon">
+                <div class="logoGL"></div>
+            </li>
+            <li class="searchBar">
+                <span id="searchTrigger" class="magnifierMainNavBar fa fa-search fa-2x  smallIcon deepGreyColor"></span>
+                <input type="text" id="searchTextField" class="textFieldMainNavBar" />
+                <span class="moreMainNavBar fa fa-angle-double-down fa-2x verySmallIcon deepGreyColor"></span>
+            </li>
+            <li id="basketTrigger" class="basketMainNavBar fa fa-shopping-basket fa-2x deepGreyColor"></li>
+        </ul>
+    </nav>
+
+    <!-- /TopBar Main Navigation -->
+
+    <!-- /SideBar Tableau de Bord Adherent -->
+
+    <div >
+        <div class="resultatsBloc">
+            <div id="map" class="gMapBloc">
+            </div>
+            <div id="monObjetsBloc" class="objetsBloc">
+                <div class="objetArticle letter">
+                    <div class="imageDiv">
+                        <img class="imageObjet" />
+                    </div>
+                    <span class="numObjet">1</span>
+                    <div class="infosObjet">
+                        <div class="titleObjet">Peluche Stitch</div>
+                        <div class="objetIconeBloc">
+                            <ul>
+                                <li><span class="catObjet fa fa-gift"></span></li>
+                                <li><span class="objetIconeText">15km</span><span class="fa fa-map-marker"></span></li>
+                                <li><span class="objetIconeText">3</span><span class="fa fa-snowflake-o"></span></li>
+                                <li><span class="objetIconeText">90</span><span class="fa fa-percent"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="addBasketIcon">
+                        <span class="fa fa-plus"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /Main Panel -->
+
+    <!-- Bandeau -->
+
+    <div class="bandeauBloc">
+        <div class="mySlides">Explorer</div>
+        <div class="mySlides">Promotion</div>
+        <div class="mySlides">Suggestions</div>
+        <div class="slideButtonBloc">
+            <div class="arrowSlide displayLeft" onclick="plusDivs(-1)">&#10094;</div>
+            <div class="arrowSlide displayRight" onclick="plusDivs(1)">&#10095;</div>
+            <span class="slideCircle fa fa-circle-o" onclick="currentDiv(1)"></span>
+            <span class="slideCircle fa fa-circle-o" onclick="currentDiv(2)"></span>
+            <span class="slideCircle fa fa-circle-o" onclick="currentDiv(3)"></span>
+        </div>
+    </div>
+
+    <!-- /Bandeau -->
+
+    <!-- Footer -->
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <div class="footerTitle">
+                <div class="logoGLIcon">
+                    <div class="logoGL"></div>
+                </div>
+                <h3>GreenList</h3>
+            </div>
+
+            <p class="footer-links">
+                <a href="#">Accueil</a> ·
+                <a href="#">Conditions</a> ·
+                <a href="#">Infos</a> ·
+                <a href="#">Faq</a> ·
+                <a href="#">Contact</a>
+            </p>
+
+            <p class="footer-company-name">GreenList &copy; 2017</p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p>Contactez-nous</p>
+
+            <form action="#" method="post">
+
+                <input type="text" name="email" placeholder="Email" />
+                <textarea name="message" placeholder="Message"></textarea>
+                <button>Envoyer</button>
+
+            </form>
+
+        </div>
+
+    </footer>
+
+    <!-- /Footer -->
+
+    <!-- Scripts Temporaires -->
+
+    <script src="../js/slideshow.js"></script>
+    <script src="../js/base.js"></script>
+    <script>
+        function initMap() {
+            var uluru = {
+                lat: 48.856614,
+                lng: 2.3522219000000177
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFouMfgD7XclwaKHPojMrWW44syHT2iZI&callback=initMap"
+    async defer>
+    </script>
+</body>
+
+</html>

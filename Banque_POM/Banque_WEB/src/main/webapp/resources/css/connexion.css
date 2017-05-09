@@ -149,8 +149,12 @@ textarea {
     margin: 0;
 }
 
+<<<<<<< HEAD
 .buttonBloc button,
 .buttonBloc input[type="submit"] {
+=======
+.buttonBloc button, .buttonBloc input[type="submit"]{
+>>>>>>> refs/remotes/origin/master
     border: 0;
     outline: none;
     border-radius: 0;
@@ -168,8 +172,13 @@ textarea {
 
 .buttonBloc button:hover,
 .buttonBloc button:focus,
+<<<<<<< HEAD
 .buttonBloc input[type="submit"]:hover,
 .buttonBloc input[type="submit"]:focus {
+=======
+.buttonBloc input[type="submit"]:hover
+..buttonBloc input[type="submit"]:focus {
+>>>>>>> refs/remotes/origin/master
     background: #179b77;
 }
 

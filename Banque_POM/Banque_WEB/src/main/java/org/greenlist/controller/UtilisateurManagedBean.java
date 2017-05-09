@@ -19,8 +19,6 @@ public class UtilisateurManagedBean {
 	private String pseudo ;
 	private String mdp ; 
 	private Utilisateur utilisateurConnecte = null;
-	
-
 
 	public void seConnecter() {
 	

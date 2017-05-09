@@ -26,8 +26,8 @@ public class FrequenceEmail implements java.io.Serializable {
 	private int id;
 	@Column(name = "LIBELLE", nullable = false, length = 20)
 	private String libelle;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "frequenceEmail")
-	private List<Preference> preferences = new ArrayList<>();
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "frequenceEmail")
+//	private List<Preference> preferences = new ArrayList<>();
 
 	public FrequenceEmail() {
 	}
@@ -40,7 +40,7 @@ public class FrequenceEmail implements java.io.Serializable {
 	public FrequenceEmail(int id, String libelle, List<Preference> preferences) {
 		this.id = id;
 		this.libelle = libelle;
-		this.preferences = preferences;
+//		this.preferences = preferences;
 	}
 
 	public int getId() {
@@ -59,12 +59,12 @@ public class FrequenceEmail implements java.io.Serializable {
 		this.libelle = libelle;
 	}
 
-	public List<Preference> getPreferences() {
-		return this.preferences;
-	}
-
-	public void setPreferences(List<Preference> preferences) {
-		this.preferences = preferences;
-	}
+//	public List<Preference> getPreferences() {
+//		return this.preferences;
+//	}
+//
+//	public void setPreferences(List<Preference> preferences) {
+//		this.preferences = preferences;
+//	}
 
 }

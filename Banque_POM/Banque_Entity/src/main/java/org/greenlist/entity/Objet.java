@@ -2,6 +2,7 @@ package org.greenlist.entity;
 // Generated 28 avr. 2017 10:03:43 by Hibernate Tools 4.3.1
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -241,7 +242,5 @@ public class Objet implements java.io.Serializable {
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
-	
-	
 
 }

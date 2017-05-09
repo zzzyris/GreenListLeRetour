@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.greenlist.data.api.IDaoObjet;
+import org.greenlist.entity.Adresse;
 import org.greenlist.entity.Domaine;
 import org.greenlist.entity.Groupe;
 import org.greenlist.entity.Objet;
@@ -24,34 +25,30 @@ public class DaoObjet implements IDaoObjet {
 	private EntityManager em;
 
 	private static final String REQUETTE_GET_OBJET_BY_ID = "SELECT o FROM Objet o WHERE o.id = :pidObjet";
-	private static final String REQUETTE_GET_OBJET_BY_ID_WITH_PDT_TA =
-			"SELECT o FROM Objet o inner join fetch o.produit inner join fetch o.trancheAge WHERE o.id = :pidObjet";
+	private static final String REQUETTE_GET_OBJET_BY_ID_WITH_PDT_TA = "SELECT o FROM Objet o inner join fetch o.produit inner join fetch o.trancheAge WHERE o.id = :pidObjet";
 
 	private static final String REQUETTE_GET_OBJETS_BY_UTILISATEUR = "SELECT u.objets FROM Utilisateur as u WHERE u.id = :pIdUtilisateur";
 
 	private static final String REQUETTE_GET_OBJETS_BY_LIBELLE = "SELECT o FROM Objet as o WHERE o.libelle LIKE :pmotClef";
 
-	private static final String REQUETE_GET_PHOTOS ="SELECT o.photos FROM Objet o WHERE o.id = :pIdObjet" ;
-	
+	private static final String REQUETE_GET_PHOTOS = "SELECT o.photos FROM Objet o WHERE o.id = :pIdObjet";
 
-	
-	  private static final String REQUETTE_GET_OBJETS_BY_DOMAINE =
-	  " SELECT o FROM Objet  as o" +" JOIN o.produit as produit"
-	  +" join produit.groupe as groupe" +"joint groupe.domaine as domaine"
-	  +" WHERE domaine = :pDomaine";
-	  
-	  private static final String REQUETTE_GET_OBJETS_BY_GROUPE =
-	  " SELECT o FROM Objet as  o" +" JOIN o.produit as produit "
-	  +"join produit.groupe as groupe" +" WHERE groupe = :pGroupe";
-	  
-	  private static final String REQUETTE_GET_OBJETS_BY_PRODUIT =
-	  "SELECT o from Objet o wehere o.produit + :pProduit" ;
-	  
-	  private static final String REQUETE_GET_GROUPE = 
-			  "SELECT g from Groupe g where g.id = :pGId " ;
-	  private static final String REQUETE_GET_DOMAINE = 
-			  "SELECT D from Domaine d where d.id = :pDId " ;
-	 
+	private static final String REQUETE_GET_GROUPE = "SELECT g from Groupe g where g.id = :pGId ";
+	private static final String REQUETE_GET_DOMAINE = "SELECT D from Domaine d where d.id = :pDId ";
+
+	private static final String REQUETE_GET_ADRESSE = "SELECT a " + "FROM Adresse a "
+			+ "INNER JOIN fetch a.utilisateur u " + "INNER JOIN fetch u.objets o " + "WHERE o.id = :pIdObjet";
+
+	private static final String REQUETTE_GET_OBJETS_BY_DOMAINE = " SELECT o FROM Objet  as o"
+			+ " JOIN o.produit as produit" + " join produit.groupe as groupe" + "joint groupe.domaine as domaine"
+			+ " WHERE domaine = :pDomaine";
+
+	private static final String REQUETTE_GET_OBJETS_BY_GROUPE = " SELECT o FROM Objet as  o"
+			+ " JOIN o.produit as produit " + "join produit.groupe as groupe" + " WHERE groupe = :pGroupe";
+
+	private static final String REQUETTE_GET_OBJETS_BY_PRODUIT = "SELECT o from Objet o WHERE o.produit = :pProduit "
+			+ "AND o.utilisateur.id <> :pIdUtilisateur";
+
 	/**
 	 * Methode pour r�cup�rer un objet par son id
 	 * 
@@ -63,6 +60,7 @@ public class DaoObjet implements IDaoObjet {
 		Query query = em.createQuery(REQUETTE_GET_OBJET_BY_ID).setParameter("pidObjet", idObjet);
 		return (Objet) query.getSingleResult();
 	}
+
 	/**
 	 * Methode pour r�cup�rer un objet par son id
 	 * 
@@ -74,14 +72,17 @@ public class DaoObjet implements IDaoObjet {
 		Objet objetComplet = new Objet();
 		Query query = em.createQuery(REQUETTE_GET_OBJET_BY_ID_WITH_PDT_TA).setParameter("pidObjet", idObjet);
 		objetComplet = (Objet) query.getSingleResult();
-		Query queryGroupe = em.createQuery(REQUETE_GET_GROUPE).setParameter("pGId", objetComplet.getProduit().getGroupe().getId());
-		objetComplet.getProduit().setGroupe((Groupe)queryGroupe.getSingleResult());
-		
-		Query queryDomaine = em.createQuery(REQUETE_GET_DOMAINE).setParameter("pDId", objetComplet.getProduit().getGroupe().getDomaine().getId());
-		objetComplet.getProduit().getGroupe().setDomaine((Domaine)queryDomaine.getSingleResult());
-		
+		Query queryGroupe = em.createQuery(REQUETE_GET_GROUPE).setParameter("pGId",
+				objetComplet.getProduit().getGroupe().getId());
+		objetComplet.getProduit().setGroupe((Groupe) queryGroupe.getSingleResult());
+
+		Query queryDomaine = em.createQuery(REQUETE_GET_DOMAINE).setParameter("pDId",
+				objetComplet.getProduit().getGroupe().getDomaine().getId());
+		objetComplet.getProduit().getGroupe().setDomaine((Domaine) queryDomaine.getSingleResult());
+
 		return objetComplet;
 	}
+
 	/**
 	 * Methode pour ajouter un objet
 	 * 
@@ -100,7 +101,7 @@ public class DaoObjet implements IDaoObjet {
 	 * @param utilisateur
 	 *            le propri�taire des objets recherch�s
 	 */
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Objet> getObjetsByUtilisateur(Utilisateur utilisateur) {
@@ -161,9 +162,15 @@ public class DaoObjet implements IDaoObjet {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Objet> getObjetsByProduit(Produit produit) {
+	public List<Objet> getObjetsByProduit(Produit produit, Utilisateur utilisateur) {
 		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_PRODUIT).setParameter("pProduit", produit);
+		query.setParameter("pIdUtilisateur", utilisateur.getId());
 		return query.getResultList();
+	}
+
+	@Override
+	public Adresse getAdresse(Objet objet) {
+		return (Adresse) em.createQuery(REQUETE_GET_ADRESSE).setParameter("pIdObjet", objet.getId()).getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")

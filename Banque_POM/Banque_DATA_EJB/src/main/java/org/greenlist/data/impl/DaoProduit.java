@@ -43,4 +43,10 @@ public class DaoProduit implements IDaoProduit{
 		return em.createQuery(hql).setParameter("pid", groupe.getId()).getResultList();
 	}
 
+	@Override
+	public List<Produit> getProduits(String nom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

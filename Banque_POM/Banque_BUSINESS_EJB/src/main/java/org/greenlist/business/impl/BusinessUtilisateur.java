@@ -70,10 +70,12 @@ public class BusinessUtilisateur implements IBusinessUtilisateur {
 	public int recupererMoyenne(Utilisateur utilisateur) {
 		List<Note> notes = proxyDaoUtilisateur.getAvisUtilisateur(utilisateur);
 		int somme = 0 ;
+		if(notes.size() != 0){
 		for ( Note note : notes){
 			somme += note.getNote();
 		}
 		return (somme / notes.size()) ;
+		} else return 0 ;
 	}
 
 	@Override

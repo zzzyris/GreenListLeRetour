@@ -3,6 +3,9 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+	<f:metadata>
+	<f:event type="preRenderView" listener="#{mbFicheUtilisateur.init}" />
+</f:metadata>
 <h:head>
 	<title>GreenList - Bienvenue</title>
 
@@ -26,12 +29,10 @@
                 <!-- Boucle Objets -->
                 <div class="gestionObjetsBloc">
                     
-                   
-                  <ui:repeat var="{#{mbFicheUtilisateur.utilisateurAffiche.objets}" value="objet">
-                  
+                 <ui:repeat value="#{mbFicheUtilisateur.utilisateurAffiche.objets}" var="objet">
                   <div class="objetArticle letter">
                         <div class="imageDiv">
-                            <img class="imageObjet" />
+                            
                         </div>
                         <div class="infosObjet">
                             <div class="titleObjet">#{objet.libelle}</div>
@@ -53,7 +54,7 @@
 		 </h:panelGroup>
 		
 
-    <!-- /Contenu Principal -->
+
 		</ui:define>
 	</ui:composition>
 </h:body>

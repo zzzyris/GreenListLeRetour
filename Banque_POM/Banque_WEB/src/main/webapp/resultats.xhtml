@@ -10,7 +10,7 @@
 <h:body>
 	<ui:composition template="/WEB-INF/templates/base.xhtml">
 		<ui:define name="content">
-<<<<<<< HEAD
+
 			<!-- Contenu Principal -->
 			<h:form>
 				<f:view contentType="text/html">
@@ -48,213 +48,30 @@
 			</h:form>
 
 			<div id="monObjetsBloc" class="objetsBloc sectionBloc">
-				<div class="objetArticle letter">
-					<div class="imageObjet"></div>
-					<div class="infosObjet">
-						<div class="titleObjet">Peluche Stitch</div>
+
+
+				<ui:repeat value="#{mbRecherche.resultatRechercheList}" var="objet">
+					<div class="objetArticle letter">
+						<div class="imageDiv">
+					
+						</div>
+						<div class="infosObjet">
+							<div class="titleObjet">#{objet.libelle}</div>
+							<div class="objetIconeBloc">
+								<ul>
+									<li><span class="catObjet fa fa-gift fa-2x">#{objet.produit.groupe.domaine.id}</span></li>
+									<li><span class="distanceObjet fa fa-map-marker fa-2x">#{objet.distance}</span></li>
+									<li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span>#{objet.valeur}</li>
+									<li><span class="compatibiliteObjet fa fa-heart fa-2x"></span>#{objet.pertinence}</li>
+
+								</ul>
+							</div>
+						</div>
 					</div>
-					<div class="objetIconeBloc">
-						<ul>
-							<li><span class="catObjet fa fa-gift fa-2x"></span></li>
-							<li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-							<li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-							<li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-						</ul>
-					</div>
-				</div>
-				<div class="objetArticle letter">
-					<div class="imageObjet"></div>
-					<div class="infosObjet">
-						<div class="titleObjet">Peluche Stitch</div>
-					</div>
-					<div class="objetIconeBloc">
-						<ul>
-							<li><span class="catObjet fa fa-gift fa-2x"></span></li>
-							<li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-							<li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-							<li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-						</ul>
-					</div>
-				</div>
-				<div class="objetArticle letter">
-					<div class="imageObjet"></div>
-					<div class="infosObjet">
-						<div class="titleObjet">Peluche Stitch</div>
-					</div>
-					<div class="objetIconeBloc">
-						<ul>
-							<li><span class="catObjet fa fa-gift fa-2x"></span></li>
-							<li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-							<li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-							<li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-						</ul>
-					</div>
-				</div>
-				<div class="objetArticle letter">
-					<div class="imageObjet"></div>
-					<div class="infosObjet">
-						<div class="titleObjet">Peluche Stitch</div>
-					</div>
-					<div class="objetIconeBloc">
-						<ul>
-							<li><span class="catObjet fa fa-gift fa-2x"></span></li>
-							<li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-							<li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-							<li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-						</ul>
-					</div>
-				</div>
-				<div class="objetArticle letter">
-					<div class="imageObjet"></div>
-					<div class="infosObjet">
-						<div class="titleObjet">Peluche Stitch</div>
-					</div>
-					<div class="objetIconeBloc">
-						<ul>
-							<li><span class="catObjet fa fa-gift fa-2x"></span></li>
-							<li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-							<li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-							<li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-						</ul>
-					</div>
-				</div>
-				<div class="objetArticle letter">
-					<div class="imageObjet"></div>
-					<div class="infosObjet">
-						<div class="titleObjet">Peluche Stitch</div>
-					</div>
-					<div class="objetIconeBloc">
-						<ul>
-							<li><span class="catObjet fa fa-gift fa-2x"></span></li>
-							<li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-							<li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-							<li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-						</ul>
-					</div>
-				</div>
-				<div class="objetArticle letter">
-					<div class="imageObjet"></div>
-					<div class="infosObjet">
-						<div class="titleObjet">Peluche Stitch</div>
-					</div>
-					<div class="objetIconeBloc">
-						<ul>
-							<li><span class="catObjet fa fa-gift fa-2x"></span></li>
-							<li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-							<li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-							<li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-						</ul>
-					</div>
-				</div>
+
+				</ui:repeat>
 			</div>
-
 			<!-- /Contenu Principal -->
-=======
-		 <!-- Contenu Principal -->
-		 
-        <div id="monObjetsBloc" class="objetsBloc sectionBloc">
-        <div class="objetArticle letter">
-            <div class="imageObjet"></div>
-            <div class="infosObjet">
-                <div class="titleObjet">Peluche Stitch</div>
-            </div>
-            <div class="objetIconeBloc">
-                <ul>
-                    <li><span class="catObjet fa fa-gift fa-2x"></span></li>
-                    <li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-                    <li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-                    <li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="objetArticle letter">
-            <div class="imageObjet"></div>
-            <div class="infosObjet">
-                <div class="titleObjet">Peluche Stitch</div>
-            </div>
-            <div class="objetIconeBloc">
-                <ul>
-                    <li><span class="catObjet fa fa-gift fa-2x"></span></li>
-                    <li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-                    <li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-                    <li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="objetArticle letter">
-            <div class="imageObjet"></div>
-            <div class="infosObjet">
-                <div class="titleObjet">Peluche Stitch</div>
-            </div>
-            <div class="objetIconeBloc">
-                <ul>
-                    <li><span class="catObjet fa fa-gift fa-2x"></span></li>
-                    <li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-                    <li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-                    <li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="objetArticle letter">
-            <div class="imageObjet"></div>
-            <div class="infosObjet">
-                <div class="titleObjet">Peluche Stitch</div>
-            </div>
-            <div class="objetIconeBloc">
-                <ul>
-                    <li><span class="catObjet fa fa-gift fa-2x"></span></li>
-                    <li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-                    <li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-                    <li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="objetArticle letter">
-            <div class="imageObjet"></div>
-            <div class="infosObjet">
-                <div class="titleObjet">Peluche Stitch</div>
-            </div>
-            <div class="objetIconeBloc">
-                <ul>
-                    <li><span class="catObjet fa fa-gift fa-2x"></span></li>
-                    <li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-                    <li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-                    <li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="objetArticle letter">
-            <div class="imageObjet"></div>
-            <div class="infosObjet">
-                <div class="titleObjet">Peluche Stitch</div>
-            </div>
-            <div class="objetIconeBloc">
-                <ul>
-                    <li><span class="catObjet fa fa-gift fa-2x"></span></li>
-                    <li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-                    <li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-                    <li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="objetArticle letter">
-            <div class="imageObjet"></div>
-            <div class="infosObjet">
-                <div class="titleObjet">Peluche Stitch</div>
-            </div>
-            <div class="objetIconeBloc">
-                <ul>
-                    <li><span class="catObjet fa fa-gift fa-2x"></span></li>
-                    <li><span class="distanceObjet fa fa-map-marker fa-2x"></span></li>
-                    <li><span class="valeurObjet fa fa-snowflake-o fa-2x"></span></li>
-                    <li><span class="compatibiliteObjet fa fa-heart fa-2x"></span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- /Contenu Principal -->
->>>>>>> refs/remotes/origin/master
 		</ui:define>
 	</ui:composition>
 </h:body>

@@ -3,6 +3,7 @@ package org.greenlist.controller;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import org.greenlist.business.api.IBusinessUtilisateur;
@@ -18,6 +19,9 @@ public class FicheUtilisateurManagerBean {
 	@EJB
 	private IBusinessUtilisateur proxyUtilisateur ;
 	
+	@ManagedProperty(value = "#{mbUtilisateur}")
+	private UtilisateurManagedBean mbUtilisateur;
+	
 	private Utilisateur utilisateurAffiche = new Utilisateur();
 	private int moyenne = 0;
 	private int nbAVis = 0 ;
@@ -29,8 +33,10 @@ public class FicheUtilisateurManagerBean {
 	@PostConstruct
 	public void init(){
 		
-	
-			utilisateurAffiche = proxyUtilisateur.getUtilisateurCompletById(utilisateurAffiche);
+		
+		utilisateurAffiche = mbUtilisateur.getUtilisateurConnecte();
+		utilisateurAffiche = proxyUtilisateur.getUtilisateurCompletById(utilisateurAffiche);
+		utilisateurAffiche.setObjets(proxyUtilisateur.recupererObjetsUtilisateur(utilisateurAffiche));
 		
 		nbEchanges = proxyUtilisateur.recupererNbEchangesValide(utilisateurAffiche);	
 		nbSouhaits = proxyUtilisateur.recupererNbSouhaits(utilisateurAffiche);

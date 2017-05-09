@@ -12,5 +12,14 @@ public interface IBusinessProduit {
 	List<Produit> getProduits(Groupe groupe);
 
 	List<Produit> getProduits();
-	
+
+	/**
+	 * Récupération de tous les produits dont le libellé contient nom
+	 * 
+	 * @param nom
+	 *            le nom recherché dans les produits
+	 * @return les produits
+	 */
+	List<Produit> getProduits(String nom);
+
 }

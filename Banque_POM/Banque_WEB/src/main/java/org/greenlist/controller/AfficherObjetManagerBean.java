@@ -17,32 +17,31 @@ import org.greenlist.entity.Utilisateur;
 @ManagedBean(name = "mbFicheObjet")
 @ViewScoped
 public class AfficherObjetManagerBean {
-	
-	
-	
+
 	@EJB
 	private IBusinessObjet proxyObjet;
-	
-	 @ManagedProperty(value="#{mbFicheUtilisateur}")
-	    private FicheUtilisateurManagerBean ficheUtilisateurmb;
-	
-	
+	@EJB
+	private IBusinessUtilisateur proxyUtilisateur;
+
 	private Objet objetAffiche = new Objet();
-	private List<Photo> photos ;
+	private List<Photo> photos;
 	private Utilisateur proprietaire = new Utilisateur();
-	
-	
-	public void init(){
+	private int moyenne = 0;
+	private int nbAVis = 0;
+	private int nbEchanges = 0;
+
+	public void init() {
 		objetAffiche.setId(6);
 		objetAffiche = proxyObjet.getObjetComplet(objetAffiche);
-		
+
 		photos = proxyObjet.getPhotos(objetAffiche);
 		
-		 proprietaire = objetAffiche.getUtilisateur();
-		 
-		 ficheUtilisateurmb.setUtilisateurAffiche(proprietaire);
+		proprietaire= objetAffiche.getUtilisateur();
 		
-		 
+		moyenne = proxyUtilisateur.recupererMoyenne(proprietaire);
+		nbAVis = proxyUtilisateur.recupererNbAvis(proprietaire);
+		nbEchanges = proxyUtilisateur.recupererNbEchangesValide(proprietaire);
+		System.out.println(proprietaire.getPseudo());
 	}
 
 	public Objet getObjetAffiche() {
@@ -69,12 +68,12 @@ public class AfficherObjetManagerBean {
 		this.photos = photos;
 	}
 
-	public FicheUtilisateurManagerBean getFicheUtilisateurmb() {
-		return ficheUtilisateurmb;
+	public IBusinessUtilisateur getProxyUtilisateur() {
+		return proxyUtilisateur;
 	}
 
-	public void setFicheUtilisateurmb(FicheUtilisateurManagerBean ficheUtilisateurmb) {
-		this.ficheUtilisateurmb = ficheUtilisateurmb;
+	public void setProxyUtilisateur(IBusinessUtilisateur proxyUtilisateur) {
+		this.proxyUtilisateur = proxyUtilisateur;
 	}
 
 	public Utilisateur getProprietaire() {
@@ -84,7 +83,29 @@ public class AfficherObjetManagerBean {
 	public void setProprietaire(Utilisateur proprietaire) {
 		this.proprietaire = proprietaire;
 	}
-	
-	
+
+	public int getMoyenne() {
+		return moyenne;
+	}
+
+	public void setMoyenne(int moyenne) {
+		this.moyenne = moyenne;
+	}
+
+	public int getNbAVis() {
+		return nbAVis;
+	}
+
+	public void setNbAVis(int nbAVis) {
+		this.nbAVis = nbAVis;
+	}
+
+	public int getNbEchanges() {
+		return nbEchanges;
+	}
+
+	public void setNbEchanges(int nbEchanges) {
+		this.nbEchanges = nbEchanges;
+	}
 
 }

@@ -28,9 +28,9 @@ public class Preference implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
 	private int id;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDFREQUENCE", nullable = true)
-	private FrequenceEmail frequenceEmail;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "IDFREQUENCE", nullable = true)
+//	private FrequenceEmail frequenceEmail;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUTILISATEUR")
 	private Utilisateur utilisateur;
@@ -52,13 +52,13 @@ public class Preference implements java.io.Serializable {
 
 	public Preference(int id, FrequenceEmail frequenceEmail) {
 		this.id = id;
-		this.frequenceEmail = frequenceEmail;
+//		this.frequenceEmail = frequenceEmail;
 	}
 
 	public Preference(int id, FrequenceEmail frequenceEmail, Utilisateur utilisateur,
 			List<Typenotification> typenotifications, List<TypeEmail> typeEmails, List<Utilisateur> utilisateurs) {
 		this.id = id;
-		this.frequenceEmail = frequenceEmail;
+//		this.frequenceEmail = frequenceEmail;
 		this.utilisateur = utilisateur;
 		this.typenotifications = typenotifications;
 		this.typeEmails = typeEmails;
@@ -73,13 +73,13 @@ public class Preference implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public FrequenceEmail getFrequenceEmail() {
-		return this.frequenceEmail;
-	}
-
-	public void setFrequenceEmail(FrequenceEmail frequenceEmail) {
-		this.frequenceEmail = frequenceEmail;
-	}
+//	public FrequenceEmail getFrequenceEmail() {
+//		return this.frequenceEmail;
+//	}
+//
+//	public void setFrequenceEmail(FrequenceEmail frequenceEmail) {
+//		this.frequenceEmail = frequenceEmail;
+//	}
 
 	public Utilisateur getUtilisateur() {
 		return this.utilisateur;

@@ -25,7 +25,7 @@ public class DaoObjet implements IDaoObjet {
 
 	private static final String REQUETTE_GET_OBJET_BY_ID = "SELECT o FROM Objet o WHERE o.id = :pidObjet";
 	private static final String REQUETTE_GET_OBJET_BY_ID_WITH_PDT_TA =
-			"SELECT o FROM Objet o inner join fetch o.produit inner join fetch o.trancheAge WHERE o.id = :pidObjet";
+			"SELECT o FROM Objet o inner join fetch o.produit inner join fetch o.trancheAge inner join fetch o.utilisateur WHERE o.id = :pidObjet";
 
 	private static final String REQUETTE_GET_OBJETS_BY_UTILISATEUR = "SELECT u.objets FROM Utilisateur as u WHERE u.id = :pIdUtilisateur";
 

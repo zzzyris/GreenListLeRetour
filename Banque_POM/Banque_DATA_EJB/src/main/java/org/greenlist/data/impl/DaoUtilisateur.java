@@ -24,11 +24,11 @@ public class DaoUtilisateur implements IDaoUtilisateur {
 	
 	private static final String REQUETE_GET_USER_COMPLET_BY_ID = "SELECT u FROM Utilisateur u inner join fetch u.experience WHERE u.id = :pId";
 
-	private static final String REQUETTE_GET_ECHANGE_BY_USERA = "SELECT e FROM Echange e WHERE e.utilisateurByIdusera.id = :pUid AND  e.dateConclusion IS NOT null " ;
+	private static final String REQUETTE_GET_ECHANGE_BY_USERA = "SELECT e FROM Echange e WHERE e.utilisateurByIdusera.id = :pUId AND  e.dateConclusion IS NOT null " ;
 
-	private static final String REQUETTE_GET_ECHANGE_BY_USERB = "SELECT e FROM Echange e WHERE e.utilisateurByIduserb.id = :pUid AND  e.dateConclusion IS NOT null " ;
+	private static final String REQUETTE_GET_ECHANGE_BY_USERB = "SELECT e FROM Echange e WHERE e.utilisateurByIduserb.id = :pUId AND  e.dateConclusion IS NOT null " ;
 
-	private static final String REQUETE_GET_AVIS_UTILISATEUR = "u.notesForIdutilisateurestnote FROM Utilisateur u where u.id = :pUId";
+	private static final String REQUETE_GET_AVIS_UTILISATEUR = "SELECT u.notesForIdutilisateurestnote FROM Utilisateur u where u.id = :pUId";
 	
 	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;

@@ -31,6 +31,7 @@ public class BusinessEchange implements IBusinessEchange {
 	@Override
 	public Echange GetEchange( Echange echange) {
 
+		
 		return proxyEchange.GetEchange(echange.getId());
 	}
 
@@ -90,13 +91,15 @@ public class BusinessEchange implements IBusinessEchange {
 
 	@Override
 	public List<Message> getMessages(Echange echange) {
-		// TODO Auto-generated method stub
+
 		return proxyEchange.getMessages(echange);
 	}
 	@Override
 	public List<Message> envoyerMessage(Echange echange, Message message) {
-		// TODO Auto-generated method stub
-		return null;
+		echange.setMessages(proxyEchange.getMessages(echange));
+		echange.getMessages().add(message);
+		proxyEchange.majEchange(echange);
+		return echange.getMessages();
 	}
 
 	

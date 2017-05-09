@@ -2,11 +2,14 @@ package org.greenlist.data.impl;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.greenlist.data.api.IDaoEchange;
+import org.greenlist.data.api.IDaoObjet;
 import org.greenlist.entity.Conclusionechange;
 import org.greenlist.entity.Echange;
 import org.greenlist.entity.Message;
@@ -14,6 +17,8 @@ import org.greenlist.entity.Objet;
 import org.greenlist.entity.Rdv;
 import org.greenlist.entity.Utilisateur;
 
+@Remote(IDaoEchange.class)
+@Singleton
 public class DaoEchange implements IDaoEchange {
 
 	@PersistenceContext(unitName = "Banque_DATA_EJB")

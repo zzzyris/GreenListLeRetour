@@ -29,8 +29,9 @@ public class FicheUtilisateurManagerBean {
 	@PostConstruct
 	public void init(){
 		
-	
-			utilisateurAffiche = proxyUtilisateur.getUtilisateurCompletById(utilisateurAffiche);
+		utilisateurAffiche.setId(1);
+		utilisateurAffiche = proxyUtilisateur.getUtilisateurCompletById(utilisateurAffiche);
+		utilisateurAffiche.setObjets(proxyUtilisateur.recupererObjetsUtilisateur(utilisateurAffiche));
 		
 		nbEchanges = proxyUtilisateur.recupererNbEchangesValide(utilisateurAffiche);	
 		nbSouhaits = proxyUtilisateur.recupererNbSouhaits(utilisateurAffiche);

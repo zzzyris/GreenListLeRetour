@@ -32,8 +32,10 @@ public class DaoSouhait implements IDaoSouhait {
 
 		final String req = "SELECT s FROM Souhait s " + "INNER JOIN Liste li ON li.id = s.idListe "
 				+ "INNER JOIN Utilisateur u ON u.id = li.idUtilisateur" + "WHERE u.id = :pidUtilisateur";
+		
+		final String reqAlt = "SELECT s from Souhait s INNER JOIN FETCH s.liste l INNER JOIN FETCH  l.utilisateur  Where l.utilisateur.id = :pidUtilisateur" ;
 
-		Query query = em.createQuery(req).setParameter("pidUtilisateur", utilisateur.getId());
+		Query query = em.createQuery(reqAlt).setParameter("pidUtilisateur", utilisateur.getId());
 		return query.getResultList();
 	}
 

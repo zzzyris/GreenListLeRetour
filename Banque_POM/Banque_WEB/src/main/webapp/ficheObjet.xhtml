@@ -100,15 +100,16 @@
 											<!-- <img id="imgProfil" class="userAvatar" /> -->
 										</div>
 										<ul>
-											<li>#{mbFicheObjet.ficheUtilisateurmb.utilisateurAffiche.pseudo}</li>
-											<li>Confirmé</li>
-											<li>#{mbFicheObjet.ficheUtilisateurmb.moyenne}</li>
+											<li>#{mbFicheObjet.proprietaire.pseudo}
+											</li>
+											<li>Confirmé : #{mbFicheObjet.nbEchanges}</li>
+											<li>#{mbFicheObjet.moyenne}</li>
 											<li><span class="fa fa-star smallStar"></span><span
 												class="fa fa-star smallStar"></span><span
 												class="fa fa-star smallStar"></span><span
 												class="fa fa-star-half-o smallStar"></span><span
 												class="fa fa-star-o smallStar"></span></li>
-											<li><a>#{mbFicheObjet.ficheUtilisateurmb.nbAVis} Avis</a></li>
+											<li><a>#{mbFicheObjet.nbAVis} Avis</a></li>
 										</ul>
 									</div>
 									<div class="field-wrap faqSaisie">

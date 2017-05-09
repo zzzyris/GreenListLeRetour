@@ -1,5 +1,12 @@
 /************ Gestion Objets Main *************/
 
+.gestionBloc {
+    width: 100%;
+    justify-content: center;
+    margin: 0 5px 0 30px;
+    padding-right: 20px;
+}
+
 .gestionObjetsBloc {
     display: flex;
     flex-flow: row wrap;
@@ -8,12 +15,12 @@
 }
 
 .addButtonBloc {
-    width: 60px;
+    width: 4Spx;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    margin: 5px;
+    margin: 2px;
     background: #fff;
     border-radius: 10px;
     cursor: pointer;
@@ -24,8 +31,8 @@
     color: #fff;
     background-color: #666;
     border-radius: 50%;
-    height: 45px;
-    width: 45px;
+    height: 50px;
+    width: 50px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -46,8 +53,35 @@
     display: flex;
     width: 95%;
     align-items: stretch;
-    margin: 30px;
+    margin: 5px 0 0 0;
     min-height: 600px;
+}
+
+.searchOptionsBar{    
+    padding: 15px 28px 0 15px;
+    width: 100%;
+    align-self: flex-end;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.searchOptionsBar div{
+    width: 50%;
+}
+
+.searchOptionsBar select{
+    font-size: 15px;
+}
+
+.nbResults span{
+    width: 100%;
+    text-align: left;
+}
+
+.orderResults{
+    text-align: right;
 }
 
 
@@ -67,7 +101,8 @@
     justify-content: center;
 }
 
-.objetArticle, .objetArticleSans {
+.objetArticle,
+.objetArticleSans {
     margin: 10px;
     display: flex;
     flex-flow: column nowrap;
@@ -96,8 +131,8 @@
 
 .addBasketIcon {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 5px;
+    right: 5px;
 }
 
 .letter {
@@ -127,7 +162,8 @@
     background-size: cover;
 }
 
-.titleObjet {
+.titleObjet,
+.dateObjet {
     text-align: center;
     flex-grow: 1;
 }
@@ -200,7 +236,8 @@
     font-size: 25px;
 }
 
-.dropDownListCat, .floconIcon {
+.dropDownListCat,
+.floconIcon {
     flex-grow: 1;
     font-size: 18px;
     padding: 5px 10px;
@@ -210,12 +247,12 @@
     color: #555;
 }
 
-.floconIcon{
+.floconIcon {
     margin-bottom: 35px;
     border: 0;
 }
 
-.valeurInput{
+.valeurInput {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -282,7 +319,8 @@
     align-items: center;
 }
 
-.photosConteneur {
+.photosConteneur,
+.listeConteneur {
     width: 100%;
     margin-bottom: 20px;
     background-color: #fff;
@@ -338,13 +376,38 @@
     justify-content: center
 }
 
+.listeConteneur {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    padding: 10px 10px 0px 10px;
+}
 
+.listeConteneur div {
+    width: 100%;
+    display: flex;
+}
+
+.ajoutSouhaitBouton {
+    margin-top: 0;
+    height: 40px;
+}
+
+.listeTab {
+    margin-bottom: 5px;
+}
 
 
 /******* Responsive **********/
 
-@media screen and (max-width: 400px) {
-    /***** Page Ajout Objet *****/
+@media screen and (max-width: 640px) {
+    .addButtonBloc {
+        width: 100%;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 640px) {
     .criteresBloc {
         flex-direction: column;
         justify-content: center;
@@ -358,6 +421,13 @@
     .catBloc {
         margin: 0;
     }
+}
+
+@media screen and (max-width: 500px) {
+    /***** Page Ajout Objet *****/
+    .criteresBloc {
+        margin: 2px 0 20px 0;
+    }
     .pageBouton {
         margin-left: 10px;
         font-size: 18px;
@@ -370,17 +440,16 @@
     .resultatsBloc {
         margin: 10px;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        min-height: 500px;
     }
     .gMapBloc {
         width: 100%;
-        height: 300px;
+        max-height: 350px;
         order: 0;
     }
-    
     /************ Objets *************/
-    
     .objetsBlocSans {
         flex-flow: column nowrap;
     }
@@ -388,63 +457,64 @@
         width: 100%;
     }
     .objetArticle {
+        position: relative;
         min-width: 320px;
         padding: 5px;
-        margin: 10px;
+        margin: 5px;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         align-items: stretch;
     }
-    .infosObjet {
+    .objetsBloc .infosObjet {
         display: flex;
         flex-flow: column nowrap;
         flex-grow: 1;
-        margin-left: 10px;
     }
-    .numObjet {
-        margin: 5px;
-        position: inherit;
-        top: 0;
-        right: 0;
-        font-size: 25px;
+    .objetsBloc .numObjet {
+        margin: 0;
+        top: 2px;
+        left: 2px;
+        font-size: 20px;
         flex-direction: column;
     }
     .addBasketIcon {
-        width: 50px;
-        height: 50px;
-        margin: 5px;
-        position: inherit;
-        top: 0;
-        right: 0;
+        top: 3px;
+        right: 3px;
     }
-    .addBasketIcon span {
-        font-size: 25px;
+    .objetsBloc .numObjet,
+    .objetsBloc.addBasketIcon{        
+        width: 40px;
+        height: 40px;
+    }
+    .objetsBloc .addBasketIcon span {
+        font-size: 20px;
     }
     .letter {}
-    .imageDiv {
+    .objetsBloc .imageDiv {
         width: 70px;
-        height: 60px;
+        height: 85px;
         padding: 0;
+        margin: 6px 0 0 5px;
     }
-    .imageObjet {
+    .objetsBloc .imageObjet {
         width: 100%;
         height: 100%;
     }
-    .titleObjet {
+    .objetsBloc .titleObjet {
         text-align: center;
         flex-grow: 1;
     }
-    .objetIconeBloc {
+    .objetsBloc .objetIconeBloc {
         width: 100%;
     }
-    .objetIconeBloc ul {
+    .objetsBloc .objetIconeBloc ul {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
     }
-    .objetIconeBloc ul li {
+    .objetsBloc .objetIconeBloc ul li {
         margin: 2px;
         flex-grow: 1;
         padding: 1px;
@@ -452,235 +522,30 @@
         font-size: 25px;
         color: #444;
     }
-    .catObjet {
+    .objetsBloc .catObjet {
         color: #fff;
         background-color: cadetblue;
         border-radius: 5px;
         padding: 5px;
     }
-    .objetIconeText {
+    .objetsBloc .objetIconeText {
         font-size: 15px;
     }
     .gestionObjetsBloc {
         width: 100%;
         display: flex;
         flex-flow: column;
-        justify-content: flex-start;
-        align-items: flex-start;
+        justify-content: center;
+        align-items: center;
     }
     .addButtonBloc {
-        height: 60px;
-        width: 320px;
+        height: 40px;
+        width: 340px;
     }
     .gestionBloc {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
     }
-}
-
-
-/*
-.objetShown{
-    display: flex;    
-}
-
-.tailleImage{
-    width: 100px;
-    height: 100p%;
-}
-.textArea{
-    width: 50px;
-    height: 100%;
-    
-}
-
-
-.textArea{
-    height: 70px;
-    width: 500px;
-    
-}
-.userMiniature{
-     width: 50px;
-    height: 100p%;
-}
-.global{
-    margin: 100px;
-}
-
-
-/**********************************************/
-
-
-/******* Karen **********/
-
-
-/*
-.boutonsBloc {
-    justify-content: flex-end;
-    background-color: rgb(238, 238, 238);
-    width: 100%;
-    margin: 0;
-    margin-top: 20px;
-}
-
-.photo {
-    display: flex;
-    background-color: rgb(238, 238, 238);
-    width: 100px;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
-    margin: 5px;
-}
-
-.pageObjet {
-    height: 560px;
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 30px;
-    background-color: white;
-    border-radius: 2px;
-}
-
-#name {
-    position: relative;
-}
-
-.photosBloc {
-    height: 120px;
-    margin: 10px;
-    width: 70%;
-}
-
-
-
-.pageSouhait {
-    height: 580px;
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 30px;
-    background-color: white;
-    border-radius: 2px;
-}
-
-.listeBloc {
-    width: 100%; 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.pageComplementBloc {
-    width: 100%;
-    height: 35px;
-    padding-left: 10px;
-    margin: 0;
-    border-radius: 2px;
-}
-
-
-
-.ListesSouhaits {
-    background-color: rgb(238, 238, 238);
-}
-
-.pageGestionSouhait {
-    height: 670px;
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 30px;
-    margin-bottom: 0;
-    background-color: white;
-    border-radius: 2px;
-    border-radius: 5px;
-}
-
-.listeSouhaits {
-    width: 70%;
-}
-
-.souhait {
-    display: flex;
-    border: 2px solid rgb(215, 215, 215);
-    margin: 10px;
-    width: 100%;
-    height: 55px;
-    border-radius: 2px;
-    justify-content: space-between;
-}
-
-.listeDeListes {
-    flex: 1;
-    height: 550px;
-    background-color: rgb(238, 238, 238);
-}
-
-.listeDeSouhaits {
-    flex: 3.5;
-    background-color: white;
-    margin-top: 30px;
-}
-
-.flex-end {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 20px;
-}
-
-
-
-.description {
-    flex: 4;
-}
-
-.labelValeur {
-    flex: 1;
-}
-
-.flex1 {
-flex:1;    
-}
-
-.descriptionInput {
-width: 95%;
-border-radius: 2px;
-border: 2px solid rgb(215, 215, 215);
-font-size: 15px;
-color: rgb(215, 215, 215);
-height: 100px;
-}
-
-
-
-.valeurInput {
-border-radius: 2px;
-border: 2px solid rgb(215, 215, 215);
-font-size: 15px;
-color: rgb(215, 215, 215);
-height: 40px;
-    width: 60px;
-}
-
-
-
-.inputSansBords {
-display: flex;
-height: 70px;
-padding: 20px;
-width: 100%;
-font-size: 15px;
-}
-
-
-
-.valeurBloc {
-   padding-left: 40px;
-}
-
-.inputListe {
-width: 80%;
-border-radius: 2px;
-border: 2px solid rgb(215, 215, 215);
-font-size: 15px;
-height: 40px;
 }

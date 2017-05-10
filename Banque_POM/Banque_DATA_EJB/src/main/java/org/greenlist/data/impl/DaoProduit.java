@@ -20,6 +20,13 @@ public class DaoProduit implements IDaoProduit{
 	
 	private static final String REQUETTE_GET_PRODUITS = "SELECT p FROM Produit as p ";
 	
+
+	private static final String REQUETE_GET_PRODUIT_PAR_NOM = 
+			"SELECT p FROM Produit p "
+			+ "INNER JOIN fetch p.groupe g "
+			+ "INNER JOIN fetch g.domaine d "
+			+ "WHERE p.libelle LIKE :pnom";
+	
 	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;
 
@@ -43,10 +50,11 @@ public class DaoProduit implements IDaoProduit{
 		return em.createQuery(hql).setParameter("pid", groupe.getId()).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Produit> getProduits(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+	String param = "%" + nom + "%";
+	return em.createQuery(REQUETE_GET_PRODUIT_PAR_NOM).setParameter("pnom", param).getResultList();
 	}
 
 }

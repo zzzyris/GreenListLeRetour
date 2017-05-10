@@ -1,19 +1,18 @@
 package org.greenlist.controller;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.mail.Address;
 
 import org.apache.commons.lang3.StringUtils;
 import org.greenlist.business.api.IBusinessAdresse;
@@ -22,22 +21,31 @@ import org.greenlist.business.api.IBusinessProduit;
 import org.greenlist.business.api.IBusinessUtilisateur;
 import org.greenlist.business.comparator.ObjetComparator;
 import org.greenlist.entity.Adresse;
+import org.greenlist.entity.Domaine;
+import org.greenlist.entity.Groupe;
 import org.greenlist.entity.Objet;
 import org.greenlist.entity.Produit;
 import org.greenlist.entity.Utilisateur;
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 
 @ManagedBean(name = "mbRecherche")
 @SessionScoped
 public class RechercheManagedBean {
 
 	private String recherche;
-	private Set<Objet> resultatRechercheSet = null;
-	private List<Objet> resultatRechercheList = null;
+	private Set<Objet> resultatRechercheSet;
+	private List<Objet> resultatRechercheList;
 	private Set<String> motsRecherche;
 	private static final double SCORE_PRODUIT = 0.5;
-	private final double score_groupe = 0.3;
-	private final double score_domaine = 0.15;
+	private static final double SCORE_GROUPE = 0.3;
+	private static final double SCORE_DOMAINE = 0.15;
 	private Utilisateur utilisateur;
+	private Map<Produit, Integer> compteurProduits;
+	private TreeNode root;
+
+	private Map<Domaine, Set<Groupe>> mapDomaines;
+	private Map<Groupe, Set<Produit>> mapGroupes;
 
 	// sera à définir à partir de l'utilisateur qui effectuera la recherche.
 	// Valeur par défaut pour le moment.
@@ -46,26 +54,35 @@ public class RechercheManagedBean {
 
 	@EJB
 	private IBusinessUtilisateur proxyUtilisateur;
-	
+
 	@EJB
 	private IBusinessProduit proxyProduit;
 
 	@EJB
 	private IBusinessObjet proxyObjet;
-	
+
 	@EJB
 	private IBusinessAdresse proxyAdresse;
-	
+
 	@PostConstruct
-	private void init(){
-		//TODO : modifier l'id par celle récupérée depuis la page précédente.
+	private void init() {
+		// TODO : modifier l'id par celle récupérée depuis la page précédente.
 		utilisateur = proxyUtilisateur.getUtilisateurById(1);
 		List<Adresse> adresses = proxyAdresse.getAdresseByUtilisateur(utilisateur);
 		longitude = adresses.get(0).getLongitude();
 		latitude = adresses.get(0).getLatitude();
 	}
 
+	
+
 	public void decouperRecherche() {
+
+		// Initialisation des données
+		compteurProduits = new HashMap<>();
+		root = new DefaultTreeNode("Root", null);
+		mapDomaines = new HashMap<>();
+		mapGroupes = new HashMap<>();
+
 		if (recherche.length() > 0) {
 			motsRecherche = new HashSet<String>();
 			String monString = StringUtils.stripAccents(recherche).toLowerCase();
@@ -94,7 +111,8 @@ public class RechercheManagedBean {
 			List<Produit> produits = proxyProduit.getProduits(mot);
 			// pour chaque produit dans cette liste de produits
 			for (Produit p : produits) {
-				// récupération des objets appartenant à ce produit et n'appartenant pas à l'utilisateur
+				// récupération des objets appartenant à ce produit et
+				// n'appartenant pas à l'utilisateur
 				Set<Objet> partialResults = proxyObjet.getObjets(p, utilisateur);
 
 				// Enlever tous les résultats qui ne conviennent pas et calculer
@@ -102,16 +120,58 @@ public class RechercheManagedBean {
 				if (partialResults != null) {
 					partialResults = filtrerResultats(mot, partialResults, SCORE_PRODUIT);
 					resultatRechercheSet.addAll(partialResults);
+
+					// Compteur d'objets dans chaque produit
+					compteurProduits.put(p, partialResults.size());
+
+					// Construction maps pour le TreeNode
+					ConstruireMap(p);
+				}
+
+			}
+		}
+
+		resultatRechercheList = new ArrayList<>(resultatRechercheSet);
+		Collections.sort(resultatRechercheList, new ObjetComparator());
+
+		// Construction de l'arbre des catégories
+		TreeNode root = new DefaultTreeNode("Root", null);
+
+		for (Domaine d : mapDomaines.keySet()) {
+			TreeNode tnD = new DefaultTreeNode(d, root);
+			root.getChildren().add(tnD);
+			// verif
+			System.out.println(d.getLibelle());
+			for (Groupe g : mapDomaines.get(d)) {
+				TreeNode tnG = new DefaultTreeNode(g, tnD);
+				tnD.getChildren().add(tnG);
+				// verif
+				System.out.println("  " + g.getLibelle());
+				for (Produit p : mapGroupes.get(g)) {
+					TreeNode tnP = new DefaultTreeNode(p, tnG);
+					tnG.getChildren().add(tnP);
+					System.out.println("    " + p.getLibelle() + " (" + compteurProduits.get(p) + ")");
 				}
 			}
 		}
-		
-		resultatRechercheList = new ArrayList<>(resultatRechercheSet);
-		Collections.sort(resultatRechercheList, new ObjetComparator());
-		for (Objet o : resultatRechercheList) {
-			System.out.println(o.getLibelle());
-			System.out.println("Distance : " + o.getDistance() + "\nPertinence : " + o.getPertinence());
-			System.out.println( "domaine : " + o.getProduit().getGroupe().getDomaine().getLibelle());
+	}
+
+	private void ConstruireMap(Produit p) {
+		Groupe g = p.getGroupe();
+		Domaine d = g.getDomaine();
+
+		if (mapGroupes.containsKey(g)) {
+			mapGroupes.get(g).add(p);
+		} else {
+			mapGroupes.put(g, new HashSet<>());
+			mapGroupes.get(g).add(p);
+		}
+
+		if (mapDomaines.containsKey(d)) {
+			mapDomaines.get(d).add(g);
+		} else {
+			mapDomaines.put(d, new HashSet<>());
+			mapDomaines.get(d).add(g);
 		}
 
 	}
@@ -137,7 +197,7 @@ public class RechercheManagedBean {
 				 * 50% pour produit, 30% pour groupe, 15% pour domaine nb de
 				 * mots clefs : nbMotsTrouvés / nbMotsClefs / 2
 				 */
-				o.setPertinence((scoreCategorie + (double)score / motsClefs.size() / 2)*100);
+				o.setPertinence((scoreCategorie + (double) score / motsClefs.size() / 2) * 100);
 				o = calculDistance(o);
 			} else if (motsClefs.size() == 0) {
 				o.setPertinence(100);
@@ -163,12 +223,10 @@ public class RechercheManagedBean {
 						* Math.sin(deltaLongitude / 2);
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		double d = R * c; // distance en km ( Magic...)
-		
-		
-		
+
 		d = Math.round(d * 10);
 		d = d / 10;
-		
+
 		o.setDistance(d);
 		return o;
 
@@ -210,6 +268,52 @@ public class RechercheManagedBean {
 		this.resultatRechercheList = resultatRechercheList;
 	}
 
+	public Map<Produit, Integer> getCompteurProduits() {
+		return compteurProduits;
+	}
+
+	public void setCompteurProduits(Map<Produit, Integer> compteurProduits) {
+		this.compteurProduits = compteurProduits;
+	}
+
+	public TreeNode getRoot() {
+		return root;
+	}
+
+	public void setRoot(TreeNode root) {
+		this.root = root;
+	}
 	
-	
+	public IBusinessUtilisateur getProxyUtilisateur() {
+		return proxyUtilisateur;
+	}
+
+	public void setProxyUtilisateur(IBusinessUtilisateur proxyUtilisateur) {
+		this.proxyUtilisateur = proxyUtilisateur;
+	}
+
+	public IBusinessProduit getProxyProduit() {
+		return proxyProduit;
+	}
+
+	public void setProxyProduit(IBusinessProduit proxyProduit) {
+		this.proxyProduit = proxyProduit;
+	}
+
+	public IBusinessObjet getProxyObjet() {
+		return proxyObjet;
+	}
+
+	public void setProxyObjet(IBusinessObjet proxyObjet) {
+		this.proxyObjet = proxyObjet;
+	}
+
+	public IBusinessAdresse getProxyAdresse() {
+		return proxyAdresse;
+	}
+
+	public void setProxyAdresse(IBusinessAdresse proxyAdresse) {
+		this.proxyAdresse = proxyAdresse;
+	}
+
 }

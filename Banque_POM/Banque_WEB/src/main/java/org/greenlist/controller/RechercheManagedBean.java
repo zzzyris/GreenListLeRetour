@@ -73,6 +73,8 @@ public class RechercheManagedBean {
 		latitude = adresses.get(0).getLatitude();
 	}
 
+	
+
 	public void decouperRecherche() {
 
 		// Initialisation des données
@@ -280,6 +282,38 @@ public class RechercheManagedBean {
 
 	public void setRoot(TreeNode root) {
 		this.root = root;
+	}
+	
+	public IBusinessUtilisateur getProxyUtilisateur() {
+		return proxyUtilisateur;
+	}
+
+	public void setProxyUtilisateur(IBusinessUtilisateur proxyUtilisateur) {
+		this.proxyUtilisateur = proxyUtilisateur;
+	}
+
+	public IBusinessProduit getProxyProduit() {
+		return proxyProduit;
+	}
+
+	public void setProxyProduit(IBusinessProduit proxyProduit) {
+		this.proxyProduit = proxyProduit;
+	}
+
+	public IBusinessObjet getProxyObjet() {
+		return proxyObjet;
+	}
+
+	public void setProxyObjet(IBusinessObjet proxyObjet) {
+		this.proxyObjet = proxyObjet;
+	}
+
+	public IBusinessAdresse getProxyAdresse() {
+		return proxyAdresse;
+	}
+
+	public void setProxyAdresse(IBusinessAdresse proxyAdresse) {
+		this.proxyAdresse = proxyAdresse;
 	}
 
 }

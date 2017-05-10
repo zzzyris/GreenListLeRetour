@@ -1,3 +1,4 @@
+
 package org.greenlist.controller;
 
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class AjoutObjetManagerBean {
 
 	}
 
-	public Objet creerObjet() {
+	public String creerObjet() {
 		objet.setUtilisateur(mbConnect.getUtilisateurConnecte());
 		objet.setDateDepot(Calendar.getInstance().getTime());
 		objet = proxyObjet.creerObjet(objet);
@@ -61,26 +62,13 @@ public class AjoutObjetManagerBean {
 			 proxyPhoto.ajouterPhoto(objet, url);
 			 
 		 }
-		 
-			ConfigurableNavigationHandler  nav =
-					(ConfigurableNavigationHandler)
-					FacesContext.getCurrentInstance()
-					.getApplication()
-					.getNavigationHandler();
-			nav.performNavigation("/gestionObjets.xhtml");
-		 
-		 return objet;
-		 
-		 
-		 
+	
+		objet = new Objet(); 
+		 return "/gestionObjets.xhtml?faces-redirect=true" ;
+
 		 
 	}
 
-//	<p:fileUpload
-//	fileUploadListener="#{mbObjetAjout.handleFileUpload()}"
-//	value="#{mbObjetAjout.photoUploade}"
-//	mode="advanced"></p:fileUpload>
-	
 	public void handleFileUpload(FileUploadEvent event) {
 
 		this.photoUploade = event.getFile();

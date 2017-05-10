@@ -19,13 +19,13 @@ import org.greenlist.business.api.IBusinessAdresse;
 import org.greenlist.business.api.IBusinessObjet;
 import org.greenlist.business.api.IBusinessProduit;
 import org.greenlist.business.api.IBusinessUtilisateur;
-import org.greenlist.business.comparator.ObjetComparator;
 import org.greenlist.entity.Adresse;
 import org.greenlist.entity.Domaine;
 import org.greenlist.entity.Groupe;
 import org.greenlist.entity.Objet;
 import org.greenlist.entity.Produit;
 import org.greenlist.entity.Utilisateur;
+import org.greenlist.utilitaire.ObjetComparator;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -231,14 +231,13 @@ public class RechercheManagedBean {
 		return o;
 
 	}
-
+	
 	public String voirFiche(int idObjet){
 		String nav ="/ficheObjet.xhtml?faces-redirect=true&id="+ idObjet ;
 		return nav;
 		
 	}
-	
-	
+
 	private double deg2rad(double deg) {
 		return deg * Math.PI / 180;
 	}

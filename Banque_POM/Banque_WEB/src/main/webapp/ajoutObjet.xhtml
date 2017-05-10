@@ -111,15 +111,24 @@
 				<!-- Bloc de boutons -->
 
 				<div class="boutonsBloc">
-					<div class="pageBouton">
-						<span class="fa fa-check objetItem"></span>
-						<div class="objetItem">Valider</div>
+
+						<h:commandButton styleClass="pageBouton"
+							action="#{mbObjetAjout.creerObjet}">
+							<div class="fa fa-check fa-2x objetItem"></div>
+							<div class="objetItem">Valider</div>
+						</h:commandButton>
+
+						<h:commandButton styleClass="pageBouton">
+							<div class="fa fa-close fa-2x objetItem"></div>
+							<div class="objetItem">Annuler</div>
+						</h:commandButton>
+
+						<h:commandButton styleClass="testBouton">
+							<div class="objetItem">Test</div>
+						</h:commandButton>
+
+
 					</div>
-					<div class="pageBouton">
-						<span class="fa fa-close objetItem"></span>
-						<div class="objetItem">Annuler</div>
-					</div>
-				</div>
 			</h:form>
 			<h:outputScript library="js" name="inputValeur.js"></h:outputScript>
 		</ui:define>

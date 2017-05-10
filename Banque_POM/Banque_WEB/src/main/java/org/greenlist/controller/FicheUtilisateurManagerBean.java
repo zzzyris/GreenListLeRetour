@@ -16,6 +16,9 @@ import org.greenlist.entity.Utilisateur;
 @ManagedBean(name = "mbFicheUtilisateur")
 @ViewScoped
 public class FicheUtilisateurManagerBean {
+	
+
+
 	@EJB
 	private IBusinessUtilisateur proxyUtilisateur ;
 	
@@ -114,6 +117,15 @@ public class FicheUtilisateurManagerBean {
 
 	public void setNbEchanges(int nbEchanges) {
 		this.nbEchanges = nbEchanges;
+	}
+	
+	public UtilisateurManagedBean getMbUtilisateur() {
+		return mbUtilisateur;
+	}
+
+
+	public void setMbUtilisateur(UtilisateurManagedBean mbUtilisateur) {
+		this.mbUtilisateur = mbUtilisateur;
 	}
 	
 	

@@ -133,15 +133,6 @@ public class FicheUtilisateurManagerBean {
 	public void setMbUtilisateur(UtilisateurManagedBean mbUtilisateur) {
 		this.mbUtilisateur = mbUtilisateur;
 	}
-	
-	public UtilisateurManagedBean getMbUtilisateur() {
-		return mbUtilisateur;
-	}
-
-
-	public void setMbUtilisateur(UtilisateurManagedBean mbUtilisateur) {
-		this.mbUtilisateur = mbUtilisateur;
-	}
 
 	public int getDistance() {
 		return distance;

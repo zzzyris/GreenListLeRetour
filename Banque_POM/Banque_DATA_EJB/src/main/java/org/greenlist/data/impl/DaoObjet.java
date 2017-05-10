@@ -1,195 +1,285 @@
-package org.greenlist.data.impl;
+package org.greenlist.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import javax.ejb.Remote;
-import javax.ejb.Singleton;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
-import org.greenlist.data.api.IDaoObjet;
+import org.apache.commons.lang3.StringUtils;
+import org.greenlist.business.api.IBusinessAdresse;
+import org.greenlist.business.api.IBusinessObjet;
+import org.greenlist.business.api.IBusinessProduit;
+import org.greenlist.business.api.IBusinessUtilisateur;
+import org.greenlist.business.comparator.ObjetComparator;
 import org.greenlist.entity.Adresse;
 import org.greenlist.entity.Domaine;
 import org.greenlist.entity.Groupe;
 import org.greenlist.entity.Objet;
-import org.greenlist.entity.Photo;
 import org.greenlist.entity.Produit;
 import org.greenlist.entity.Utilisateur;
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 
-@Remote(IDaoObjet.class)
-@Singleton
-public class DaoObjet implements IDaoObjet {
+@ManagedBean(name = "mbRecherche")
+@SessionScoped
+public class RechercheManagedBean {
 
-	@PersistenceContext(unitName = "Banque_DATA_EJB")
-	private EntityManager em;
+	private String recherche;
+	private Set<Objet> resultatRechercheSet;
+	private List<Objet> resultatRechercheList;
+	private Set<String> motsRecherche;
+	private static final double SCORE_PRODUIT = 0.5;
+	private static final double SCORE_GROUPE = 0.3;
+	private static final double SCORE_DOMAINE = 0.15;
+	private Utilisateur utilisateur;
+	private Map<Produit, Integer> compteurProduits;
+	private TreeNode root;
 
-	private static final String REQUETTE_GET_OBJET_BY_ID = "SELECT o FROM Objet o WHERE o.id = :pidObjet";
-	private static final String REQUETTE_GET_OBJET_BY_ID_WITH_PDT_TA =
-			"SELECT o FROM Objet o inner join fetch o.produit inner join fetch o.trancheAge inner join fetch o.utilisateur WHERE o.id = :pidObjet";
+	private Map<Domaine, Set<Groupe>> mapDomaines;
+	private Map<Groupe, Set<Produit>> mapGroupes;
 
-	private static final String REQUETTE_GET_OBJETS_BY_UTILISATEUR = "SELECT u.objets FROM Utilisateur as u WHERE u.id = :pIdUtilisateur";
+	// sera à définir à partir de l'utilisateur qui effectuera la recherche.
+	// Valeur par défaut pour le moment.
+	private double latitude;
+	private double longitude;
 
-	private static final String REQUETTE_GET_OBJETS_BY_LIBELLE = "SELECT o FROM Objet as o WHERE o.libelle LIKE :pmotClef";
-	
-	private static final String REQUETE_GET_PHOTOS ="SELECT o.photos FROM Objet o WHERE o.id = :pIdObjet" ;
+	@EJB
+	private IBusinessUtilisateur proxyUtilisateur;
 
-	
+	@EJB
+	private IBusinessProduit proxyProduit;
 
-	
-	
-	  
-	  private static final String REQUETE_GET_GROUPE = 
-			  "SELECT g from Groupe g where g.id = :pGId " ;
-	  private static final String REQUETE_GET_DOMAINE = 
-			  "SELECT D from Domaine d where d.id = :pDId " ;
-	 
-	private static final String REQUETE_GET_ADRESSE = "SELECT a " + "FROM Adresse a "
-			+ "INNER JOIN fetch a.utilisateur u " + "INNER JOIN fetch u.objets o " + "WHERE o.id = :pIdObjet";
+	@EJB
+	private IBusinessObjet proxyObjet;
 
-	private static final String REQUETTE_GET_OBJETS_BY_DOMAINE = " SELECT o FROM Objet  as o"
-			+ " JOIN o.produit as produit" + " join produit.groupe as groupe" + "join groupe.domaine as domaine"
-			+ " WHERE domaine = :pDomaine";
+	@EJB
+	private IBusinessAdresse proxyAdresse;
 
-	private static final String REQUETTE_GET_OBJETS_BY_GROUPE = " SELECT o FROM Objet as  o"
-			+ " JOIN o.produit as produit " + "join produit.groupe as groupe" + " WHERE groupe = :pGroupe";
+	@PostConstruct
+	private void init() {
+		// TODO : modifier l'id par celle récupérée depuis la page précédente.
+		utilisateur = proxyUtilisateur.getUtilisateurById(1);
+		List<Adresse> adresses = proxyAdresse.getAdresseByUtilisateur(utilisateur);
+		longitude = adresses.get(0).getLongitude();
+		latitude = adresses.get(0).getLatitude();
+	}
 
-	private static final String REQUETTE_GET_OBJETS_BY_PRODUIT = "SELECT o from Objet o inner join fetch o.produit p inner join fetch o.trancheAge "
-			+ "inner join fetch p.groupe g "
-			+ "inner join fetch g.domaine  WHERE o.produit = :pProduit "
-			+ "AND o.utilisateur.id <> :pIdUtilisateur";
+	public void decouperRecherche() {
 
-	/**
-	 * Methode pour r�cup�rer un objet par son id
-	 * 
-	 * @param idObjet
-	 *            id de l'objet recherch�
-	 */
-	@Override
-	public Objet getObjetById(int idObjet) {
-		Query query = em.createQuery(REQUETTE_GET_OBJET_BY_ID).setParameter("pidObjet", idObjet);
-		return (Objet) query.getSingleResult();
+		// Initialisation des données
+		compteurProduits = new HashMap<>();
+		root = new DefaultTreeNode("Root", null);
+		mapDomaines = new HashMap<>();
+		mapGroupes = new HashMap<>();
+
+		if (recherche.length() > 0) {
+			motsRecherche = new HashSet<String>();
+			String monString = StringUtils.stripAccents(recherche).toLowerCase();
+			String[] mesMots = monString.split("[ -]");
+			for (String s : mesMots) {
+				if (s.length() > 2) {
+					motsRecherche.add(s);
+				}
+			}
+			construireResultats();
+		}
 	}
 
 	/**
-	 * Methode pour r�cup�rer un objet par son id
-	 * 
-	 * @param idObjet
-	 *            id de l'objet recherch�
+	 * Enregistre dans resultatsRecherche l'ensemble des objets correspondant à
+	 * la recherche saisie par l'utilisateur : Cherche à partir des mots clefs
+	 * saisis les produits correspondants, puis, parmis ces produits, les objets
+	 * dont le libellé correspond au reste des mots-clefs.
 	 */
-	@Override
-	public Objet getObjetByIdWithProduitAndTA(int idObjet) {
-		Objet objetComplet = new Objet();
-		Query query = em.createQuery(REQUETTE_GET_OBJET_BY_ID_WITH_PDT_TA).setParameter("pidObjet", idObjet);
-		objetComplet = (Objet) query.getSingleResult();
-		Query queryGroupe = em.createQuery(REQUETE_GET_GROUPE).setParameter("pGId", objetComplet.getProduit().getGroupe().getId());
-		objetComplet.getProduit().setGroupe((Groupe)queryGroupe.getSingleResult());
-		
-		Query queryDomaine = em.createQuery(REQUETE_GET_DOMAINE).setParameter("pDId", objetComplet.getProduit().getGroupe().getDomaine().getId());
-		objetComplet.getProduit().getGroupe().setDomaine((Domaine)queryDomaine.getSingleResult());
-		
-		return objetComplet;
-	}
-	/**
-	 * Methode pour ajouter un objet
-	 * 
-	 * @param objet
-	 *            Objet � cr�er
-	 */
-	@Override
-	public Objet createObjet(Objet objet) {
-		em.persist(objet);
-		return objet;
-	}
+	private void construireResultats() {
+		resultatRechercheSet = new HashSet<>();
 
-	/**
-	 * Methode pour r�cup�rer l'ensemble des objets d'un utilisateur
-	 * 
-	 * @param utilisateur
-	 *            le propri�taire des objets recherch�s
-	 */
+		// pour chaque mot dans la recherche
+		for (String mot : motsRecherche) {
+			// récupération des produits contenant ce mot dans leur libellé
+			List<Produit> produits = proxyProduit.getProduits(mot);
+			// pour chaque produit dans cette liste de produits
+			for (Produit p : produits) {
+				// récupération des objets appartenant à ce produit et
+				// n'appartenant pas à l'utilisateur
+				Set<Objet> partialResults = proxyObjet.getObjets(p, utilisateur);
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Objet> getObjetsByUtilisateur(Utilisateur utilisateur) {
-		String hql = "SELECT o FROM Objet o WHERE o.utilisateur.id = :pid";
-		return em.createQuery(hql).setParameter("pid", utilisateur.getId()).getResultList();
-	}
+				// Enlever tous les résultats qui ne conviennent pas et calculer
+				// la distance et la pertinence pour ceux qui conviennent.
+				if (partialResults != null) {
+					partialResults = filtrerResultats(mot, partialResults, SCORE_PRODUIT);
+					resultatRechercheSet.addAll(partialResults);
 
-	/**
-	 * Methode pour rechercher les objets aillant un libell� ressemblant � une
-	 * chaine de caractere
-	 * 
-	 * @param motClef
-	 *            Chaine que l'on cherche
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Objet> getObjetsByLibelle(String motClef) {
+					// Compteur d'objets dans chaque produit
+					compteurProduits.put(p, partialResults.size());
 
-		StringBuilder sb = new StringBuilder();
-		motClef = sb.append("%").append(motClef).append("%").toString();
+					// Construction maps pour le TreeNode
+					ConstruireMap(p);
+				}
 
-		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_LIBELLE).setParameter("pmotClef", motClef);
-		return query.getResultList();
+			}
+		}
 
+		resultatRechercheList = new ArrayList<>(resultatRechercheSet);
+		Collections.sort(resultatRechercheList, new ObjetComparator());
+
+		// Construction de l'arbre des catégories
+		TreeNode root = new DefaultTreeNode("Root", null);
+
+		for (Domaine d : mapDomaines.keySet()) {
+			TreeNode tnD = new DefaultTreeNode(d, root);
+			root.getChildren().add(tnD);
+			// verif
+			System.out.println(d.getLibelle());
+			for (Groupe g : mapDomaines.get(d)) {
+				TreeNode tnG = new DefaultTreeNode(g, tnD);
+				tnD.getChildren().add(tnG);
+				// verif
+				System.out.println("  " + g.getLibelle());
+				for (Produit p : mapGroupes.get(g)) {
+					TreeNode tnP = new DefaultTreeNode(p, tnG);
+					tnG.getChildren().add(tnP);
+					System.out.println("    " + p.getLibelle() + " (" + compteurProduits.get(p) + ")");
+				}
+			}
+		}
 	}
 
-	/**
-	 * Recherche des objets appartenant � un domaine
-	 * 
-	 * @param domaine
-	 *            le domaine que l'on recherche
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Objet> getObjetsByDomaine(Domaine domaine) {
-		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_DOMAINE).setParameter("pDomaine", domaine);
-		return query.getResultList();
+	private void ConstruireMap(Produit p) {
+		Groupe g = p.getGroupe();
+		Domaine d = g.getDomaine();
+
+		if (mapGroupes.containsKey(g)) {
+			mapGroupes.get(g).add(p);
+		} else {
+			mapGroupes.put(g, new HashSet<>());
+			mapGroupes.get(g).add(p);
+		}
+
+		if (mapDomaines.containsKey(d)) {
+			mapDomaines.get(d).add(g);
+		} else {
+			mapDomaines.put(d, new HashSet<>());
+			mapDomaines.get(d).add(g);
+		}
+
 	}
 
-	/**
-	 * Recherche des objets appartenant � un groupe
-	 * 
-	 * @param domaine
-	 *            le groupe que l'on recherche
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Objet> getObjetsByGroupe(Groupe groupe) {
-		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_GROUPE).setParameter("pGroupe", groupe);
-		return query.getResultList();
+	private Set<Objet> filtrerResultats(String mot, Set<Objet> partialResults, double scoreCategorie) {
+		List<String> motsClefs = new ArrayList<>();
+		motsClefs.addAll(motsRecherche);
+		motsClefs.remove(mot);
+		int score;
+		Iterator<Objet> i = partialResults.iterator();
+		while (i.hasNext()) {
+			Objet o = i.next();
+			score = 0;
+			for (String m : motsClefs) {
+				if (StringUtils.stripAccents(o.getLibelle()).toLowerCase().contains(m)) {
+					score++;
+				}
+			}
+			if (score > 0) {
+				/*
+				 * Calcul de la pertinence : La catégorie compte pour 50% du
+				 * score, le nombre de mots clefs trouvés pour 50%. Catégorie :
+				 * 50% pour produit, 30% pour groupe, 15% pour domaine nb de
+				 * mots clefs : nbMotsTrouvés / nbMotsClefs / 2
+				 */
+				o.setPertinence((scoreCategorie + (double) score / motsClefs.size() / 2) * 100);
+				o = calculDistance(o);
+			} else if (motsClefs.size() == 0) {
+				o.setPertinence(100);
+				o = calculDistance(o);
+			} else {
+				i.remove();
+			}
+		}
+		return partialResults;
 	}
 
-	/**
-	 * Recherche des objets appartenant à un produit et n'appartenant pas à un
-	 * utilisateur donné.
-	 * 
-	 * @param produit
-	 *            le produit que l'on recherche
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Objet> getObjetsByProduit(Produit produit, Utilisateur utilisateur) {
-	
-		Query query = em.createQuery(REQUETTE_GET_OBJETS_BY_PRODUIT).setParameter("pProduit", produit);
-		query.setParameter("pIdUtilisateur", utilisateur.getId());
-		
-		
-		return query.getResultList();
+	// Formule d'Haversine, calcul de la distance entre deux points définis par
+	// leurs longitude et latitude.
+	// Cette distance est enregistrée dans l'objet o.
+	private Objet calculDistance(Objet o) {
+		Adresse adresse = proxyObjet.getAdresse(o);
+		double R = 6371; // rayon de la terre en km
+		double deltaLatitude = deg2rad(adresse.getLatitude() - latitude);
+		double deltaLongitude = deg2rad(adresse.getLongitude() - longitude);
+
+		double a = Math.sin(deltaLatitude / 2) * Math.sin(deltaLatitude / 2)
+				+ Math.cos(deg2rad(latitude)) * Math.cos(deg2rad(adresse.getLatitude())) * Math.sin(deltaLongitude / 2)
+						* Math.sin(deltaLongitude / 2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		double d = R * c; // distance en km ( Magic...)
+
+		d = Math.round(d * 10);
+		d = d / 10;
+
+		o.setDistance(d);
+		return o;
+
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Photo> getPhotos(Objet objet) {
-		Query query = em.createQuery(REQUETE_GET_PHOTOS).setParameter("pIdObjet", objet.getId());
-		return query.getResultList();
+	private double deg2rad(double deg) {
+		return deg * Math.PI / 180;
 	}
 
-	@Override
-	public Adresse getAdresse(Objet objet) {
-		return (Adresse) em.createQuery(REQUETE_GET_ADRESSE).setParameter("pIdObjet", objet.getId()).getSingleResult();
+	public String getRecherche() {
+		return recherche;
+	}
+
+	public void setRecherche(String recherche) {
+		this.recherche = recherche;
+	}
+
+	public Set<Objet> getResultatsRecherche() {
+		return resultatRechercheSet;
+	}
+
+	public Set<String> getMotsRecherche() {
+		return motsRecherche;
+	}
+
+	public Set<Objet> getResultatRechercheSet() {
+		return resultatRechercheSet;
+	}
+
+	public void setResultatRechercheSet(Set<Objet> resultatRechercheSet) {
+		this.resultatRechercheSet = resultatRechercheSet;
+	}
+
+	public List<Objet> getResultatRechercheList() {
+		return resultatRechercheList;
+	}
+
+	public void setResultatRechercheList(List<Objet> resultatRechercheList) {
+		this.resultatRechercheList = resultatRechercheList;
+	}
+
+	public Map<Produit, Integer> getCompteurProduits() {
+		return compteurProduits;
+	}
+
+	public void setCompteurProduits(Map<Produit, Integer> compteurProduits) {
+		this.compteurProduits = compteurProduits;
+	}
+
+	public TreeNode getRoot() {
+		return root;
+	}
+
+	public void setRoot(TreeNode root) {
+		this.root = root;
 	}
 
 }

@@ -1,6 +1,11 @@
-C:\Users\Stagiaire\git\GreenListLeRetour\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\UtilisateurManagedBean.java
-C:\Users\Stagiaire\git\GreenListLeRetour\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\AfficherObjetManagerBean.java
-C:\Users\Stagiaire\git\GreenListLeRetour\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\MessagePublicManagedBean.java
-C:\Users\Stagiaire\git\GreenListLeRetour\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\AjoutObjetManagerBean.java
-C:\Users\Stagiaire\git\GreenListLeRetour\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\SouhaitManagedBean.java
-C:\Users\Stagiaire\git\GreenListLeRetour\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\AffichageRefObjetSOuhait.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\AjoutObjetManagerBean.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\MessagePublicManagedBean.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\business\comparator\ObjetComparator.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\UtilisateurProfilManagedBean.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\AfficherObjetManagerBean.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\SouhaitManagedBean.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\AffichageRefObjetSOuhait.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\RechercheManagedBean.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\UtilisateurManagedBean.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\AfficherUserPageBean.java
+C:\Users\vanquynh\git\GreenListLeRetourNew\Banque_POM\Banque_WEB\src\main\java\org\greenlist\controller\FicheUtilisateurManagerBean.java

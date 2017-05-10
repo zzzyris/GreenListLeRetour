@@ -1,0 +1,11 @@
+org\greenlist\controller\SouhaitManagedBean.class
+org\greenlist\controller\AfficherUserPageBean.class
+org\greenlist\controller\UtilisateurManagedBean.class
+org\greenlist\controller\UtilisateurProfilManagedBean.class
+org\greenlist\controller\AfficherObjetManagerBean.class
+org\greenlist\controller\FicheUtilisateurManagerBean.class
+org\greenlist\controller\RechercheManagedBean.class
+org\greenlist\controller\AjoutObjetManagerBean.class
+org\greenlist\controller\AffichageRefObjetSOuhait.class
+org\greenlist\controller\MessagePublicManagedBean.class
+org\greenlist\business\comparator\ObjetComparator.class

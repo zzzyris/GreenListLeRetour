@@ -1,0 +1,14 @@
+org\greenlist\business\impl\BusinessEchange.class
+org\greenlist\business\impl\BusinessSouhait.class
+org\greenlist\business\impl\BusinessAdresse.class
+org\greenlist\business\impl\BusinessObjet.class
+org\greenlist\business\impl\BusinessTrancheAge.class
+org\greenlist\business\impl\BusinessDomaine.class
+org\greenlist\business\impl\BusinessGroupe.class
+org\greenlist\business\impl\BusinessExperience.class
+org\greenlist\business\impl\BusinessMessagePublic.class
+org\greenlist\business\impl\BusinessPanier.class
+org\greenlist\business\impl\BusinessProduit.class
+org\greenlist\business\impl\BusinessUtilisateur.class
+org\greenlist\business\impl\BusinessListe.class
+org\greenlist\business\impl\BusinessPhoto.class

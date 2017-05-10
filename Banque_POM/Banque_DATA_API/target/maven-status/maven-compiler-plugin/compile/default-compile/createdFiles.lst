@@ -1,0 +1,14 @@
+org\greenlist\data\api\IDaoSouhait.class
+org\greenlist\data\api\IDaoExperience.class
+org\greenlist\data\api\IDaoPhoto.class
+org\greenlist\data\api\IDaoListe.class
+org\greenlist\data\api\IDaoPanier.class
+org\greenlist\data\api\IDaoMessagePublic.class
+org\greenlist\data\api\IDaoProduit.class
+org\greenlist\data\api\IDaoGroupe.class
+org\greenlist\data\api\IDaoEchange.class
+org\greenlist\data\api\IDaoTrancheAge.class
+org\greenlist\data\api\IDaoUtilisateur.class
+org\greenlist\data\api\IDaoDomaine.class
+org\greenlist\data\api\IDaoAdresse.class
+org\greenlist\data\api\IDaoObjet.class

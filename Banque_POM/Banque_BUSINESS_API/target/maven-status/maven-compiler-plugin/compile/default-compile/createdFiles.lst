@@ -1,0 +1,14 @@
+org\greenlist\business\api\IBusinessEchange.class
+org\greenlist\business\api\IBusinessMessagePublic.class
+org\greenlist\business\api\IBusinessGroupe.class
+org\greenlist\business\api\IBusinessObjet.class
+org\greenlist\business\api\IBusinessTrancheAge.class
+org\greenlist\business\api\IBusinessUtilisateur.class
+org\greenlist\business\api\IBusinessSouhait.class
+org\greenlist\business\api\IBusinessDomaine.class
+org\greenlist\business\api\IBusinessAdresse.class
+org\greenlist\business\api\IBusinessPanier.class
+org\greenlist\business\api\IBusinessExperience.class
+org\greenlist\business\api\IBusinessPhoto.class
+org\greenlist\business\api\IBusinessProduit.class
+org\greenlist\business\api\IBusinessListe.class

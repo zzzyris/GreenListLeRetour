@@ -1,0 +1,14 @@
+org\greenlist\data\impl\DaoObjet.class
+org\greenlist\data\impl\DaoExperience.class
+org\greenlist\data\impl\DaoPhoto.class
+org\greenlist\data\impl\DaoTrancheAge.class
+org\greenlist\data\impl\DaoMessagePublic.class
+org\greenlist\data\impl\DaoDomaine.class
+org\greenlist\data\impl\DaoSouhait.class
+org\greenlist\data\impl\DaoGroupe.class
+org\greenlist\data\impl\DaoPanier.class
+org\greenlist\data\impl\DaoEchange.class
+org\greenlist\data\impl\DaoListe.class
+org\greenlist\data\impl\DaoUtilisateur.class
+org\greenlist\data\impl\DaoAdresse.class
+org\greenlist\data\impl\DaoProduit.class

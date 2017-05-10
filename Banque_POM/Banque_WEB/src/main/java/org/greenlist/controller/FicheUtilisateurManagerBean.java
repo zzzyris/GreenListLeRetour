@@ -16,11 +16,15 @@ import org.greenlist.entity.Utilisateur;
 @ManagedBean(name = "mbFicheUtilisateur")
 @ViewScoped
 public class FicheUtilisateurManagerBean {
+	
+	
 	@EJB
 	private IBusinessUtilisateur proxyUtilisateur ;
 	
 	@ManagedProperty(value = "#{mbUtilisateur}")
 	private UtilisateurManagedBean mbUtilisateur;
+	
+	
 	
 	private Utilisateur utilisateurAffiche = new Utilisateur();
 	private int moyenne = 0;
@@ -30,6 +34,9 @@ public class FicheUtilisateurManagerBean {
 	private int nbEchanges =  0 ;
 	
 	
+
+
+
 	@PostConstruct
 	public void init(){
 		
@@ -116,6 +123,13 @@ public class FicheUtilisateurManagerBean {
 		this.nbEchanges = nbEchanges;
 	}
 	
-	
+	public UtilisateurManagedBean getMbUtilisateur() {
+		return mbUtilisateur;
+	}
+
+
+	public void setMbUtilisateur(UtilisateurManagedBean mbUtilisateur) {
+		this.mbUtilisateur = mbUtilisateur;
+	}
 	
 }

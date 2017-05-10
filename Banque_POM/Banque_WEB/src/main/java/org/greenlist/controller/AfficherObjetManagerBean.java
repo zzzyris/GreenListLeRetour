@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.greenlist.business.api.IBusinessObjet;
 import org.greenlist.business.api.IBusinessUtilisateur;
@@ -31,7 +32,8 @@ public class AfficherObjetManagerBean {
 	private int nbEchanges = 0;
 
 	public void init() {
-		objetAffiche.setId(6);
+		int cntxtId = (int) FacesContext.getCurrentInstance().getAttributes().get("id");
+		objetAffiche.setId(cntxtId);
 		objetAffiche = proxyObjet.getObjetComplet(objetAffiche);
 
 		photos = proxyObjet.getPhotos(objetAffiche);

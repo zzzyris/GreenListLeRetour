@@ -17,8 +17,10 @@ public class BusinessListe implements IBusinessListe {
 	@EJB
 	private IDaoListe proxyListe;
 	
+
 	@Override
 	public List<Liste> getListeByUtilisateur(Utilisateur utilisateur) {
+
 		List<Liste> listes = null;
 		try {
 			listes = proxyListe.getListeByUtilisateur(utilisateur);
@@ -27,6 +29,18 @@ public class BusinessListe implements IBusinessListe {
 		}
 		return listes;
 	
+	}
+	
+	@Override
+	public List<Liste> getListeByIdUtilisateur(int idUtilisateur) {
+		List<Liste> listes = null;
+		try {
+			listes = proxyListe.getListeByIdUtilisateur(idUtilisateur);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listes;
+
 	}
 
 }

@@ -40,6 +40,17 @@ public class BusinessSouhait implements IBusinessSouhait {
 		}
 		return user;
 	}
+	
+	@Override
+	public List<Souhait> getSouhaits(int idListe) {
+		List<Souhait> user = null;
+		try {
+			user = proxyDaoSouhait.getSouhaits(idListe);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
 
 	@Override
 	public List<Liste> getListes(Utilisateur utilisateur) {
@@ -71,6 +82,14 @@ public class BusinessSouhait implements IBusinessSouhait {
 	@Override
 	public Liste addListe(Liste liste) {
 		return proxyDaoSouhait.addListe(liste);
+	}
+	
+	public IDaoSouhait getProxyDaoSouhait() {
+		return proxyDaoSouhait;
+	}
+
+	public void setProxyDaoSouhait(IDaoSouhait proxyDaoSouhait) {
+		this.proxyDaoSouhait = proxyDaoSouhait;
 	}
 
 }

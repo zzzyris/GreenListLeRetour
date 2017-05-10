@@ -19,4 +19,7 @@ public interface IBusinessSouhait {
 	public Souhait addSouhait(Souhait souhait);
 
 	public Liste addListe(Liste liste);
+
+	List<Souhait> getSouhaits(int idListe);
+
 }

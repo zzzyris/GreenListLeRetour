@@ -1,4 +1,4 @@
-package org.greenlist.business.comparator;
+package org.greenlist.utilitaire;
 
 import java.util.Comparator;
 

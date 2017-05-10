@@ -7,4 +7,5 @@ import org.greenlist.entity.Utilisateur;
 
 public interface IBusinessListe {
 	List<Liste> getListeByUtilisateur(Utilisateur utilisateur);
+	List<Liste> getListeByIdUtilisateur(int idUtilisateur);
 }

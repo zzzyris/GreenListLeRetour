@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>GreenList - Bienvenue</title>
+
+</h:head>
+<h:body>
+
+	<ui:composition template="/WEB-INF/templates/base.xhtml">
+		<ui:define name="content">
+			<h:form id="formDetailSouhait">
+				<h:panelGroup>
+
+					<div id="pageGestionSouhait" class="mainPanel">
+						<div class="pageTitleBloc">
+							<div class="fa fa-magic fa-2x pageTitleIcon"></div>
+							<div class="pageTitle whiteColor grow">Mes Souhaits</div>
+						</div>
+						<div class="gestionBloc">
+							<div class="listesBloc" >
+								<div class="pageSubTitle">Mes Listes</div>
+								<ul class="listesChoix">
+									
+									<ui:repeat value="#{mbListes.listes}" var="l">
+										<li class="listeItem"><h:commandButton
+												value="#{l.libelle}"
+												action="#{mbListes.afficherDetailListe(l.id)}" id="blockList">
+												<f:ajax listener="#{mbListes.afficherDetailListe(l.id)}"
+													render=":formDetailSouhait:detailSelectedListe"
+													event="click" execute="@this" />
+											</h:commandButton></li>
+
+									</ui:repeat>
+								</ul>
+
+								<div class="editSouhaitBloc">
+									<div class="editIconGrey">
+										<span class="fa fa-plus"></span>
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="listeDetailsBloc" >
+								<ui:repeat value="#{mbListes.listes}" var="l">
+
+
+									<div class="">
+										<div class="pageSubTitle souhaitItem">#{l.libelle}</div>
+										<div class="dateInfo">expire le #{l.dateExpiration}</div>
+										<div class="editButtonsBloc">
+											<div class="editSouhaitBloc">
+												<div class="editIcon">
+													<span class="fa fa-pencil"></span>
+												</div>
+											</div>
+											<div class="editSouhaitBloc">
+												<div class="editIcon">
+													<span class="fa fa-trash"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<ul>
+										<h:panelGroup id="detailSelectedListe">
+											<ui:repeat
+												value="#{mbSouhait.afficherSouhaitsParListe(l.id)}" var="sl">
+
+												<div class="souhaitsBloc">
+													<ul class="souhaitInfosBloc">
+														<li><span class="iconSouhait fa fa-gift souhaitItem"></span></li>
+														<li><span class="souhaitIconeText">#{sl.valeurmax}</span><span
+															class="fa fa-snowflake-o"></span></li>
+														<li class="titleSouhait">#{sl.libelle}</li>
+														<li><span
+															class="iconSouhait fa fa-pencil souhaitItem"></span></li>
+														<li><span class="iconSouhait fa fa-trash souhaitItem"></span></li>
+													</ul>
+												</div>
+
+											</ui:repeat>
+										</h:panelGroup>
+									</ul>
+
+								</ui:repeat>
+
+
+
+
+
+
+							</div>
+						</div>
+					</div>
+
+				</h:panelGroup>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -20,4 +20,5 @@ public interface IDaoSouhait {
 
 	public Liste addListe(Liste liste);
 
+	List<Souhait> getSouhaits(int idListe) throws Exception;
 }

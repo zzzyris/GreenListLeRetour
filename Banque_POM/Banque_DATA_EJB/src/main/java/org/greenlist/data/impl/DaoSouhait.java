@@ -33,9 +33,7 @@ public class DaoSouhait implements IDaoSouhait {
 		final String req = "SELECT s FROM Souhait s " + "INNER JOIN Liste li ON li.id = s.idListe "
 				+ "INNER JOIN Utilisateur u ON u.id = li.idUtilisateur" + "WHERE u.id = :pidUtilisateur";
 		
-		final String reqAlt = "SELECT s from Souhait s INNER JOIN FETCH s.liste l INNER JOIN FETCH  l.utilisateur  Where l.utilisateur.id = :pidUtilisateur" ;
-
-		Query query = em.createQuery(reqAlt).setParameter("pidUtilisateur", utilisateur.getId());
+		Query query = em.createQuery(req).setParameter("pidUtilisateur", utilisateur.getId());
 		return query.getResultList();
 	}
 
@@ -49,6 +47,19 @@ public class DaoSouhait implements IDaoSouhait {
 				+ "WHERE li.id = :pidListe";
 
 		Query query = em.createQuery(req).setParameter("pidListe", liste.getId());
+		return query.getResultList();
+	}
+	
+	/**
+	 * renvoi une liste de souhait et prend une Liste en argument
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Souhait> getSouhaits(int idListe) throws Exception {
+		final String req = "SELECT s FROM Souhait s WHERE s.liste.id = :pidListe";
+
+
+		Query query = em.createQuery(req).setParameter("pidListe", idListe);
 		return query.getResultList();
 	}
 
@@ -84,12 +95,7 @@ public class DaoSouhait implements IDaoSouhait {
 	 */
 	@Override
 	public Souhait addSouhait(Souhait souhait) {
-
-		em.getTransaction().begin();
 		em.persist(souhait);
-		em.getTransaction().commit();
-		em.close();
-
 		return souhait;
 	}
 
@@ -98,12 +104,7 @@ public class DaoSouhait implements IDaoSouhait {
 	 */
 	@Override
 	public Liste addListe(Liste liste) {
-
-		em.getTransaction().begin();
 		em.persist(liste);
-		em.getTransaction().commit();
-		em.close();
-		
 		return liste;
 	}
 

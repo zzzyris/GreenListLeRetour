@@ -1,0 +1,1 @@
+Emplacement de sauvegarde des photos uploadées pour les objets.

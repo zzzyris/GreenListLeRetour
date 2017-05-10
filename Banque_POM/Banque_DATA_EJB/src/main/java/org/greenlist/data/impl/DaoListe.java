@@ -17,17 +17,27 @@ import org.greenlist.entity.Utilisateur;
 public class DaoListe implements IDaoListe {
 	
 	
-	private static final String  REQUETE_GET_LISTE_BY_UTILISATEUR = "SELECT u.listes FROM Utilisateur as u"
+	private static final String  REQUETE_GET_LISTE_BY_UTILISATEUR = "SELECT u.listes FROM Utilisateur as u "
 			+ "WHERE u.id = :pIdUtilisateur";
 	
 	@PersistenceContext(unitName = "Banque_DATA_EJB")
 	private EntityManager em;
 	
+
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Liste> getListeByUtilisateur(Utilisateur utilisateur) throws Exception {
 		
 		Query query = em.createQuery(REQUETE_GET_LISTE_BY_UTILISATEUR).setParameter("pIdUtilisateur", utilisateur.getId());
+		return query.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Liste> getListeByIdUtilisateur(int idUtilisateur) throws Exception {
+
+		Query query = em.createQuery(REQUETE_GET_LISTE_BY_UTILISATEUR).setParameter("pIdUtilisateur", idUtilisateur);
 		return query.getResultList();
 	}
 

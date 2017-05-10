@@ -22,6 +22,8 @@ public class DaoProduit implements IDaoProduit{
 	
 	private static final String REQUETE_GET_PRODUIT_PAR_NOM = 
 			"SELECT p FROM Produit p "
+			+ "INNER JOIN fetch p.groupe g "
+			+ "INNER JOIN fetch g.domaine d "
 			+ "WHERE p.libelle LIKE :pnom";
 	
 	@PersistenceContext(unitName = "Banque_DATA_EJB")

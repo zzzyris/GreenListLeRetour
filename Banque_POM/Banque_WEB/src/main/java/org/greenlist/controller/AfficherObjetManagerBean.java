@@ -1,6 +1,7 @@
 package org.greenlist.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -31,10 +32,18 @@ public class AfficherObjetManagerBean {
 	private int nbAVis = 0;
 	private int nbEchanges = 0;
 
+
 	public void init() {
-		int cntxtId = (int) FacesContext.getCurrentInstance().getAttributes().get("id");
+		
+		 
+		
+		int cntxtId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+		
+		
 		objetAffiche.setId(cntxtId);
 		objetAffiche = proxyObjet.getObjetComplet(objetAffiche);
+		
+		System.out.println("valeur : " +objetAffiche.getValeur());
 
 		photos = proxyObjet.getPhotos(objetAffiche);
 		
@@ -43,9 +52,14 @@ public class AfficherObjetManagerBean {
 		moyenne = proxyUtilisateur.recupererMoyenne(proprietaire);
 		nbAVis = proxyUtilisateur.recupererNbAvis(proprietaire);
 		nbEchanges = proxyUtilisateur.recupererNbEchangesValide(proprietaire);
-		System.out.println(proprietaire.getPseudo());
+		
 	}
 
+	
+
+	
+	
+	
 	public Objet getObjetAffiche() {
 		return objetAffiche;
 	}
@@ -110,4 +124,6 @@ public class AfficherObjetManagerBean {
 		this.nbEchanges = nbEchanges;
 	}
 
+
+	
 }

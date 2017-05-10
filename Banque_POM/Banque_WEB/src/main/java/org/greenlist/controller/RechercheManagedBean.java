@@ -174,6 +174,13 @@ public class RechercheManagedBean {
 
 	}
 
+	public String voirFiche(int idObjet){
+		String nav ="/ficheObjet.xhtml?faces-redirect=true&id="+ idObjet ;
+		return nav;
+		
+	}
+	
+	
 	private double deg2rad(double deg) {
 		return deg * Math.PI / 180;
 	}

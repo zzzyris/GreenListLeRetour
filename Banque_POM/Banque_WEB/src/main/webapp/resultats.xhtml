@@ -45,7 +45,7 @@
 					<p:graphicImage name="/demo/images/antalya/kaleici.png" />
 					<p:graphicImage name="/demo/images/antalya/karaalioglu.png" />
 				</p:outputPanel>
-			</h:form>
+			
 
 			<div id="monObjetsBloc" class="objetsBloc sectionBloc">
 
@@ -56,7 +56,7 @@
 					
 						</div>
 						<div class="infosObjet">
-							<div class="titleObjet">#{objet.libelle}</div>
+							<h:commandLink action="#{mbRecherche.voirFiche(objet.id)}"  value="#{objet.libelle}"/>
 							<div class="objetIconeBloc">
 								<ul>
 									<li><span class="catObjet fa fa-gift fa-2x">#{objet.produit.groupe.domaine.id}</span></li>
@@ -71,6 +71,7 @@
 
 				</ui:repeat>
 			</div>
+			</h:form>
 			<!-- /Contenu Principal -->
 		</ui:define>
 	</ui:composition>

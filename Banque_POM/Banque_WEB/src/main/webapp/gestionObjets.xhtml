@@ -36,7 +36,11 @@
                             
                         </div>
                         <div class="infosObjet">
-                            <div class="titleObjet"> <h:commandLink action="ficheObjet.xhtml?faces-redirect=true&amp;id=#{objet.id}"  value="#{objet.libelle}"/> </div>
+                            <div class="titleObjet">
+                             <h:commandLink action="#{mbFicheUtilisateur.voirFiche(objet.id)}"  value="#{objet.libelle}"/>
+                            	
+                          
+                             </div>
                             <div class="objetIconeBloc">
                                 <ul>
                                     <li><span class="catObjet fa fa-gift"></span></li>

@@ -32,6 +32,8 @@ public class FicheUtilisateurManagerBean {
 	private int nbObjets = 0;
 	private int nbSouhaits = 0;
 	private int nbEchanges =  0 ;
+	private int distance = 0;
+	private int pertinence=0 ;
 	
 	
 
@@ -53,6 +55,11 @@ public class FicheUtilisateurManagerBean {
 		
 	}
 
+	public String voirFiche(int idObjet){
+		String nav ="/ficheObjet.xhtml?faces-redirect=true&id="+ idObjet;
+		return nav;
+		
+	}
 
 	public IBusinessUtilisateur getProxyUtilisateur() {
 		return proxyUtilisateur;
@@ -131,5 +138,22 @@ public class FicheUtilisateurManagerBean {
 	public void setMbUtilisateur(UtilisateurManagedBean mbUtilisateur) {
 		this.mbUtilisateur = mbUtilisateur;
 	}
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
+	public int getPertinence() {
+		return pertinence;
+	}
+
+	public void setPertinence(int pertinence) {
+		this.pertinence = pertinence;
+	}
+	
 	
 }
